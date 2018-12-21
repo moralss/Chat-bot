@@ -20,7 +20,7 @@ export class AppComponent {
   };
   getOptions() {
     this.getData().subscribe(
-      data => { console.log("data", data); },
+      data => { this.options = data; console.log("something different", data); },
       err => console.error(err),
     );
     return this.options;
