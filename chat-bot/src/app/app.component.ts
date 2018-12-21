@@ -8,8 +8,9 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = "chat-bot";
   button = `lets check`;
-  btns = ["User cannot login", "User has problems with Java", "The system is down"];
+  btns = [];
   options = {};
+  message = "";
   constructor(private http: HttpClient) {
     this.getData();
     this.getOptions();
@@ -20,9 +21,18 @@ export class AppComponent {
   };
   getOptions() {
     this.getData().subscribe(
-      data => { this.options = data; console.log("something different", data); },
+      data => {
+        this.btns = data.node.map(item => item);
+        this.message = data.text;
+      },
       err => console.error(err),
     );
     return this.options;
   }
+  selectedOption(e) {
+    console.log(e);
+    // return this.http.get('http://41.86.98.151:8080/node=' + uuid)
+  }
+
+
 }
