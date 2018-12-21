@@ -38,7 +38,6 @@ export class AppComponent {
   selectedOption(e) {
     console.log(e);
     // return this.http.get('http://41.86.98.151:8080/node=' + uuid)
+ 
   }
-
-
 }
