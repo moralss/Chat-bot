@@ -1,11 +1,22 @@
 <!-- The content below is only a placeholder and can be replaced. -->
-<div style="text-align:center">
-  <h1>Welcome to {{ title }}!</h1>
-</div>
-<h2>select one of the following options</h2>
-<div>
-  <button>user cannot login</button> <button>user if not logged in</button>
-  <button>unable to login user</button>
-</div>
+<header>
+  <div style="text-align:center">
+    <h1>Welcome to {{ title }}!</h1>
+  </div>
+</header>
 
+<div class="msg">
+  <div class="speech-bubble">
+    <h2 class="bubble-text">
+      hi there, please select one of the following options below
+    </h2>
+  </div>
+
+  <div class="wrapper">
+    <div class="nav"><h2>Available Options</h2></div>
+    <div class="selection">
+      <button class="btn" *ngFor="let btn of btns">{{ btn }}</button>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
