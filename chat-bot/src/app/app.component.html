@@ -6,22 +6,21 @@
 </header>
 
 <div class="msg">
-  <div class="whatever">
+  <div class="chat">
     <div *ngFor="let messagesAndResponse of messagesAndResponses" class={{messagesAndResponse.style}}>
       <h2 class="bubble-text">
         {{messagesAndResponse.data}}
       </h2>
     </div>
-
   </div>
+
   <div class="wrapper">
     <div class="nav">
       <h2>Available Options</h2>
     </div>
     <div class="selection">
-      <button (click)="selectedOption(btn)" class="btn" *ngFor="let btn of btns">{{ btn.option }}</button>
+      <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns">{{ btn.option }}</button>
     </div>
   </div>
-
 </div>
 <router-outlet></router-outlet>
