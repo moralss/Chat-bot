@@ -9,35 +9,32 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = "chat-bot";
-  button = `lets check`;
-  btns = [];
-  options = {};
-  message = "";
+  messagesAndResponses = [];
   constructor(private http: HttpClient) {
     this.getData();
     this.getOptions();
   };
-
   getData(): Observable<HttpResponse<Options[]>> {
     return this.http.get<Options[]>('http://41.86.98.151:8080/tree?name=test', { observe: 'response' });
   };
   getOptions() {
     this.getData().subscribe(
       data => {
-        const keys = data.headers.keys();
-        this.btns = keys.map(key => `${key}:${data.headers.get(key)}`)
-        this.options = { ...data.body }
-        console.log("data", this.options)
-        // this.btns = data.node.map(item => item);
-        // this.message = data.text;
+        this.messagesAndResponses.push({ data: data.body.text, style: "speech-bubble" });
       },
       err => console.error(err),
     );
-    return this.btns;
+    return this.messagesAndResponses;
   }
   selectedOption(e) {
-    console.log(e);
-    // return this.http.get('http://41.86.98.151:8080/node=' + uuid)
- 
+    this.messagesAndResponses.push({ data: e.option, style: "speech-bubble-response" });
+    this.getData().subscribe(
+      data => {
+        this.messagesAndResponses.push({ data: "The api was successful t;aksaf;lkasd;lskf'kla;f;lsk fasdlkfl ;slak  ;kl as;ldkf ;laskf;lksa;dflk s;klf ;skaf;lsk?", style: "speech-bubble" });
+      },
+      err => console.error(err),
+    );
+    return this.messagesAndResponses;
   }
+
 }
