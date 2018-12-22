@@ -1,25 +1,24 @@
 <!-- The content below is only a placeholder and can be replaced. -->
-<header>
-  <div style="text-align:center">
-    <h1>Welcome to {{ title }}!</h1>
-  </div>
-</header>
 
 <div class="msg">
+  <div class="head">
+    <h1>{{ title }}!</h1>
+  </div>
   <div class="chat">
-    <div *ngFor="let messagesAndResponse of messagesAndResponses" class={{messagesAndResponse.style}}>
-      <h2 class="bubble-text">
-        {{messagesAndResponse.data}}
-      </h2>
+    <div
+      *ngFor="let messagesAndResponse of messagesAndResponses"
+      class="{{ messagesAndResponse.style }}"
+    >
+      <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
     </div>
   </div>
 
   <div class="wrapper">
-    <div class="nav">
-      <h2>Available Options</h2>
-    </div>
+    <div class="nav"><h2>Available Options</h2></div>
     <div class="selection">
-      <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns">{{ btn.option }}</button>
+      <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns">
+        {{ btn.option }}
+      </button>
     </div>
   </div>
 </div>
