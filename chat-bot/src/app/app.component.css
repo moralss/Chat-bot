@@ -5,6 +5,7 @@
 .speech-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
   position: relative;
   display: grid;
+  left: -250px;
   background: #00bb6f;
   border-radius: 0.4em;
   margin: 1em;
@@ -16,6 +17,7 @@
 .speech-bubble-response[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
 	position: relative;
   display: grid;
+  right: -250px;
 	background: #00aabb;
 	border-radius: .4em;
   margin: 1em;
@@ -102,8 +104,9 @@
 } */
 .chat{
   display: grid;
-  grid-template:  "speech-bubble speech-bubble-response";
   justify-content: center;
+  grid-template-rows: max-content;
+
 }
 .whatever{
   width: 30%
