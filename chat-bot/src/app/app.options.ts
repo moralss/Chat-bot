@@ -1,5 +1,4 @@
 export interface Options {
-    text: string,
-    nodeid: string,
-    option: string
+    text: String
+    node: Array<{}>,
 }
