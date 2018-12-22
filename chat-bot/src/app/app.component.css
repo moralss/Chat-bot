@@ -18,6 +18,7 @@
 	position: relative;
   display: grid;
   right:  -20%;
+
 	background: #00aabb;
 	border-radius: .4em;
   margin: 1em;
@@ -107,6 +108,8 @@
   justify-content: center;
   grid-template-rows: max-content;
 
+  grid-template:  "speech-bubble speech-bubble-response";
+  justify-content: center;
 }
 .whatever{
   width: 30%
