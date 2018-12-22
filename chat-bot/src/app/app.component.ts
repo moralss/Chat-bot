@@ -12,16 +12,23 @@ export class AppComponent {
   messagesAndResponses = [];
   btns = [];
   constructor(private http: HttpClient) {
-    this.getData();
-    this.getOptions();
+    this.getFirstOptions();
+    this.ShowFirstOptions();
+
+    // this.getOptions();
+    // this.showOptions();
   };
 
-  getData(): Observable<HttpResponse<Options[]>> {
-    return this.http.get<Options[]>('http://41.86.98.151:8080/tree?name=test', { observe: 'response' });
+  getFirstOptions(): Observable<HttpResponse<Options>> {
+    return this.http.get<Options>('http://41.86.98.151:8080/tree?name=test', { observe: 'response' });
   };
 
-  getOptions() {
-    this.getData().subscribe(
+  getOptions(nodeId: string): Observable<HttpResponse<Options>> {
+    return this.http.get<Options>('http://41.86.98.151:8080/tree?nodeid=' + nodeId, { observe: 'response' });
+  };
+
+  ShowFirstOptions() {
+    this.getFirstOptions().subscribe(
       data => {
         this.btns = data.body.node;
         this.messagesAndResponses.push({ data: data.body.text, style: "speech-bubble" });
@@ -31,12 +38,12 @@ export class AppComponent {
     return this.btns;
   }
 
-  selectedOption(e) {
+  showOptions(e) {
     this.messagesAndResponses.push({ data: e.option, style: "speech-bubble-response" });
-    this.getData().subscribe(
+    this.getOptions(e.nodeid).subscribe(
       data => {
         this.btns = data.body.node;
-        this.messagesAndResponses.push({ data: "The api was successful t;aksaf;lkasd;lskf'kla;f;lsk fasdlkfl ;slak  ;kl as;ldkf ;laskf;lksa;dflk s;klf ;skaf;lsk?", style: "speech-bubble" });
+        this.messagesAndResponses.push({ data: data.body.text, style: "speech-bubble" });
       },
       err => console.error(err),
     );
