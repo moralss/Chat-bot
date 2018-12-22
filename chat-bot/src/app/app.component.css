@@ -5,6 +5,7 @@
 .speech-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
   position: relative;
   display: grid;
+  left: -20%;
   background: #00bb6f;
   border-radius: 0.4em;
   margin: 1em;
@@ -16,6 +17,10 @@
 .speech-bubble-response[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
   position: relative;
   display: grid;
+  background: #00aabb;
+  border-radius: 0.4em;
+  right: -20%;
+
   background: #00aabb;
   border-radius: 0.4em;
   margin: 1em;
@@ -110,8 +115,8 @@
 } */
 .chat {
   display: grid;
-  grid-template: "speech-bubble speech-bubble-response";
   justify-content: center;
+  grid-template-rows: max-content;
 }
 .whatever {
   width: 30%;
@@ -121,7 +126,7 @@
   text-align: center;
   background: #060606;
 }
-
+/* iphone 6,7,8 media querry */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .selection {
     padding: 1em;
