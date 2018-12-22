@@ -102,9 +102,12 @@
   margin-inline-end: 0px;
   font-weight: none;
 } */
-.whatever{
+.chat{
   display: grid;
-  grid-template:  "speech-bubble speech-bubble";
-                  /* "nav  main" 1fr  
-                  "nav  foot" 30px  */
+  grid-template:  "speech-bubble speech-bubble-response";
+  justify-content: center;
 }
+.whatever{
+  width: 30%
+}
+
