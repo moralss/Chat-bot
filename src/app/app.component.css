@@ -5,9 +5,9 @@
 .speech-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
   position: relative;
   display: grid;
-  left: -20%;
   background: #00bb6f;
   border-radius: 0.4em;
+  left: -20%;
   margin: 1em;
   font-size: 2em;
   max-width: 9em;
@@ -20,9 +20,6 @@
   background: #00aabb;
   border-radius: 0.4em;
   right: -20%;
-
-  background: #00aabb;
-  border-radius: 0.4em;
   margin: 1em;
   font-size: 2em;
   max-width: 9em;
@@ -56,7 +53,7 @@
   border-left: 0;
   border-bottom: 0;
   margin-top: 0em;
-  margin-left: -0.5em;
+  margin-left: -0.4em;
 }
 
 .bubble-text {
