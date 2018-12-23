@@ -12,13 +12,17 @@ export class AppComponent {
   messagesAndResponses = [];
   btns = [];
   constructor(private http: HttpClient) {
-    this.getFirstOptions();
-    this.ShowFirstOptions();
-
+    this.Reset();
+    // this.ShowFirstOptions();
+    // this.getFirstOptions();
     // this.getOptions();
     // this.showOptions();
   };
-
+  Reset() {
+    this.messagesAndResponses = [];
+    this.btns = [];
+    this.ShowFirstOptions()
+  }
   getFirstOptions(): Observable<HttpResponse<Options>> {
     return this.http.get<Options>('http://41.86.98.151:8080/tree?name=test', { observe: 'response' });
   };
@@ -42,7 +46,7 @@ export class AppComponent {
     this.messagesAndResponses.push({ data: selectedOption.option, style: "speech-bubble-response" });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
-        if(data.body.text){
+        if (data.body.text) {
           this.btns = data.body.node;
           this.messagesAndResponses.push({ data: data.body.text, style: "speech-bubble" });
         }
