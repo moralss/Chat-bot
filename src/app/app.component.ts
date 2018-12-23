@@ -42,8 +42,10 @@ export class AppComponent {
     this.messagesAndResponses.push({ data: selectedOption.option, style: "speech-bubble-response" });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
-        this.btns = data.body.node;
-        this.messagesAndResponses.push({ data: data.body.text, style: "speech-bubble" });
+        if(data.body.text){
+          this.btns = data.body.node;
+          this.messagesAndResponses.push({ data: data.body.text, style: "speech-bubble" });
+        }
       },
       err => console.error(err),
     );
