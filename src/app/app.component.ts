@@ -38,7 +38,7 @@ export class AppComponent {
     return this.btns;
   }
 
-  showOptions(selectedOption: object) {
+  showOptions(selectedOption) {
     this.messagesAndResponses.push({ data: selectedOption.option, style: "speech-bubble-response" });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
