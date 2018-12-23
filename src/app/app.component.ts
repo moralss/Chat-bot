@@ -24,7 +24,7 @@ export class AppComponent {
   };
 
   getOptions(nodeId: string): Observable<HttpResponse<Options>> {
-    return this.http.get<Options>('http://41.86.98.151:8080/tree?nodeid=' + nodeId, { observe: 'response' });
+    return this.http.get<Options>('http://41.86.98.151:8080/node?nodeid=' + nodeId, { observe: 'response' });
   };
 
   ShowFirstOptions() {
@@ -38,9 +38,9 @@ export class AppComponent {
     return this.btns;
   }
 
-  showOptions(e) {
-    this.messagesAndResponses.push({ data: e.option, style: "speech-bubble-response" });
-    this.getOptions(e.nodeid).subscribe(
+  showOptions(selectedOption: object) {
+    this.messagesAndResponses.push({ data: selectedOption.option, style: "speech-bubble-response" });
+    this.getOptions(selectedOption.nodeid).subscribe(
       data => {
         this.btns = data.body.node;
         this.messagesAndResponses.push({ data: data.body.text, style: "speech-bubble" });
