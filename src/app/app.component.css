@@ -55,7 +55,9 @@
   margin-top: 0em;
   margin-left: -0.4em;
 }
-
+.reset-btn{
+  padding: 0.1em
+}
 .bubble-text {
   font-size: 0.5em;
 }
@@ -72,10 +74,10 @@
   margin-top: 12em;
 }
 .nav {
-  padding: 0.1em;
+  /* padding: 0.1em; */
   text-align: center;
-  margin-left: 3em;
-  margin-right: 3em;
+  /* margin-left: 3em; */
+  /* margin-right: 3em; */
   bottom: 8em;
   position: fixed;
 }
