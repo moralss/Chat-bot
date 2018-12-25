@@ -13,10 +13,6 @@ export class AppComponent {
   btns = [];
   constructor(private http: HttpClient) {
     this.Reset();
-    // this.ShowFirstOptions();
-    // this.getFirstOptions();
-    // this.getOptions();
-    // this.showOptions();
   };
   Reset() {
     this.messagesAndResponses = [];
