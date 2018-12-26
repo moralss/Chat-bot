@@ -51,7 +51,7 @@ export class AppComponent {
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
-      image: selectedOption.nodeimage
+      image: 'data:image/jpeg;base64,' + selectedOption.nodeimage
     });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
