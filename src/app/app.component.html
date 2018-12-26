@@ -6,19 +6,17 @@
     <h1>{{ title }}!</h1>
   </div>
   <div class="chat">
-    <div
-      *ngFor="let messagesAndResponse of messagesAndResponses"
-      class="{{ messagesAndResponse.style }}"
-    >
-      <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
+    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}">
+      <h2 class="bubble-text"> {{messagesAndResponse.data }}</h2>
     </div>
   </div>
 
   <div class="wrapper">
     <div class="selection">
-      <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns">
-        {{ btn.option }}
+      <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns; let i = index;">
+        {{i+1}}. {{ btn.option }}
       </button>
+      <input type="number" name="responseNumber" max={{btns.length}} min="0" (keypress)="sendMessage($event)" />
     </div>
   </div>
 </div>
