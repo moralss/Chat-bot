@@ -7,6 +7,9 @@
   </div>
   <div class="chat">
     <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}">
+      <div *ngIf="messagesAndResponse.image">
+        <img src={{messagesAndResponse.image}}>
+      </div>
       <h2 class="bubble-text"> {{messagesAndResponse.data }}</h2>
     </div>
   </div>
@@ -16,7 +19,8 @@
       <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns; let i = index;">
         {{i+1}}. {{ btn.option }}
       </button>
-      <input type="number" name="responseNumber" max={{btns.length}} min="0" (keypress)="sendMessage($event)" />
+      <input type="number" class="response-number" name="responseNumber" placeholder="Response number" max={{btns.length}}
+        min="0" (keypress)="sendMessage($event)" />
     </div>
   </div>
 </div>
