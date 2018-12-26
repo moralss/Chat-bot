@@ -13,7 +13,7 @@ export class AppComponent {
   btns = [];
   constructor(private http: HttpClient) {
     this.Reset();
-  };
+  }
   Reset() {
     this.messagesAndResponses = [];
     this.btns = [];
