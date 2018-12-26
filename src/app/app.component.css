@@ -135,7 +135,8 @@
   font-weight: none;
 } */
 .chat {
-  display: grid;
+  padding-top: 4em;
+    display: grid;
   justify-content: center;
   grid-template-rows: max-content;
 }
@@ -143,6 +144,9 @@
   width: 30%;
 }
 .head {
+  position: fixed;
+  width: -webkit-fill-available;
+  z-index: 9;
   color: whitesmoke;
   text-align: center;
   background: #060606;
@@ -188,6 +192,12 @@
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  .chat {
+    padding-top: 4em;
+        display: grid;
+    justify-content: center;
+    grid-template-rows: max-content;
+  }
   .selection {
     padding: 1em;
     background: #0e0e0e;
@@ -226,6 +236,12 @@
   }
 }
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  .chat {
+    padding-top: 4em;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: max-content;
+  }
   .selection {
     padding: 1em;
     background: #0e0e0e;
@@ -264,6 +280,12 @@
   }
 }
 @media only screen and (min-device-width: 768px) {
+  .chat {
+    padding-top: 4em;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: max-content;
+  }
   .selection {
     padding: 1em;
     background: #060606;
@@ -302,6 +324,12 @@
   }
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .chat {
+    padding-top: 4em;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: max-content;
+  }
   .selection {
     padding: 1em;
     background: #060606;
