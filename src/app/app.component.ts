@@ -48,7 +48,6 @@ export class AppComponent {
   }
 
   showOptions(selectedOption) {
-    console.log('selectedOption :', selectedOption);
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
