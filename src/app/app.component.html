@@ -14,7 +14,7 @@
   <div class="wrapper">
     <div class="selection">
       <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns; let i = index;">
-        {{i+1}} : {{ btn.option }}
+        {{i+1}}. {{ btn.option }}
       </button>
       <input type="number" name="responseNumber" max={{btns.length}} min="0" (keypress)="sendMessage($event)" />
     </div>
