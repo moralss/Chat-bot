@@ -67,4 +67,10 @@ export class AppComponent {
     );
     return this.btns;
   }
+  sendMessage(event: any) {
+    if (event.keyCode === 13) {
+      const value = event.path[0].value;
+      this.showOptions(this.btns[value - 1])
+    }
+  }
 }
