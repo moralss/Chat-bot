@@ -2,6 +2,24 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 3em;
 } */
+.inputClass {
+  padding: 1em;
+  background: #060606;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
+  border-radius: 2em;
+  justify-items: center;
+  grid-gap: 0.5em;
+  width: -webkit-fill-available;
+  margin-left: 3em;
+  margin-right: 3em;
+  bottom: 2em;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
+  grid-gap: 3em;
+}
 .head {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -30,8 +48,8 @@
   background: #00aabb;
   border-radius: 0.4em;
   right: -20%;
-  margin: 1em;
   font-size: 2em;
+
   max-width: 9em;
   padding: 0.3em;
   /* margin-left: 80%; */
@@ -108,7 +126,6 @@
   padding: 2em;
   background: #0e0e0e;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
   border-radius: 2em;
   justify-items: center;
   grid-gap: 0.5em;
@@ -121,9 +138,7 @@
 
 .btn {
   border-radius: 4em;
-  width: 50%;
   background: #d1e3afb8;
-  height: 100%;
 }
 /* h1 {
   display: none;
@@ -157,7 +172,6 @@
     padding: 1em;
     background: #0e0e0e;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
     border-radius: 2em;
     justify-items: center;
     grid-gap: 0.5em;
@@ -202,7 +216,6 @@
     padding: 1em;
     background: #0e0e0e;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
     border-radius: 2em;
     justify-items: center;
     grid-gap: 0.5em;
@@ -246,7 +259,6 @@
     padding: 1em;
     background: #0e0e0e;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
     border-radius: 2em;
     justify-items: center;
     grid-gap: 0.5em;
@@ -290,7 +302,6 @@
     padding: 1em;
     background: #060606;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
     border-radius: 2em;
     justify-items: center;
     grid-gap: 0.5em;
@@ -334,7 +345,6 @@
     padding: 1em;
     background: #060606;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0.5em, 1fr));
     border-radius: 2em;
     justify-items: center;
     grid-gap: 0.5em;
