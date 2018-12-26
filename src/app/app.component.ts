@@ -51,7 +51,7 @@ export class AppComponent {
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
-      image: 'data:image/jpeg;base64,' + selectedOption.nodeimage
+      image: selectedOption.nodeimage
     });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
@@ -71,7 +71,7 @@ export class AppComponent {
   sendMessage(event: any) {
     if (event.keyCode === 13) {
       const value = event.path[0].value;
-      this.showOptions(this.btns[value - 1])
+      this.showOptions(this.btns[value - 1]);
     }
   }
 }
