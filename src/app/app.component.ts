@@ -59,7 +59,8 @@ export class AppComponent {
           this.btns = data.body.node;
           this.messagesAndResponses.push({
             data: data.body.text,
-            style: "speech-bubble"
+            style: "speech-bubble",
+            image: selectedOption.nodeimage ? 'data:image/jpeg;base64,' + selectedOption.nodeimage : null
           });
           window.scrollTo(0, 10000);
         }
