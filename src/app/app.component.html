@@ -6,7 +6,11 @@
     <h1>{{ title }}!</h1>
   </div>
   <div class="chat">
+
     <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="showOptions(messagesAndResponse)">
+
+    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}">
+
       <div *ngIf="messagesAndResponse.image">
         <img src="{{ messagesAndResponse.image }}" />
       </div>
