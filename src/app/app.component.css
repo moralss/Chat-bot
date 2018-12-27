@@ -28,6 +28,18 @@
   height: min-content;
   width: -webkit-fill-available;
 }
+.option-bubble [_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+  position: relative;
+  display: grid;
+  background: #00bb3e;
+  border-radius: 0.4em;
+  left: -20%;
+  margin-top: 0.8em;
+  font-size: 1.6em;
+  max-width: 9em;
+  padding: 0.3em;
+  cursor: pointer;
+}
 .speech-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
   position: relative;
   display: grid;
@@ -66,6 +78,20 @@
   margin-right: -20px;
 }
 
+/* .option-bubble [_ngcontent-c0][_ngcontent-c0]:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 0.4em solid transparent;
+  border-right-color: #00bb3e;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: 0em;
+  margin-left: -0.4em;
+} */
 .speech-bubble[_ngcontent-c0][_ngcontent-c0]:after {
   content: "";
   position: absolute;
