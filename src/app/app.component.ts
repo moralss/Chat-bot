@@ -54,7 +54,7 @@ export class AppComponent {
   }
 
   showOptions(selectedOption) {
-    const time = setInterval(function() {
+    const time = setInterval(function () {
       window.scrollTo(0, 10000);
     }, 1);
     this.messagesAndResponses.push({
