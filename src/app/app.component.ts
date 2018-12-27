@@ -44,6 +44,7 @@ export class AppComponent {
             ? "data:image/jpeg;base64," + data.body.nodeimage
             : null
         });
+        window.scrollTo(0, 10000);
       },
       err => console.error(err)
     );
@@ -51,6 +52,9 @@ export class AppComponent {
   }
 
   showOptions(selectedOption) {
+    const time = setInterval(function() {
+      window.scrollTo(0, 10000);
+    }, 1);
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
@@ -65,13 +69,17 @@ export class AppComponent {
           this.messagesAndResponses.push({
             data: data.body.text,
             style: "speech-bubble",
-            image: selectedOption.nodeimage ? 'data:image/jpeg;base64,' + selectedOption.nodeimage : null
+            image: selectedOption.nodeimage
+              ? "data:image/jpeg;base64," + selectedOption.nodeimage
+              : null
           });
-          window.scrollTo(0, 10000);
         }
       },
       err => console.error(err)
     );
+    setTimeout(() => {
+      clearInterval(time);
+    }, 1000);
     return this.btns;
   }
   sendMessage(event: any) {
