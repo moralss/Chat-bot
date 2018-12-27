@@ -6,11 +6,11 @@
     <h1>{{ title }}!</h1>
   </div>
   <div class="chat">
-
-    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="showOptions(messagesAndResponse)">
-
-    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}">
-
+    <div
+      *ngFor="let messagesAndResponse of messagesAndResponses"
+      class="{{ messagesAndResponse.style }}"
+      (click)="showOptions(messagesAndResponse)"
+    >
       <div *ngIf="messagesAndResponse.image">
         <img src="{{ messagesAndResponse.image }}" />
       </div>
@@ -22,7 +22,13 @@
     <div class="selection">
       <div class="inputField">
         <h1 style="color: white; font-size: 1em">Command :</h1>
-        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
+        <input
+          type="text"
+          class="response-command"
+          name="responseCommand"
+          placeholder="Response Command"
+          (keypress)="sendMessage($event)"
+        />
       </div>
     </div>
   </div>

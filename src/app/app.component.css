@@ -212,6 +212,18 @@
     bottom: 14em;
     position: fixed;
   }
+.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+  position: relative;
+  display: grid;
+  background: #00bb19;
+  border-radius: 0.4em;
+  left: -20%;
+  margin-top: 1em;
+  font-size: 2em;
+  max-width: 9em;
+  padding: 0.3em;
+  cursor: pointer;
+}
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
@@ -256,6 +268,20 @@
     bottom: 14em;
     position: fixed;
   }
+
+.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+  position: relative;
+  display: grid;
+  background: #00bb19;
+  border-radius: 0.4em;
+  left: -20%;
+  margin-top: 1em;
+  font-size: 2em;
+  max-width: 9em;
+  padding: 0.3em;
+  cursor: pointer;
+}
+
 }
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .chat {
@@ -299,6 +325,18 @@
     bottom: 14em;
     position: fixed;
   }
+.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+  position: relative;
+  display: grid;
+  background: #00bb19;
+  border-radius: 0.4em;
+  left: -20%;
+  margin-top: 1em;
+  font-size: 2em;
+  max-width: 9em;
+  padding: 0.3em;
+  cursor: pointer;
+}
 }
 @media only screen and (min-device-width: 768px) {
   .chat {
@@ -411,4 +449,16 @@
     padding: 0.3em;
     /* margin-left: 80%; */
   }
+.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+  position: relative;
+  display: grid;
+  background: #00bb19;
+  border-radius: 0.4em;
+  left: -20%;
+  margin-top: 1em;
+  font-size: 2em;
+  max-width: 9em;
+  padding: 0.3em;
+  cursor: pointer;
+}
 }
