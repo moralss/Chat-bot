@@ -35,9 +35,11 @@ export class AppComponent {
     this.getFirstOptions().subscribe(
       data => {
         this.btns = data.body.node;
+
         this.messagesAndResponses.push({
           data: data.body.text,
-          style: "speech-bubble"
+          style: "speech-bubble",
+          image: data.body.nodeimage ? 'data:image/jpeg;base64,' + data.body.nodeimage : null
         });
       },
       err => console.error(err)
@@ -49,7 +51,7 @@ export class AppComponent {
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
-      image: 'data:image/jpeg;base64,' + selectedOption.nodeimage
+      image: selectedOption.nodeimage ? 'data:image/jpeg;base64,' + selectedOption.nodeimage : null
     });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
