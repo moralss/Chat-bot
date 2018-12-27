@@ -35,7 +35,6 @@ export class AppComponent {
   ShowFirstOptions() {
     this.getFirstOptions().subscribe(
       data => {
-        this.btns = data.body.node;
 
         this.messagesAndResponses.push({
           data: data.body.text,
@@ -44,6 +43,10 @@ export class AppComponent {
             ? "data:image/jpeg;base64," + data.body.nodeimage
             : null
         });
+        data.body.node.forEach(singleOption => {
+          this.messagesAndResponses.push({ ...singleOption, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
+        })
+        this.btns = data.body.node;
       },
       err => console.error(err)
     );
@@ -66,6 +69,9 @@ export class AppComponent {
             data: data.body.text,
             style: "speech-bubble",
             image: selectedOption.nodeimage ? 'data:image/jpeg;base64,' + selectedOption.nodeimage : null
+          });
+          data.body.node.forEach(singleOption => {
+            this.messagesAndResponses.push({ ...singleOption, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
           });
           window.scrollTo(0, 10000);
         }
