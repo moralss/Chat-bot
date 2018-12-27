@@ -34,7 +34,7 @@
   background: #00bb6f;
   border-radius: 0.4em;
   left: -20%;
-  margin-top: 1em;
+  margin-top: 0.8em;
   font-size: 2em;
   max-width: 9em;
   padding: 0.3em;
@@ -88,6 +88,7 @@
   width: 31%;
 }
 .bubble-text {
+  margin: auto;
   font-size: 0.5em;
 }
 

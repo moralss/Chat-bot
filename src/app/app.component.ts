@@ -27,7 +27,8 @@ export class AppComponent {
 
   getOptions(nodeId: string): Observable<HttpResponse<Options>> {
     return this.http.get<Options>(
-      "http://41.86.98.151:8080/node?nodeid=" + nodeId, { observe: "response" }
+      "http://41.86.98.151:8080/node?nodeid=" + nodeId,
+      { observe: "response" }
     );
   }
 
@@ -39,7 +40,9 @@ export class AppComponent {
         this.messagesAndResponses.push({
           data: data.body.text,
           style: "speech-bubble",
-          image: data.body.nodeimage ? 'data:image/jpeg;base64,' + data.body.nodeimage : null
+          image: data.body.nodeimage
+            ? "data:image/jpeg;base64," + data.body.nodeimage
+            : null
         });
       },
       err => console.error(err)
@@ -51,7 +54,9 @@ export class AppComponent {
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
-      image: selectedOption.nodeimage ? 'data:image/jpeg;base64,' + selectedOption.nodeimage : null
+      image: selectedOption.nodeimage
+        ? "data:image/jpeg;base64," + selectedOption.nodeimage
+        : null
     });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
