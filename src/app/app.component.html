@@ -9,7 +9,11 @@
     <div
       *ngFor="let messagesAndResponse of messagesAndResponses"
       class="{{ messagesAndResponse.style }}"
-      (click)="showOptions(messagesAndResponse)"
+      (click)="
+        !messagesAndResponse.isDisabled
+          ? showOptions(messagesAndResponse)
+          : null
+      "
     >
       <div *ngIf="messagesAndResponse.image">
         <img src="{{ messagesAndResponse.image }}" />
