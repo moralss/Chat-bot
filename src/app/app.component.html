@@ -15,13 +15,23 @@
   <div class="wrapper">
     <div class="selection">
       <div class="buttons">
-        <button (click)="showOptions(btn)" class="btn" *ngFor="let btn of btns; let i = index">
+        <button
+          (click)="showOptions(btn)"
+          class="btn"
+          *ngFor="let btn of btns; let i = index"
+        >
           {{ i + 1 }}. {{ btn.option }}
         </button>
       </div>
       <div class="inputField">
-        <h1 style="color: white; font-size: 1em"> Command : </h1>
-        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
+        <h1 style="color: white; font-size: 1em">Command :</h1>
+        <input
+          type="text"
+          class="response-command"
+          name="responseCommand"
+          placeholder="Response Command"
+          (keypress)="sendMessage($event)"
+        />
       </div>
     </div>
   </div>

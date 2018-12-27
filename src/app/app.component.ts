@@ -54,6 +54,9 @@ export class AppComponent {
   }
 
   showOptions(selectedOption) {
+    const time = setInterval(function() {
+      window.scrollTo(0, 10000);
+    }, 1);
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
@@ -68,7 +71,9 @@ export class AppComponent {
           this.messagesAndResponses.push({
             data: data.body.text,
             style: "speech-bubble",
-            image: selectedOption.nodeimage ? 'data:image/jpeg;base64,' + selectedOption.nodeimage : null
+            image: selectedOption.nodeimage
+              ? "data:image/jpeg;base64," + selectedOption.nodeimage
+              : null
           });
           data.body.node.forEach(singleOption => {
             this.messagesAndResponses.push({ ...singleOption, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
@@ -78,6 +83,9 @@ export class AppComponent {
       },
       err => console.error(err)
     );
+    setTimeout(() => {
+      clearInterval(time);
+    }, 1000);
     return this.btns;
   }
   sendMessage(event: any) {
