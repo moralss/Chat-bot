@@ -103,8 +103,8 @@ export class AppComponent {
           });
           setTimeout(() => {
             window.scrollTo({
-              top: window.innerHeight,
-              left: window.innerHeight,
+              top: window.innerHeight - 120,
+              left: window.innerHeight - 120,
               behavior: 'smooth'
             })
           }, 1500);
