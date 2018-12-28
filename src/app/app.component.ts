@@ -107,7 +107,7 @@ export class AppComponent {
               left: document.documentElement.scrollHeight,
               behavior: 'smooth'
             });
-          }, 1500);
+          }, 1000);
 
         }
       },
