@@ -43,8 +43,9 @@ export class AppComponent {
             ? "data:image/jpeg;base64," + data.body.nodeimage
             : null
         });
+
         data.body.node.forEach(singleOption => {
-          this.messagesAndResponses.push({ ...singleOption, isDisabled: false, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
+          this.messagesAndResponses.push({ ...singleOption, isDisabled: false, data: singleOption.option ? singleOption.option : null, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
         })
         this.btns = data.body.node;
       },
