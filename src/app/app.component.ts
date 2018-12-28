@@ -70,11 +70,10 @@ export class AppComponent {
         : null
     });
     window.scrollTo({
-      top: window.innerHeight,
-      left: window.innerHeight,
+      top: document.documentElement.scrollHeight,
+      left: document.documentElement.scrollHeight,
       behavior: 'smooth'
-    })
-
+    });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
         if (data.body.text) {
