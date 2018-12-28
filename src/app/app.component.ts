@@ -103,11 +103,12 @@ export class AppComponent {
           });
           setTimeout(() => {
             window.scrollTo({
-              top: window.innerHeight - 120,
-              left: window.innerHeight - 120,
+              top: document.documentElement.scrollHeight,
+              left: document.documentElement.scrollHeight,
               behavior: 'smooth'
-            })
+            });
           }, 1500);
+
         }
       },
       err => console.error(err)
