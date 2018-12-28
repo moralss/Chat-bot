@@ -33,12 +33,12 @@
   display: grid;
   background: #00bb19;
   border-radius: 0.4em;
-  left: -20%;
   margin-top: 1em;
-  font-size: 2em;
+  font-size: 1.5em;
   max-width: 9em;
-  padding: 0.3em;
   cursor: pointer;
+  /* left: -20%; */
+  /* padding: 0.3em; */
 }
 .speech-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
   position: relative;
@@ -176,55 +176,6 @@
   background: #060606;
 }
 /* iphone 6,7,8 media querry */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-  .selection {
-    padding: 1em;
-    background: #0e0e0e;
-    display: grid;
-    border-radius: 2em;
-    justify-items: center;
-    grid-gap: 0.5em;
-    width: -webkit-fill-available;
-    margin-left: 3em;
-    margin-right: 3em;
-    bottom: 2em;
-    position: fixed;
-  }
-  .btn {
-    border-radius: 22em;
-    width: 99%;
-    background: #d1e3afb8;
-    font-size: xx-small;
-    height: 100%;
-  }
-  .nav {
-    padding: 2em;
-    background: #6a60600f;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-radius: 2em;
-    font-size: 0.7em;
-    justify-items: center;
-    grid-gap: 0.5em;
-    width: -webkit-fill-available;
-    margin-left: 3em;
-    margin-right: 3em;
-    bottom: 14em;
-    position: fixed;
-  }
-.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
-  position: relative;
-  display: grid;
-  background: #00bb19;
-  border-radius: 0.4em;
-  left: -20%;
-  margin-top: 1em;
-  font-size: 2em;
-  max-width: 9em;
-  padding: 0.3em;
-  cursor: pointer;
-}
-}
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .chat {
@@ -268,75 +219,18 @@
     bottom: 14em;
     position: fixed;
   }
-
-.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
-  position: relative;
-  display: grid;
-  background: #00bb19;
-  border-radius: 0.4em;
-  left: -20%;
-  margin-top: 1em;
-  font-size: 2em;
-  max-width: 9em;
-  padding: 0.3em;
-  cursor: pointer;
-}
-
-}
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-  .chat {
-    padding-top: 4em;
+  .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+    position: relative;
     display: grid;
-    justify-content: center;
-    grid-template-rows: max-content;
+    background: #00bb19;
+    border-radius: 0.4em;
+    margin-top: 1em;
+    font-size: 1.5em;
+    max-width: 9em;
+    cursor: pointer;
+    /* left: -20%; */
+    /* padding: 0.3em; */
   }
-  .selection {
-    padding: 1em;
-    background: #0e0e0e;
-    display: grid;
-    border-radius: 2em;
-    justify-items: center;
-    grid-gap: 0.5em;
-    width: -webkit-fill-available;
-    margin-left: 3em;
-    margin-right: 3em;
-    bottom: 2em;
-    position: fixed;
-  }
-  .btn {
-    border-radius: 22em;
-    width: 99%;
-    background: #d1e3afb8;
-    font-size: xx-small;
-    height: 100%;
-  }
-  .nav {
-    padding: 2em;
-    background: #6a60600f;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-radius: 2em;
-    font-size: 0.7em;
-    justify-items: center;
-    grid-gap: 0.5em;
-    width: -webkit-fill-available;
-    margin-left: 3em;
-    margin-right: 3em;
-    bottom: 14em;
-    position: fixed;
-  }
-.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
-  position: relative;
-  display: grid;
-  background: #00bb19;
-  border-radius: 0.4em;
-  left: -20%;
-  margin-top: 1em;
-  font-size: 2em;
-  max-width: 9em;
-  padding: 0.3em;
-  cursor: pointer;
-}
 }
 @media only screen and (min-device-width: 768px) {
   .chat {
@@ -357,6 +251,18 @@
     margin-right: 3em;
     bottom: 2em;
     position: fixed;
+  }
+  .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+    position: relative;
+    display: grid;
+    background: #00bb19;
+    border-radius: 0.4em;
+    /* left: -20%; */
+    margin-top: 1em;
+    font-size: 1.5em;
+    max-width: 9em;
+    /* padding: 0.3em; */
+    /* cursor: pointer; */
   }
   /* .btn {
     border-radius: 22em;
@@ -386,7 +292,6 @@
     padding-top: 4em;
     display: grid;
     justify-content: center;
-    grid-template-rows: max-content;
   }
   .selection {
     padding: 1em;
@@ -449,16 +354,16 @@
     padding: 0.3em;
     /* margin-left: 80%; */
   }
-.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
-  position: relative;
-  display: grid;
-  background: #00bb19;
-  border-radius: 0.4em;
-  left: -20%;
-  margin-top: 1em;
-  font-size: 2em;
-  max-width: 9em;
-  padding: 0.3em;
-  cursor: pointer;
-}
+  .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+    position: relative;
+    display: grid;
+    background: #00bb19;
+    border-radius: 0.4em;
+    /* left: -20%; */
+    margin-top: 1em;
+    font-size: 1.5em;
+    max-width: 9em;
+    /* padding: 0.3em; */
+    /* cursor: pointer; */
+  }
 }
