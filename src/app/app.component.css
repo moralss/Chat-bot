@@ -31,7 +31,7 @@
 .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
   position: relative;
   display: grid;
-  background: #00bb19;
+  background: #45bc70;
   border-radius: 0.4em;
   /* left: -20%; */
   margin-top: 1em;
@@ -112,7 +112,7 @@
   /* background: url("https://i.pinimg.com/originals/a4/b8/6a/a4b86ac42c3bf5c017d79be64377fdf1.png"); */
 }
 .wrapper {
-  margin-top: 12em;
+  margin-top: 3em;
 }
 .nav {
   /* padding: 0.1em; */
@@ -222,7 +222,7 @@
   .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
     position: relative;
     display: grid;
-    background: #00bb19;
+    background: #45bc70;
     border-radius: 0.4em;
     /* left: -20%; */
     margin-top: 1em;
@@ -255,7 +255,7 @@
   .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
     position: relative;
     display: grid;
-    background: #00bb19;
+    background: #45bc70;
     border-radius: 0.4em;
     /* left: -20%; */
     margin-top: 1em;
@@ -357,7 +357,7 @@
   .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
     position: relative;
     display: grid;
-    background: #00bb19;
+    background: #45bc70;
     border-radius: 0.4em;
     /* left: -20%; */
     margin-top: 1em;
