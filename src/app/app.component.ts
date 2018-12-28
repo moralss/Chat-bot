@@ -62,9 +62,6 @@ export class AppComponent {
   }
 
   showOptions(selectedOption) {
-    const time = setInterval(function () {
-      window.scrollTo(0, 10000);
-    }, 1);
     this.messagesAndResponses.push({
       data: selectedOption.option,
       style: "speech-bubble-response",
@@ -72,6 +69,12 @@ export class AppComponent {
         ? "data:image/jpeg;base64," + selectedOption.nodeimage
         : null
     });
+    window.scrollTo({
+      top: window.innerHeight,
+      left: window.innerHeight,
+      behavior: 'smooth'
+    })
+
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
         if (data.body.text) {
@@ -98,15 +101,18 @@ export class AppComponent {
               image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null
             })
           });
-          console.log("singleResponse", this.messagesAndResponses)
-          window.scrollTo(0, 10000);
+          setTimeout(() => {
+            window.scrollTo({
+              top: document.documentElement.scrollHeight,
+              left: document.documentElement.scrollHeight,
+              behavior: 'smooth'
+            });
+          }, 1500);
+
         }
       },
       err => console.error(err)
     );
-    setTimeout(() => {
-      clearInterval(time);
-    }, 1000);
     return this.btns;
   }
   sendMessage(event: any) {
