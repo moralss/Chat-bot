@@ -44,8 +44,8 @@ export class AppComponent {
             : null
         });
 
-        data.body.node.forEach(singleOption => {
-          this.messagesAndResponses.push({ ...singleOption, isDisabled: false, data: singleOption.option ? singleOption.option : null, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
+        data.body.node.forEach((singleOption: any) => {
+          this.messagesAndResponses.push({ ...singleOption, isDisabled: false, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
         })
         this.btns = data.body.node;
       },
@@ -81,7 +81,7 @@ export class AppComponent {
               singleResponse.isDisabled = true
             }
           })
-          data.body.node.forEach(singleOption => {
+          data.body.node.forEach((singleOption: any) => {
             this.messagesAndResponses.push({ ...singleOption, isDisabled: false, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
           });
           console.log("singleResponse", this.messagesAndResponses)
