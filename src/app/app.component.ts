@@ -45,7 +45,14 @@ export class AppComponent {
         });
 
         data.body.node.forEach((singleOption: any) => {
-          this.messagesAndResponses.push({ ...singleOption, isDisabled: false, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
+          this.messagesAndResponses.push({
+            ...singleOption,
+            isDisabled: false,
+            data: singleOption.option,
+            style: "option-bubble",
+            number: data.body.node.indexOf(singleOption) + 1,
+            image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null
+          })
         })
         this.btns = data.body.node;
       },
@@ -82,7 +89,14 @@ export class AppComponent {
             }
           })
           data.body.node.forEach((singleOption: any) => {
-            this.messagesAndResponses.push({ ...singleOption, isDisabled: false, data: singleOption.option, style: "option-bubble", image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null })
+            this.messagesAndResponses.push({
+              ...singleOption,
+              isDisabled: false,
+              data: singleOption.option,
+              style: "option-bubble",
+              number: data.body.node.indexOf(singleOption) + 1,
+              image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null
+            })
           });
           console.log("singleResponse", this.messagesAndResponses)
           window.scrollTo(0, 10000);
