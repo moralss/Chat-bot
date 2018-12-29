@@ -35,7 +35,6 @@ export class AppComponent {
   ShowFirstOptions() {
     this.getFirstOptions().subscribe(
       data => {
-
         this.messagesAndResponses.push({
           data: data.body.text,
           style: "speech-bubble",
@@ -51,9 +50,11 @@ export class AppComponent {
             data: singleOption.option,
             style: "option-bubble",
             number: data.body.node.indexOf(singleOption) + 1,
-            image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null
-          })
-        })
+            image: singleOption.nodeimage
+              ? "data:image/jpeg;base64," + singleOption.nodeimage
+              : null
+          });
+        });
         this.btns = data.body.node;
       },
       err => console.error(err)
@@ -72,7 +73,7 @@ export class AppComponent {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       left: document.documentElement.scrollHeight,
-      behavior: 'smooth'
+      behavior: "smooth"
     });
     this.getOptions(selectedOption.nodeid).subscribe(
       data => {
@@ -87,9 +88,9 @@ export class AppComponent {
           });
           this.messagesAndResponses.forEach(singleResponse => {
             if (!singleResponse.isDisabled) {
-              singleResponse.isDisabled = true
+              singleResponse.isDisabled = true;
             }
-          })
+          });
           data.body.node.forEach((singleOption: any) => {
             this.messagesAndResponses.push({
               ...singleOption,
@@ -97,17 +98,18 @@ export class AppComponent {
               data: singleOption.option,
               style: "option-bubble",
               number: data.body.node.indexOf(singleOption) + 1,
-              image: singleOption.nodeimage ? "data:image/jpeg;base64," + singleOption.nodeimage : null
-            })
+              image: singleOption.nodeimage
+                ? "data:image/jpeg;base64," + singleOption.nodeimage
+                : null
+            });
           });
           setTimeout(() => {
             window.scrollTo({
               top: document.documentElement.scrollHeight,
               left: document.documentElement.scrollHeight,
-              behavior: 'smooth'
+              behavior: "smooth"
             });
-          }, 1000);
-
+          }, 500);
         }
       },
       err => console.error(err)
