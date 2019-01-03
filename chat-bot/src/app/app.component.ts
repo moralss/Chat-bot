@@ -122,4 +122,9 @@ export class AppComponent {
       this.showOptions(this.btns[value - 1]);
     }
   }
+  disableAllOptions() {
+    this.messagesAndResponses.forEach(singleResponse => {
+      singleResponse.isDisabled = true;
+    });
+  }
 }
