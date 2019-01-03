@@ -2,8 +2,8 @@
 <div class="msg">
   <div class="head">
     <button class="reset-btn" (click)="Reset()">Reset</button>
-    <a routerLink="/speak-to-agent" routerLinkActive="active"><button class="reset-btn">Speak to a agent</button></a>
     <h1>{{ title }}!</h1>
+    <a class="agent-btn" routerLink="/speak-to-agent" routerLinkActive="active"> Speak to a agent</a>
   </div>
   <div class="chat">
     <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="!messagesAndResponse.isDisabled ? showOptions(messagesAndResponse) : null">
