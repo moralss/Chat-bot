@@ -1,8 +1,8 @@
 <!-- The content below is only a placeholder and can be replaced. -->
-
 <div class="msg">
   <div class="head">
     <button class="reset-btn" (click)="Reset()">Reset</button>
+    <a routerLink="/speak-to-agent" routerLinkActive="active"><button class="reset-btn">Speak to a agent</button></a>
     <h1>{{ title }}!</h1>
   </div>
   <div class="chat">
@@ -17,6 +17,7 @@
         <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
       </ng-template>
     </div>
+    <router-outlet></router-outlet>
   </div>
 
   <div class="wrapper">
@@ -28,4 +29,3 @@
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>
