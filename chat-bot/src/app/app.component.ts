@@ -20,9 +20,9 @@ export class AppComponent {
     this.btns = [];
     if (status) {
       window.location.href = "/";
-      this.ShowFirstOptions();
       this.allOptionsDisabled = false;
     }
+    this.ShowFirstOptions();
   }
   getFirstOptions(): Observable<HttpResponse<Options>> {
     return this.http.get<Options>("http://41.86.98.151:8080/tree?name=test", {
