@@ -4,9 +4,10 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { SpeakToAgentComponent } from './speak-to-agent/speak-to-agent.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SpeakToAgentComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
