@@ -11,13 +11,18 @@ export class AppComponent {
   title = "chat-bot";
   messagesAndResponses = [];
   btns = [];
+  allOptionsDisabled = false;
   constructor(private http: HttpClient) {
-    this.Reset();
+    this.Reset(false);
   }
-  Reset() {
+  Reset(status: boolean) {
     this.messagesAndResponses = [];
     this.btns = [];
-    this.ShowFirstOptions();
+    if (status) {
+      window.location.href = "/";
+      this.ShowFirstOptions();
+      this.allOptionsDisabled = false;
+    }
   }
   getFirstOptions(): Observable<HttpResponse<Options>> {
     return this.http.get<Options>("http://41.86.98.151:8080/tree?name=test", {
@@ -119,7 +124,16 @@ export class AppComponent {
   sendMessage(event: any) {
     if (event.keyCode === 13) {
       const value = event.path[0].value;
-      this.showOptions(this.btns[value - 1]);
+      if (!this.allOptionsDisabled) {
+        this.showOptions(this.btns[value - 1]);
+      }
     }
   }
+  disableAllOptions() {
+    this.messagesAndResponses.forEach(singleResponse => {
+      singleResponse.isDisabled = true;
+    });
+    this.allOptionsDisabled = true;
+  }
 }
+
