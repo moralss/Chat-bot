@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { SpeakToAgentComponent } from './speak-to-agent/speak-to-agent.component';
+import { SpeakToAgentComponent } from "./speak-to-agent/speak-to-agent.component";
 
 @NgModule({
   declarations: [AppComponent, SpeakToAgentComponent],
@@ -12,4 +12,4 @@ import { SpeakToAgentComponent } from './speak-to-agent/speak-to-agent.component
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
