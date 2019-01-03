@@ -1,9 +1,10 @@
 <!-- The content below is only a placeholder and can be replaced. -->
 <div class="msg">
   <div class="head">
-    <button class="reset-btn" (click)="Reset()">Reset</button>
+    <button class="reset-btn" (click)="Reset(true)">Reset</button>
     <h1>{{ title }}!</h1>
-    <a class="agent-btn" routerLink="/speak-to-agent" routerLinkActive="active"> Speak to a agent</a>
+    <a class="agent-btn" routerLink="/speak-to-agent" (click)="disableAllOptions()" routerLinkActive="active"> Speak to
+      a agent</a>
   </div>
   <div class="chat">
     <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="!messagesAndResponse.isDisabled ? showOptions(messagesAndResponse) : null">
