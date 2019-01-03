@@ -12,11 +12,14 @@ export class AppComponent {
   messagesAndResponses = [];
   btns = [];
   constructor(private http: HttpClient) {
-    this.Reset();
+    this.Reset(false);
   }
-  Reset() {
+  Reset(status: boolean) {
     this.messagesAndResponses = [];
     this.btns = [];
+    if (status) {
+      window.location.href = "/";
+    }
     this.ShowFirstOptions();
   }
   getFirstOptions(): Observable<HttpResponse<Options>> {
@@ -128,3 +131,4 @@ export class AppComponent {
     });
   }
 }
+
