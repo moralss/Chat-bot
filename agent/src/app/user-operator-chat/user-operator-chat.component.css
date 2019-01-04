@@ -54,7 +54,7 @@
   width: -webkit-fill-available;
 }
 
-.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+.option-bubble {
   position: relative;
   display: grid;
   background: #45bc70;
@@ -67,7 +67,7 @@
   /* padding: 0.3em; */
 }
 
-.speech-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+.speech-bubble {
   position: relative;
   display: grid;
   background: #00bb6f;
@@ -79,7 +79,7 @@
   padding: 0.3em;
 }
 
-.speech-bubble-response[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+.speech-bubble-response {
   position: relative;
   display: grid;
   background: #00aabb;
@@ -91,7 +91,7 @@
   /* margin-left: 80%; */
 }
 
-.speech-bubble-response[_ngcontent-c0][_ngcontent-c0]:after {
+.speech-bubble-response:after {
   content: "";
   position: absolute;
   right: 0;
@@ -106,7 +106,7 @@
   margin-right: -20px;
 }
 
-.speech-bubble[_ngcontent-c0][_ngcontent-c0]:after {
+.speech-bubble:after {
   content: "";
   position: absolute;
   left: 0;
