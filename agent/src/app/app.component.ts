@@ -11,16 +11,16 @@ export class AppComponent {
   title = "Chat bot";
   allAvailableSessions = [];
   constructor(private http: HttpClient) {
-    this.ShowFirstSessions();
+    this.ShowSessionIds();
   }
-  getFirstSessions(): Observable<HttpResponse<Sessions>> {
+  getSessionIds(): Observable<HttpResponse<Sessions>> {
     return this.http.get<Sessions>("http://41.86.98.151:8080/getChatSessions", {
       observe: "response"
     });
   }
 
-  ShowFirstSessions() {
-    this.getFirstSessions().subscribe(
+  ShowSessionIds() {
+    this.getSessionIds().subscribe(
       data => {
         data.body.map(element => {
           this.allAvailableSessions.push(element);
