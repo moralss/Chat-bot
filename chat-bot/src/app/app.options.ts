@@ -1,5 +1,6 @@
 export interface Options {
-    text: String
+    text: String,
     node: Array<{}>,
-    nodeimage: String
+    nodeimage: String,
+    nodeid: String
 }
