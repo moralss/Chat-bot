@@ -1,20 +1,15 @@
 <!-- The content below is only a placeholder and can be replaced. -->
 <div class="msg">
   <div class="head">
-    <!-- <button class="reset-btn" (click)="Reset(true)">Speak to agent</button> -->
-    <h1>chat bot agent{{ title}}!</h1>
+    <!-- <button class="reset-btn" (click)="Reset(true)">{{userSessionId}} ffgf</button> -->
+    <h1>chat bot agent!</h1>
   </div>
   <div class="chat">
-    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="!messagesAndResponse.isDisabled ? showOptions(messagesAndResponse) : null">
+    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}">
       <div *ngIf="messagesAndResponse.image">
         <img src="{{ messagesAndResponse.image }}" />
       </div>
-      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
-        <h2 class="bubble-text">{{messagesAndResponse.number}}. {{ messagesAndResponse.data }}</h2>
-      </ng-container>
-      <ng-template #elseTemplate>
-        <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
-      </ng-template>
+      <h2 class="bubble-text"> {{ messagesAndResponse.message }}</h2>
     </div>
     <router-outlet></router-outlet>
   </div>

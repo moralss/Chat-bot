@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Sessions } from "./view-all-session-ids.sessions"
 import { Observable } from "rxjs";
+import { DataService } from "../data.service";
+
 
 @Component({
   selector: 'app-view-all-session-ids',
@@ -13,7 +15,8 @@ export class ViewAllSessionIdsComponent implements OnInit {
   title = "Chat bot";
   allAvailableSessions = [];
   sessionIdMessages = [];
-  constructor(private http: HttpClient) {
+  message = []
+  constructor(private http: HttpClient, private data: DataService) {
     this.ShowSessionIds();
   }
   getSessionIds(): Observable<HttpResponse<Sessions>> {
@@ -35,12 +38,15 @@ export class ViewAllSessionIdsComponent implements OnInit {
   getSessionIdMessages(sessionId: string) {
     return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
   }
-  SelectedSessionId(sessionId: string) {
+  selectedSessionId(sessionId: string) {
     this.getSessionIdMessages(sessionId).subscribe((data: any) => {
       this.sessionIdMessages.push({ sessionId: sessionId, messages: data.message });
+      this.data.changeMessage(this.sessionIdMessages);
     })
   }
   ngOnInit() {
+    this.data.changeMessage(this.sessionIdMessages);
+    this.data.currentMessage.subscribe((message: any) => console.log("data in view", message))
   }
 
 }
