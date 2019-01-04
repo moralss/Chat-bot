@@ -1,0 +1,10 @@
+.agent-bubble {
+    /* border: 1px solid black; */
+    text-align: center;
+    padding: 1em;
+    border-radius: 5em;
+    font-size: 1em;
+    /* margin-left: -0.1em; */
+    background: #45bc70;
+    width: fit-content;
+}
