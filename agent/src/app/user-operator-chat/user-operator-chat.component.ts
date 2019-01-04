@@ -13,6 +13,16 @@ export class UserOperatorChatComponent implements OnInit {
       this.getData()
     }, 1000);
   }
+  sendMessage(event) {
+    if (event.keyCode === 13) {
+      const value = event.path[0].value;
+      this.messagesAndResponses.push({
+        message: value,
+        style: "agent"
+      })
+      event.path[0].value = "";
+    }
+  }
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
       this.userSessionId = message[0].sessionId;
