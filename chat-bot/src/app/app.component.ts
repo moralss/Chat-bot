@@ -12,6 +12,7 @@ export class AppComponent {
   messagesAndResponses = [];
   btns = [];
   allOptionsDisabled = false;
+  sessionId = null;
   constructor(private http: HttpClient) {
     this.Reset(false);
   }
@@ -47,7 +48,7 @@ export class AppComponent {
             ? "data:image/jpeg;base64," + data.body.nodeimage
             : null
         });
-
+        this.sessionId = data.body.nodeid.split(" ")[0];
         data.body.node.forEach((singleOption: any) => {
           this.messagesAndResponses.push({
             ...singleOption,
@@ -129,9 +130,22 @@ export class AppComponent {
       }
     }
   }
+
+  sendMessageToApi(message: any) {
+    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
+  }
+
   disableAllOptions() {
     this.messagesAndResponses.forEach(singleResponse => {
       singleResponse.isDisabled = true;
+      if (singleResponse.style === "speech-bubble") {
+        singleResponse.type = "bot";
+      } else if (singleResponse.style === "speech-bubble-response") {
+        singleResponse.type = "User";
+      }
+      if (singleResponse.type) {
+        this.sendMessageToApi(singleResponse).subscribe();
+      }
     });
     this.allOptionsDisabled = true;
   }
