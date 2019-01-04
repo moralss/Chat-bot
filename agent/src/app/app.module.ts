@@ -4,9 +4,11 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { UserOperatorChatComponent } from './user-operator-chat/user-operator-chat.component';
+import { ViewAllSessionIdsComponent } from './view-all-session-ids/view-all-session-ids.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UserOperatorChatComponent, ViewAllSessionIdsComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
