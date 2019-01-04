@@ -6,26 +6,19 @@
     <a class="agent-btn" routerLink="/speak-to-agent" routerLinkActive="active">Chat to bot</a>
     <h1>{{ title }}!</h1>
   </div>
-  <div class="chat">
-    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="!messagesAndResponse.isDisabled ? showOptions(messagesAndResponse) : null">
-      <div *ngIf="messagesAndResponse.image">
-        <img src="{{ messagesAndResponse.image }}" />
-      </div>
-      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
-        <h2 class="bubble-text">{{messagesAndResponse.number}}. {{ messagesAndResponse.data }}</h2>
-      </ng-container>
-      <ng-template #elseTemplate>
-        <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
-      </ng-template>
-    </div>
-  </div>
-  <div class="wrapper">
-    <div class="selection">
-      <div class="inputField">
-        <h1 style="color: white; font-size: 1em">+</h1>
-        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
-      </div>
-    </div>
+  <div >
+    <table class="sessionId-table" border="1">
+      <tr>
+        <th>No.</th>
+        <th>sessionId</th>
+      </tr>
+      <tbody *ngFor="let availableSession of allAvailableSessions; let i = index">
+        <tr (click)="SelectedSessionId(availableSession)" class="table-row">
+          <td>{{i+1}}</td>
+          <td>{{availableSession}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 <router-outlet></router-outlet>
