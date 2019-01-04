@@ -2,6 +2,13 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 3em;
 } */
+.sessionId-table{
+  margin: 10%;
+}
+.table-row{
+  cursor: pointer;
+}
+
 .inputField {
   display: grid;
   grid-template-columns: 2.2em 25em;
