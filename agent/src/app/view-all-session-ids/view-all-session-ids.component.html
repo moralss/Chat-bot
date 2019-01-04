@@ -1,20 +1,21 @@
 <div class="msg">
-    <div class="head">
-      <!-- <a class="agent-btn" routerLink="/home" routerLinkActive="active">Chat to bot</a> -->
-      <h1>{{ title }}!</h1>
-    </div>
-    <div >
-      <table class="sessionId-table" border="1">
-        <tr>
-          <th>No.</th>
-          <th>sessionId</th>
-        </tr>
-        <tbody *ngFor="let availableSession of allAvailableSessions; let i = index">
-          <tr (click)="SelectedSessionId(availableSession)" class="table-row">
-            <td>{{i+1}}</td>
-            <td>{{availableSession}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="head">
+    <!-- <a class="agent-btn" routerLink="/home" routerLinkActive="active">Chat to bot</a> -->
+    <h1>{{ title }}!</h1>
   </div>
+  <div class="view">
+    <table class="sessionId-table" border="1">
+      <tr>
+        <th>sessionId</th>
+      </tr>
+      <tbody *ngFor="let availableSession of allAvailableSessions; let i = index">
+        <tr (click)="SelectedSessionId(availableSession)" class="table-row">
+          <td>
+            <h1>id no: {{i+1}} </h1>
+            <h1 style="text-align:center">session id: {{availableSession}}</h1>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

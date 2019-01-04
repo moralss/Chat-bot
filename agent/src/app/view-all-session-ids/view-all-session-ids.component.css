@@ -1,7 +1,29 @@
-.sessionId-table{
-    margin: 10%;
-  }
-  .table-row{
-    cursor: pointer;
-  }
-  
+.sessionId-table {}
+
+.view {
+  display: grid;
+  justify-content: center;
+
+}
+
+.table-row {
+  cursor: pointer;
+
+}
+
+td {
+  display: grid;
+  justify-items: center;
+}
+
+th {
+  border: none;
+}
+
+h1 {
+  font-size: small;
+}
+
+td:hover {
+  background: rgba(55, 255, 0, 0.258);
+}
