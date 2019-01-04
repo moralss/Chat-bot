@@ -9,10 +9,10 @@
         <th>sessionId</th>
       </tr>
       <tbody *ngFor="let availableSession of allAvailableSessions; let i = index">
-        <tr (click)="SelectedSessionId(availableSession)" class="table-row">
+        <tr class="table-row">
           <td>
             <h1>id no: {{i+1}} </h1>
-            <a routerLink="/user-operator-chat">
+            <a routerLink="/user-operator-chat" (click)="selectedSessionId(availableSession)">
               <h1 style="text-align:center">session id: {{availableSession}}</h1>
             </a>
           </td>
