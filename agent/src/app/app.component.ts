@@ -21,7 +21,7 @@ export class AppComponent {
 
   ShowSessionIds() {
     this.getSessionIds().subscribe(
-      data => {
+      (data: any) => {
         data.body.map(element => {
           this.allAvailableSessions.push(element);
         });
