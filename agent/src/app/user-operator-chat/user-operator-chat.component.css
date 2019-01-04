@@ -54,19 +54,16 @@
   width: -webkit-fill-available;
 }
 
-.option-bubble {
+.agent-speech-bubble {
   position: relative;
   display: grid;
-  background: #45bc70;
+  background: #83bb00;
   border-radius: 0.4em;
-  margin-top: 1em;
-  font-size: 1.5em;
+  right: -20%;
+  font-size: 2em;
+  top: 0.5em;
   max-width: 9em;
-  cursor: pointer;
-  /* left: -20%; */
-  /* padding: 0.3em; */
 }
-
 .speech-bubble {
   position: relative;
   display: grid;
@@ -90,7 +87,20 @@
   max-width: 9em;
   /* margin-left: 80%; */
 }
-
+.agent-speech-bubble:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 1em solid transparent;
+  border-left-color: #83bb00;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-right: -20px;
+}
 .speech-bubble-response:after {
   content: "";
   position: absolute;

@@ -13,13 +13,23 @@ export class UserOperatorChatComponent implements OnInit {
       this.getData()
     }, 1000);
   }
+  sendMessage(event) {
+    if (event.keyCode === 13) {
+      const value = event.path[0].value;
+      this.messagesAndResponses.push({
+        message: value,
+        style: "agent-speech-bubble"
+      })
+      event.path[0].value = "";
+    }
+  }
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
       this.userSessionId = message[0].sessionId;
       message[0].messages.forEach(element => {
         if (element.type === "bot") {
           element.style = "speech-bubble";
-        } else if (element.type === "user") {
+        } else if (element.type === "User") {
           element.style = "speech-bubble-response";
         }
         this.messagesAndResponses.push(element)
