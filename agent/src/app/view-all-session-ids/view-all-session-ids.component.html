@@ -12,7 +12,9 @@
         <tr (click)="SelectedSessionId(availableSession)" class="table-row">
           <td>
             <h1>id no: {{i+1}} </h1>
-            <h1 style="text-align:center">session id: {{availableSession}}</h1>
+            <a routerLink="/user-operator-chat">
+              <h1 style="text-align:center">session id: {{availableSession}}</h1>
+            </a>
           </td>
         </tr>
       </tbody>

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Sessions } from "./view-all-session-ids.sessions"
 import { Observable } from "rxjs";
+
 @Component({
   selector: 'app-view-all-session-ids',
   templateUrl: './view-all-session-ids.component.html',
   styleUrls: ['./view-all-session-ids.component.css']
 })
+
 export class ViewAllSessionIdsComponent implements OnInit {
   title = "Chat bot";
   allAvailableSessions = [];
@@ -35,13 +37,9 @@ export class ViewAllSessionIdsComponent implements OnInit {
   }
   SelectedSessionId(sessionId: string) {
     this.getSessionIdMessages(sessionId).subscribe((data: any) => {
-      this.sessionIdMessages.push({ sessionId: sessionId, messages: data.message })
+      this.sessionIdMessages.push({ sessionId: sessionId, messages: data.message });
     })
-    window.location.href = "/user-operator-chat";
-    // 2b7da06d-2568-4f1d-b611-37ec53c325dc
   }
-
-
   ngOnInit() {
   }
 
