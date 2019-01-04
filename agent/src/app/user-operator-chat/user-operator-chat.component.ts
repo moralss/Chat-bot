@@ -18,7 +18,7 @@ export class UserOperatorChatComponent implements OnInit {
       const value = event.path[0].value;
       this.messagesAndResponses.push({
         message: value,
-        style: "agent"
+        style: "agent-speech-bubble"
       })
       event.path[0].value = "";
     }
@@ -29,7 +29,7 @@ export class UserOperatorChatComponent implements OnInit {
       message[0].messages.forEach(element => {
         if (element.type === "bot") {
           element.style = "speech-bubble";
-        } else if (element.type === "user") {
+        } else if (element.type === "User") {
           element.style = "speech-bubble-response";
         }
         this.messagesAndResponses.push(element)
