@@ -2,10 +2,12 @@ import { Component } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Options } from "./app.options";
 import { Observable } from "rxjs";
+import { DataService } from "./data.service";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["./app.component.css"],
+  providers: [DataService]
 })
 export class AppComponent {
   title = "chat-bot";
@@ -13,7 +15,7 @@ export class AppComponent {
   btns = [];
   allOptionsDisabled = false;
   sessionId = null;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private data: DataService) {
     this.Reset(false);
   }
   Reset(status: boolean) {
@@ -49,6 +51,7 @@ export class AppComponent {
             : null
         });
         this.sessionId = data.body.nodeid.split(" ")[0];
+        this.data.setSessionId(this.sessionId);
         data.body.node.forEach((singleOption: any) => {
           this.messagesAndResponses.push({
             ...singleOption,
@@ -69,13 +72,17 @@ export class AppComponent {
   }
 
   showOptions(selectedOption) {
-    this.messagesAndResponses.push({
+    var userMessage = {
       data: selectedOption.option,
       style: "speech-bubble-response",
       image: selectedOption.nodeimage
         ? "data:image/jpeg;base64," + selectedOption.nodeimage
         : null
-    });
+    };
+    this.messagesAndResponses.push(userMessage);
+    if (this.allOptionsDisabled) {
+      this.sendMessageToApi({ ...userMessage, number: this.messagesAndResponses.indexOf(userMessage) }).subscribe();
+    }
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       left: document.documentElement.scrollHeight,
@@ -144,10 +151,14 @@ export class AppComponent {
         singleResponse.type = "User";
       }
       if (singleResponse.type) {
-        this.sendMessageToApi(singleResponse).subscribe();
+        console.log('this was called ', singleResponse.type)
+        this.sendMessageToApi({ ...singleResponse, number: this.messagesAndResponses.indexOf(singleResponse) }).subscribe();
       }
     });
     this.allOptionsDisabled = true;
+  }
+  getSessionIdMessages(sessionId: string) {
+    return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
   }
 }
 
