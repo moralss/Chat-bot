@@ -43,6 +43,12 @@ export class UserOperatorChatComponent implements OnInit {
   sendMessageToApi(message: any) {
     return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.userSessionId);
   }
+  closeSession() {
+    return this.http.get("http://41.86.98.151:8080/removeSession?sessionId=" + this.userSessionId);
+  }
+  endChat() {
+    this.closeSession().subscribe();
+  }
   ngOnInit(): any {
   }
 }
