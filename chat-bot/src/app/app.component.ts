@@ -12,6 +12,7 @@ import { DataService } from "./data.service";
 export class AppComponent {
   title = "chat-bot";
   messagesAndResponses = [];
+  messagesToAgent = [];
   btns = [];
   allOptionsDisabled = false;
   sessionId = null;
@@ -80,9 +81,6 @@ export class AppComponent {
         : null
     };
     this.messagesAndResponses.push(userMessage);
-    if (this.allOptionsDisabled) {
-      this.sendMessageToApi({ ...userMessage, number: this.messagesAndResponses.indexOf(userMessage) }).subscribe();
-    }
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       left: document.documentElement.scrollHeight,
@@ -134,6 +132,19 @@ export class AppComponent {
       const value = event.path[0].value;
       if (!this.allOptionsDisabled) {
         this.showOptions(this.btns[value - 1]);
+      } else {
+        const userMessage = {
+          data: value,
+          style: "speech-bubble-response",
+        }
+        this.messagesToAgent.push(userMessage);
+        this.data.setUserAgentMessages(this.messagesToAgent);
+        this.sendMessageToApi({ ...userMessage, number: this.messagesAndResponses.indexOf(userMessage) }).subscribe();
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          left: document.documentElement.scrollHeight,
+          behavior: "smooth"
+        });
       }
     }
   }
@@ -151,10 +162,10 @@ export class AppComponent {
         singleResponse.type = "User";
       }
       if (singleResponse.type) {
-        console.log('this was called ', singleResponse.type)
         this.sendMessageToApi({ ...singleResponse, number: this.messagesAndResponses.indexOf(singleResponse) }).subscribe();
       }
     });
+    this.data.setUserBotMessages(this.messagesAndResponses.filter(singleMessage => singleMessage.style === "speech-bubble" || singleMessage.style === "speech-bubble-response"))
     this.allOptionsDisabled = true;
   }
   getSessionIdMessages(sessionId: string) {
