@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpResponse } from "@angular/common/http";
 
 @Injectable()
 export class DataService {
 
-    private messageSource = new BehaviorSubject("");
-    sessionId = this.messageSource.asObservable();
-    constructor(private http: HttpClient) { }
+    private sessionIdSource = new BehaviorSubject("");
+    private oldMessageSource = new BehaviorSubject([]);
+    private messageToAgent = new BehaviorSubject([]);
 
-    setSessionId(message: any) {
-        this.messageSource.next(message);
+    sessionId = this.sessionIdSource.asObservable();
+    userBotMessages = this.oldMessageSource.asObservable()
+    userAgentMessages = this.messageToAgent.asObservable()
+    constructor() { }
+
+    setSessionId(sessionId: any) {
+        this.sessionIdSource.next(sessionId);
     }
-
+    setUserBotMessages(messages: any) {
+        this.oldMessageSource.next(messages)
+    }
+    setUserAgentMessages(messages: any) {
+        this.messageToAgent.next(messages)
+    }
 }
