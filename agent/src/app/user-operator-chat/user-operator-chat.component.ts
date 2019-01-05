@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
+import { HttpClient, HttpResponse } from "@angular/common/http";
+import { Observable } from "rxjs";
 @Component({
   selector: 'app-user-operator-chat',
   templateUrl: './user-operator-chat.component.html',
@@ -8,7 +10,7 @@ import { DataService } from "../data.service";
 export class UserOperatorChatComponent implements OnInit {
   messagesAndResponses = [];
   userSessionId = '';
-  constructor(private data: DataService) {
+  constructor(private http: HttpClient, private data: DataService) {
     setTimeout(() => {
       this.getData()
     }, 1000);
@@ -20,6 +22,7 @@ export class UserOperatorChatComponent implements OnInit {
         message: value,
         style: "agent-speech-bubble"
       })
+      this.sendMessageToApi({ data: value, type: "agent" }).subscribe();
       event.path[0].value = "";
     }
   }
@@ -37,7 +40,9 @@ export class UserOperatorChatComponent implements OnInit {
       console.log("message", message);
     })
   }
-
+  sendMessageToApi(message: any) {
+    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.userSessionId);
+  }
   ngOnInit(): any {
   }
 }
