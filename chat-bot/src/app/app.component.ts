@@ -148,7 +148,7 @@ export class AppComponent {
       }
     }
   }
-
+  
   sendMessageToApi(message: any) {
     return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
   }
@@ -167,9 +167,6 @@ export class AppComponent {
     });
     this.data.setUserBotMessages(this.messagesAndResponses.filter(singleMessage => singleMessage.style === "speech-bubble" || singleMessage.style === "speech-bubble-response"))
     this.allOptionsDisabled = true;
-  }
-  getSessionIdMessages(sessionId: string) {
-    return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
   }
 }
 
