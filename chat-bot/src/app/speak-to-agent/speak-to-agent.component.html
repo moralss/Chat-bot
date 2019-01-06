@@ -1,9 +1,29 @@
-<p class="agent-bubble">
-  Please wait for an agent to contact you.
-</p>
-<div *ngFor="let userToAgentMessage of userToAgentMessages" class="{{ userToAgentMessage.style }}" (click)="!userToAgentMessage.isDisabled ? showOptions(userToAgentMessage) : null">
-  <div *ngIf="userToAgentMessage.image">
-    <img src="{{ userToAgentMessage.image }}" />
+<div class="msg">
+  <div class="head">
+    <button class="reset-btn" (click)="Reset(true)">Reset</button>
+    <h1>{{ title }}!</h1>
+    <a class="agent-btn" routerLink="/speak-to-agent" (click)="disableAllOptions()"> Speak to
+      a agent</a>
   </div>
-  <h2 class="bubble-text">{{ userToAgentMessage.data }}</h2>
+  <div class="chat">
+    <p class="agent-bubble">
+      Please wait for an agent to contact you.
+    </p>
+    <div *ngFor="let userToAgentMessage of userToAgentMessages" class="{{ userToAgentMessage.style }}" (click)="!userToAgentMessage.isDisabled ? showOptions(userToAgentMessage) : null">
+      <div *ngIf="userToAgentMessage.image">
+        <img src="{{ userToAgentMessage.image }}" />
+      </div>
+      <h2 class="bubble-text">{{ userToAgentMessage.data }}</h2>
+    </div>
+  </div>
+
+
+  <div class="wrapper">
+    <div class="selection">
+      <div class="inputField">
+        <h1 style="color: white; font-size: 1em">Command :</h1>
+        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
+      </div>
+    </div>
+  </div>
 </div>
