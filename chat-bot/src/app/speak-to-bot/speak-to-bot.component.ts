@@ -164,7 +164,6 @@ export class SpeakToBotComponent implements OnInit {
       } else if (singleResponse.style === "speech-bubble-response") {
         singleResponse.type = "User";
       }
-      singleResponse.number = this.messagesAndResponses.indexOf(singleResponse);
       if (singleResponse.type) {
         this.sendMessageToApi(singleResponse).subscribe();
       }
