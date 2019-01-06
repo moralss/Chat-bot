@@ -6,14 +6,11 @@
       a agent</a>
   </div>
   <div class="chat">
-    <p class="agent-bubble">
-      Please wait for an agent to contact you.
-    </p>
-    <div *ngFor="let userToAgentMessage of userToAgentMessages" class="{{ userToAgentMessage.style }}" (click)="!userToAgentMessage.isDisabled ? showOptions(userToAgentMessage) : null">
-      <div *ngIf="userToAgentMessage.image">
-        <img src="{{ userToAgentMessage.image }}" />
+    <div *ngFor="let singleMessage of messages" class="{{ singleMessage.style }}" (click)="!singleMessage.isDisabled ? showOptions(singleMessage) : null">
+      <div *ngIf="singleMessage.image">
+        <img src="{{ singleMessage.image }}" />
       </div>
-      <h2 class="bubble-text">{{ userToAgentMessage.data }}</h2>
+      <h2 class="bubble-text">{{ singleMessage.message }}</h2>
     </div>
   </div>
 
