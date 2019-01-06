@@ -51,7 +51,6 @@ export class SpeakToAgentComponent implements OnInit {
   getMessages(onLoad: boolean) {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
       data.message.forEach(element => {
-        console.log("element", element);
         if (element.type === "User") {
           element.style = "speech-bubble-response";
         } else {
