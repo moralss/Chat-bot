@@ -21,7 +21,6 @@ export class SpeakToAgentComponent implements OnInit {
 
   getMessages(onLoad: boolean) {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
-      console.log('data :', data);
       data.message.forEach(element => {
         if (element.type === "User") {
           element.style = "speech-bubble-response";
@@ -44,6 +43,7 @@ export class SpeakToAgentComponent implements OnInit {
 
   ngOnInit() {
     this.data.sessionId.subscribe((id: any) => {
+      console.log('session id', id)
       this.sessionId = id;
     });
     this.data.userBotMessages.subscribe((messages: any) => {
