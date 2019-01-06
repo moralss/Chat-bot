@@ -8,29 +8,49 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 })
 export class SpeakToAgentComponent implements OnInit {
   sessionId = null;
+  userBotChats = []
+  messages = [];
   constructor(private data: DataService, private http: HttpClient) {
-    setInterval(() => {
-      this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
-        console.log("messages", data)
-        // this.messagesAndResponses.push({
-        //   data: data.message,
-        //   style: "speech-bubble",
-        //   image: selectedOption.nodeimage
-        //     ? "data:image/jpeg;base64," + selectedOption.nodeimage
-        //     : null
-        // });
-      })
-
+    setTimeout(() => {
+      this.getMessages(true)
     }, 1000);
+    setInterval(() => {
+      this.getMessages(false)
+    }, 4000);
+  }
 
+  getMessages(onLoad: boolean) {
+    this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
+      data.message.forEach(element => {
+        if (element.type === "User") {
+          element.style = "speech-bubble-response";
+        } else {
+          element.style = "speech-bubble";
+        }
+      });
+      this.messages = data.message;
+    })
+  }
+  Reset(status: boolean) {
+    this.messages = [];
+    if (status) {
+      window.location.href = "/";
+    }
   }
   getSessionIdMessages(sessionId: string) {
     return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
   }
 
   ngOnInit() {
-    this.data.sessionId.subscribe((message: any) => {
-      this.sessionId = message;
+    this.data.sessionId.subscribe((id: any) => {
+      console.log('session id', id)
+      this.sessionId = id;
+    });
+    this.data.userBotMessages.subscribe((messages: any) => {
+      this.userBotChats = messages
+    });
+    this.data.userAgentMessages.subscribe((messages: any) => {
+      this.messages = messages
     })
   }
 

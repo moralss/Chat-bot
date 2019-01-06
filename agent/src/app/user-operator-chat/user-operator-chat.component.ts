@@ -10,20 +10,33 @@ import { Observable } from "rxjs";
 export class UserOperatorChatComponent implements OnInit {
   messagesAndResponses = [];
   userSessionId = '';
+  text = '';
   constructor(private http: HttpClient, private data: DataService) {
     setTimeout(() => {
       this.getData()
     }, 1000);
   }
   sendMessage(event) {
-    if (event.keyCode === 13) {
-      const value = event.path[0].value;
-      this.messagesAndResponses.push({
-        message: value,
-        style: "agent-speech-bubble"
-      })
-      this.sendMessageToApi({ data: value, type: "agent" }).subscribe();
-      event.path[0].value = "";
+    if (event) {
+      if (event.keyCode === 13) {
+        const value = event.path[0].value;
+        this.messagesAndResponses.push({
+          message: value,
+          style: "agent-speech-bubble"
+        })
+        this.sendMessageToApi({ data: value, type: "agent" }).subscribe();
+        event.path[0].value = "";
+      } else {
+        this.text = event.path[0].value;
+      }
+    } else {
+      if (this.text !== "") {
+        this.messagesAndResponses.push({
+          message: this.text,
+          style: "agent-speech-bubble"
+        })
+        this.sendMessageToApi({ data: this.text, type: "agent" }).subscribe();
+      }
     }
   }
   getData() {
@@ -42,6 +55,12 @@ export class UserOperatorChatComponent implements OnInit {
   }
   sendMessageToApi(message: any) {
     return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.userSessionId);
+  }
+  closeSession() {
+    return this.http.get("http://41.86.98.151:8080/removeSession?sessionId=" + this.userSessionId);
+  }
+  endChat() {
+    this.closeSession().subscribe();
   }
   ngOnInit(): any {
   }

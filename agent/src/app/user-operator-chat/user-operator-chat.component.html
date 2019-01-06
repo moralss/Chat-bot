@@ -1,7 +1,7 @@
 <!-- The content below is only a placeholder and can be replaced. -->
 <div class="msg">
   <div class="head">
-    <!-- <button class="reset-btn" (click)="Reset(true)">{{userSessionId}} ffgf</button> -->
+    <a class="agent-btn" routerLink="/home" (click)="endChat()">chat to bot</a>
     <h1>chat bot agent!</h1>
   </div>
   <div class="chat">
@@ -19,8 +19,8 @@
     <div class="selection">
       <div class="inputField">
         <h1 style="color: white; font-size: 1em">+</h1>
-        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
-        <button>send</button>
+        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)"/>
+        <button (click)="sendMessage()">send</button>
       </div>
     </div>
   </div>

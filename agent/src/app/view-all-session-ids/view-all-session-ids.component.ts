@@ -20,7 +20,7 @@ export class ViewAllSessionIdsComponent implements OnInit {
     this.ShowSessionIds();
   }
   getSessionIds(): Observable<HttpResponse<Sessions>> {
-    return this.http.get<Sessions>("http://41.86.98.151:8080/getChatSessions", {
+    return this.http.get<Sessions>("http://41.86.98.151:8080/getAgentSessions", {
       observe: "response"
     });
   }
