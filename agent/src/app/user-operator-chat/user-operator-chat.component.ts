@@ -13,8 +13,11 @@ export class UserOperatorChatComponent implements OnInit {
   text = '';
   constructor(private http: HttpClient, private data: DataService) {
     setTimeout(() => {
-      this.getData()
+      this.getData();
     }, 1000);
+    setTimeout(() => {
+      this.getData();
+    }, 4000);
   }
   sendMessage(event) {
     if (event) {
@@ -30,7 +33,7 @@ export class UserOperatorChatComponent implements OnInit {
         this.text = event.path[0].value;
       }
     } else {
-      if (this.text !== "") {
+      if (this.text.length > 0) {
         this.messagesAndResponses.push({
           message: this.text,
           style: "agent-speech-bubble"
