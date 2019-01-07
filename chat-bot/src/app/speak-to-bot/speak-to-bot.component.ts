@@ -168,7 +168,7 @@ export class SpeakToBotComponent implements OnInit {
         this.sendMessageToApi(singleResponse).subscribe();
       }
     });
-    this.data.setUserBotMessages(this.messagesAndResponses.filter(singleMessage => singleMessage.style === "speech-bubble" || singleMessage.style === "speech-bubble-response"))
+    this.data.setUserBotMessages({ sessionId: this.sessionId, message: this.messagesAndResponses.filter(singleMessage => singleMessage.style === "speech-bubble" || singleMessage.style === "speech-bubble-response") })
     this.allOptionsDisabled = true;
   }
   ngOnInit() {

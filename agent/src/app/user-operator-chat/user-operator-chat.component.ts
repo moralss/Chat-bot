@@ -15,9 +15,9 @@ export class UserOperatorChatComponent implements OnInit {
     setTimeout(() => {
       this.getData();
     }, 1000);
-    setTimeout(() => {
-      this.getData();
-    }, 4000);
+    setInterval(() => {
+      this.getNewMessages(this.userSessionId);
+    }, 3000);
   }
   sendMessage(event) {
     if (event) {
@@ -41,19 +41,21 @@ export class UserOperatorChatComponent implements OnInit {
         this.sendMessageToApi({ data: this.text, type: "agent" }).subscribe();
       }
     }
+    this.getNewMessages(this.userSessionId);
   }
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
-      this.userSessionId = message[0].sessionId;
-      message[0].messages.forEach(element => {
+      this.userSessionId = message.sessionId;
+      message.messages.forEach(element => {
         if (element.type === "bot") {
-          element.style = "speech-bubble";
-        } else if (element.type === "User") {
           element.style = "speech-bubble-response";
+        } else if (element.type === "User") {
+          element.style = "speech-bubble";
+        } else {
+          element.style = "agent-speech-bubble";
         }
-        this.messagesAndResponses.push(element)
       });
-      console.log("message", message);
+      this.messagesAndResponses = message.messages;
     })
   }
   sendMessageToApi(message: any) {
@@ -61,6 +63,24 @@ export class UserOperatorChatComponent implements OnInit {
   }
   closeSession() {
     return this.http.get("http://41.86.98.151:8080/removeSession?sessionId=" + this.userSessionId);
+  }
+  getSessionIdMessages(sessionId: string) {
+    return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
+  }
+  getNewMessages(sessionId: string) {
+    this.getSessionIdMessages(sessionId).subscribe((data: any) => {
+      data.message.forEach(element => {
+        if (element.type === "bot") {
+          element.style = "speech-bubble-response";
+        } else if (element.type === "User") {
+          element.style = "speech-bubble";
+        } else {
+          element.style = "agent-speech-bubble";
+        }
+      });
+      this.messagesAndResponses = data.message
+      this.data.changeMessage({ sessionId: this.userSessionId, messages: data.message });
+    })
   }
   endChat() {
     this.closeSession().subscribe();
