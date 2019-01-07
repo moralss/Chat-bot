@@ -73,7 +73,6 @@ export class SpeakToAgentComponent implements OnInit {
 
   ngOnInit() {
     this.data.sessionId.subscribe((id: any) => {
-      console.log('session id', id)
       this.sessionId = id;
     });
     this.data.userBotMessages.subscribe((messages: any) => {
