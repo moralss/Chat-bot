@@ -8,16 +8,15 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 })
 export class SpeakToAgentComponent implements OnInit {
   sessionId = null;
-  userBotChats = [];
   messages = [];
   text = '';
   constructor(private data: DataService, private http: HttpClient) {
     setTimeout(() => {
-      this.getMessages(true)
+      this.getMessages();
     }, 1000);
     setInterval(() => {
-      this.getMessages(false)
-    }, 4000);
+      this.getMessages();
+    }, 3000);
   }
 
   sendMessage(event) {
@@ -43,20 +42,35 @@ export class SpeakToAgentComponent implements OnInit {
         this.sendMessageToApi({ data: this.text, type: "User" }).subscribe();
       }
     }
-    this.getMessages(false)
+    this.getMessages();
   }
   sendMessageToApi(message: any) {
-    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
+    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.nodeimage);
   }
-  getMessages(onLoad: boolean) {
+  getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
       data.message.forEach(element => {
         if (element.type === "User") {
           element.style = "speech-bubble-response";
-        } else {
+        } else if (element.type === "bot") {
           element.style = "speech-bubble";
+        } else {
+          element.style = "option-bubble"
+        }
+        if (element.messageImage) {
+          element.image = element.messageImage;
+          console.log('element.messageImage', element.image)
         }
       });
+      if (this.messages.length !== data.message.length) {
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            left: document.documentElement.scrollHeight,
+            behavior: "smooth"
+          });
+        }, 600);
+      }
       this.messages = data.message;
     })
   }
@@ -74,12 +88,5 @@ export class SpeakToAgentComponent implements OnInit {
     this.data.sessionId.subscribe((id: any) => {
       this.sessionId = id;
     });
-    this.data.userBotMessages.subscribe((messages: any) => {
-      this.userBotChats = messages
-    });
-    this.data.userAgentMessages.subscribe((messages: any) => {
-      this.messages = messages
-    })
   }
-
 }
