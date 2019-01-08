@@ -18,7 +18,6 @@
   font-size: small;
   text-align: center;
   width: fit-content;
-  width: -moz-min-content;
   /* width: min-content; */
   font-style: unset;
   padding: 2em;
@@ -43,7 +42,7 @@
   text-align: center;
   position: fixed;
   background: #060606;
-  width: -webkit-fill-available;
+  width:100%; 
   z-index: 1;
   margin-top: -1em;
   margin-left: -1em;
@@ -204,7 +203,7 @@
   margin-bottom: -2em;
   position: fixed;
   margin-left: -1em;
-  width: -webkit-fill-available;
+  width: 100%;
 }
 
 .btn {
@@ -251,14 +250,15 @@
     grid-template-rows: max-content;
   }
 
+
   .inputField {
     display: grid;
     grid-template-columns: 3.1em 20em 4em;
     font-size: smaller;
     justify-content: center;
     align-items: center;
-    grid-gap: inherit;
-  }
+    grid-gap: inherit;}
+  
 
   .selection {
     padding: 0.1em;
@@ -325,7 +325,7 @@
 
   .inputField {
     display: grid;
-    grid-template-columns: 3em 54em 14em;
+    grid-template-columns: 3em 40em 14em;
     grid-gap: 1em;
     font-size: smaller;
     justify-content: center;
@@ -394,15 +394,14 @@
     justify-content: center;
   }
 
-  .inputField {
-    display: grid;
-    grid-template-columns: 2.1em 18em 4em;
+.inputField[_ngcontent-c1] {
+   display: grid;
+    grid-template-columns: 2.1em 21em 7em;
     font-size: smaller;
     justify-content: center;
     align-items: center;
     grid-gap: inherit;
-  }
-
+}
 
   .selection {
     padding: 0.1em;

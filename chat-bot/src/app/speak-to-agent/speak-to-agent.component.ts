@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { DataService } from "../data.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 @Component({
-  selector: 'app-speak-to-agent',
-  templateUrl: './speak-to-agent.component.html',
-  styleUrls: ['./speak-to-agent.component.css']
+  selector: "app-speak-to-agent",
+  templateUrl: "./speak-to-agent.component.html",
+  styleUrls: ["./speak-to-agent.component.css"]
 })
 export class SpeakToAgentComponent implements OnInit {
   sessionId = null;
   messages = [];
-  text = '';
+  title = "speaking to agent";
+  text = "";
   constructor(private data: DataService, private http: HttpClient) {
     setTimeout(() => {
       this.getMessages();
@@ -27,7 +28,7 @@ export class SpeakToAgentComponent implements OnInit {
         this.messages.push({
           message: value,
           style: "speech-bubble-response"
-        })
+        });
         this.sendMessageToApi({ data: value, type: "User" }).subscribe();
         event.path[0].value = "";
       } else {
@@ -38,7 +39,7 @@ export class SpeakToAgentComponent implements OnInit {
         this.messages.push({
           message: this.text,
           style: "speech-bubble-response"
-        })
+        });
         this.sendMessageToApi({ data: this.text, type: "User" }).subscribe();
       }
     }
@@ -72,7 +73,7 @@ export class SpeakToAgentComponent implements OnInit {
         }, 600);
       }
       this.messages = data.message;
-    })
+    });
   }
   Reset(status: boolean) {
     this.messages = [];
@@ -81,7 +82,9 @@ export class SpeakToAgentComponent implements OnInit {
     }
   }
   getSessionIdMessages(sessionId: string) {
-    return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
+    return this.http.get(
+      "http://41.86.98.151:8080/getChat?sessionId=" + sessionId
+    );
   }
 
   ngOnInit() {
