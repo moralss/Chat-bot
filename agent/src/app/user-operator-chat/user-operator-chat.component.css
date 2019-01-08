@@ -32,7 +32,7 @@
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
   color: black;
-  height: unset;
+  height: fit-content;
 }
 
 .head {
@@ -42,7 +42,8 @@
   text-align: center;
   position: fixed;
   background: #060606;
-  width:100%; 
+  width:fit-content; 
+  height: fit-content;
   z-index: 1;
   margin-top: -1em;
   margin-left: -1em;
