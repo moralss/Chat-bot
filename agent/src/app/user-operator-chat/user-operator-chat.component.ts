@@ -17,11 +17,6 @@ export class UserOperatorChatComponent implements OnInit {
     }, 1000);
     setInterval(() => {
       this.getNewMessages(this.userSessionId);
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        left: document.documentElement.scrollHeight,
-        behavior: "smooth"
-      });
     }, 3000);
   }
   sendMessage(event) {
@@ -47,11 +42,6 @@ export class UserOperatorChatComponent implements OnInit {
       }
     }
     this.getNewMessages(this.userSessionId);
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      left: document.documentElement.scrollHeight,
-      behavior: "smooth"
-    });
   }
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
@@ -88,7 +78,16 @@ export class UserOperatorChatComponent implements OnInit {
           element.style = "agent-speech-bubble";
         }
       });
-      this.messagesAndResponses = data.message
+      if (this.messagesAndResponses.length !== data.message.length) {
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            left: document.documentElement.scrollHeight,
+            behavior: "smooth"
+          });
+        }, 600);
+      }
+      this.messagesAndResponses = data.message;
       this.data.changeMessage({ sessionId: this.userSessionId, messages: data.message });
     })
   }
