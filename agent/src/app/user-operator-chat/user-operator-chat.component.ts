@@ -17,6 +17,11 @@ export class UserOperatorChatComponent implements OnInit {
     }, 1000);
     setInterval(() => {
       this.getNewMessages(this.userSessionId);
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        left: document.documentElement.scrollHeight,
+        behavior: "smooth"
+      });
     }, 3000);
   }
   sendMessage(event) {
@@ -42,6 +47,11 @@ export class UserOperatorChatComponent implements OnInit {
       }
     }
     this.getNewMessages(this.userSessionId);
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      left: document.documentElement.scrollHeight,
+      behavior: "smooth"
+    });
   }
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
