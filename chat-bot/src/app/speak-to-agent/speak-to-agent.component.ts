@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { DataService } from "../data.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 @Component({
-  selector: 'app-speak-to-agent',
-  templateUrl: './speak-to-agent.component.html',
-  styleUrls: ['./speak-to-agent.component.css']
+  selector: "app-speak-to-agent",
+  templateUrl: "./speak-to-agent.component.html",
+  styleUrls: ["./speak-to-agent.component.css"]
 })
 export class SpeakToAgentComponent implements OnInit {
   sessionId = null;
   userBotChats = [];
   messages = [];
-  text = '';
+  title = "speaking to agent";
+  text = "";
   constructor(private data: DataService, private http: HttpClient) {
     setTimeout(() => {
-      this.getMessages(true)
+      this.getMessages(true);
     }, 1000);
     setInterval(() => {
-      this.getMessages(false)
+      this.getMessages(false);
     }, 4000);
   }
 
@@ -28,7 +29,7 @@ export class SpeakToAgentComponent implements OnInit {
         this.messages.push({
           message: value,
           style: "speech-bubble-response"
-        })
+        });
         this.sendMessageToApi({ data: value, type: "User" }).subscribe();
         event.path[0].value = "";
       } else {
@@ -39,14 +40,21 @@ export class SpeakToAgentComponent implements OnInit {
         this.messages.push({
           message: this.text,
           style: "speech-bubble-response"
-        })
+        });
         this.sendMessageToApi({ data: this.text, type: "User" }).subscribe();
       }
     }
-    this.getMessages(false)
+    this.getMessages(false);
   }
   sendMessageToApi(message: any) {
-    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
+    return this.http.get(
+      "http://41.86.98.151:8080/addMessage?type=" +
+        message.type +
+        "&message=" +
+        message.data +
+        "&sessionId=" +
+        this.sessionId
+    );
   }
   getMessages(onLoad: boolean) {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
@@ -58,7 +66,7 @@ export class SpeakToAgentComponent implements OnInit {
         }
       });
       this.messages = data.message;
-    })
+    });
   }
   Reset(status: boolean) {
     this.messages = [];
@@ -67,20 +75,20 @@ export class SpeakToAgentComponent implements OnInit {
     }
   }
   getSessionIdMessages(sessionId: string) {
-    return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
+    return this.http.get(
+      "http://41.86.98.151:8080/getChat?sessionId=" + sessionId
+    );
   }
 
   ngOnInit() {
     this.data.sessionId.subscribe((id: any) => {
-      console.log('session id', id)
       this.sessionId = id;
     });
     this.data.userBotMessages.subscribe((messages: any) => {
-      this.userBotChats = messages
+      this.userBotChats = messages;
     });
     this.data.userAgentMessages.subscribe((messages: any) => {
-      this.messages = messages
-    })
+      this.messages = messages;
+    });
   }
-
 }

@@ -39,14 +39,12 @@ export class ViewAllSessionIdsComponent implements OnInit {
     return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
   }
   selectedSessionId(sessionId: string) {
-      this.getSessionIdMessages(sessionId).subscribe((data: any) => {
-        this.sessionIdMessages.push({ sessionId: sessionId, messages: data.message });
-        this.data.changeMessage(this.sessionIdMessages);
-      })
+    this.getSessionIdMessages(sessionId).subscribe((data: any) => {
+      this.sessionIdMessages.push({ sessionId: sessionId, messages: data.message });
+      this.data.changeMessage({ sessionId: sessionId, messages: data.message });
+    })
   }
   ngOnInit() {
-    this.data.changeMessage(this.sessionIdMessages);
-    this.data.currentMessage.subscribe((message: any) => console.log("data in view", message))
   }
 
 }
