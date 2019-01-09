@@ -1,17 +1,21 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../data.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: "app-speak-to-agent",
   templateUrl: "./speak-to-agent.component.html",
   styleUrls: ["./speak-to-agent.component.css"]
 })
+
 export class SpeakToAgentComponent implements OnInit {
   sessionId = null;
   messages = [];
+  userBotMessages = [];
   title = "speaking to agent";
   text = "";
-  constructor(private data: DataService, private http: HttpClient) {
+  constructor(private data: DataService, private http: HttpClient, private sanitizer: DomSanitizer) {
     setTimeout(() => {
       this.getMessages();
     }, 1000);
@@ -70,16 +74,13 @@ export class SpeakToAgentComponent implements OnInit {
   getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
       data.message.forEach(element => {
+        console.log("testing", element.messageImage)
         if (element.type === "User") {
           element.style = "speech-bubble-response";
         } else if (element.type === "bot") {
           element.style = "speech-bubble";
         } else {
           element.style = "option-bubble"
-        }
-        if (element.messageImage) {
-          element.image = element.messageImage;
-          console.log('element.messageImage', element.image)
         }
       });
       if (this.messages.length !== data.message.length) {
@@ -110,5 +111,8 @@ export class SpeakToAgentComponent implements OnInit {
     this.data.sessionId.subscribe((id: any) => {
       this.sessionId = id;
     });
+    this.data.userBotMessages.subscribe((data: any) => {
+      this.userBotMessages = data.message;
+    })
   }
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SpeakToAgentComponent } from './speak-to-agent.component';
+import { SafeHtml } from './speak-to-agent.component'
 
 describe('SpeakToAgentComponent', () => {
   let component: SpeakToAgentComponent;
@@ -8,9 +9,9 @@ describe('SpeakToAgentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpeakToAgentComponent ]
+      declarations: [SpeakToAgentComponent, SafeHtml]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
