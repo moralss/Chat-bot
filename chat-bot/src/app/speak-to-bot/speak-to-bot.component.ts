@@ -139,7 +139,7 @@ export class SpeakToBotComponent implements OnInit {
         }
         this.messagesToAgent.push(userMessage);
         this.data.setUserAgentMessages(this.messagesToAgent);
-        this.sendMessageToApi({ ...userMessage, number: this.messagesAndResponses.indexOf(userMessage) }).subscribe();
+        this.sendMessageToApi({ ...userMessage }).subscribe();
         window.scrollTo({
           top: document.documentElement.scrollHeight,
           left: document.documentElement.scrollHeight,
@@ -151,7 +151,7 @@ export class SpeakToBotComponent implements OnInit {
 
   sendMessageToApi(message: any) {
     if (message.nodeimage) {
-      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.image);
+      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.nodeimage);
     } else {
       return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
     }
@@ -165,11 +165,12 @@ export class SpeakToBotComponent implements OnInit {
       singleResponse.isDisabled = true;
       if (singleResponse.style === "speech-bubble") {
         singleResponse.type = "bot";
+        singleResponse.nodeimage = singleResponse.image.split(",")[1];
       } else if (singleResponse.style === "speech-bubble-response") {
+        singleResponse.nodeimage = singleResponse.image.split(",")[1];
         singleResponse.type = "User";
       } else {
         singleResponse.type = "option";
-        console.log("singleResponse", singleResponse);
       }
       if (singleResponse.type) {
         this.sendMessageToApi(singleResponse).subscribe();
@@ -181,5 +182,4 @@ export class SpeakToBotComponent implements OnInit {
   }
   ngOnInit() {
   }
-
 }
