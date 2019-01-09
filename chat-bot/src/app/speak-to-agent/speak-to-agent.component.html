@@ -2,18 +2,13 @@
   <div class="head">
     <button class="reset-btn" (click)="Reset(true)">Reset</button>
     <h1>{{ title }}!</h1>
-    <a
-      class="agent-btn"
-      routerLink="/speak-to-agent"
-      (click)="disableAllOptions()"
-    >
-      Speak to a agent</a
-    >
+    <a class="agent-btn" routerLink="/speak-to-agent" (click)="disableAllOptions()">
+      Speak to a agent</a>
   </div>
   <div class="chat">
     <div *ngFor="let singleMessage of messages" class="{{ singleMessage.style }}" (click)="!singleMessage.isDisabled ? showOptions(singleMessage) : null">
       <div *ngIf="singleMessage.messageImage">
-        <img [src]="'data:image/jpeg;base64,'+singleMessage.messageImage | safe" />
+        <img [src]="singleMessage.messageImage | safe" />
       </div>
       <h2 class="bubble-text">{{ singleMessage.message }}</h2>
     </div>
@@ -23,13 +18,7 @@
     <div class="selection">
       <div class="inputField">
         <h1 style="color: white; font-size: 1em">Command :</h1>
-        <input
-          type="text"
-          class="response-command"
-          name="responseCommand"
-          placeholder="Response Command"
-          (keypress)="sendMessage($event)"
-        />
+        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
         <button (click)="sendMessage()">send</button>
       </div>
     </div>
