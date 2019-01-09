@@ -110,7 +110,7 @@
   width: -webkit-fill-available;
 }
 
-.option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+.option-bubble {
   position: relative;
   display: grid;
   background: #45bc70;
