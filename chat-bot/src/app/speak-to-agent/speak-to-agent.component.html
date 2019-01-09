@@ -7,8 +7,8 @@
   </div>
   <div class="chat">
     <div *ngFor="let singleMessage of messages" class="{{ singleMessage.style }}" (click)="!singleMessage.isDisabled ? showOptions(singleMessage) : null">
-      <div *ngIf="singleMessage.image">
-        <img src="{{ singleMessage.image }}" />
+      <div *ngIf="singleMessage.messageImage">
+        <img [src]="'data:image/jpeg;base64,'+singleMessage.messageImage | safe" />
       </div>
       <h2 class="bubble-text">{{ singleMessage.message }}</h2>
     </div>
