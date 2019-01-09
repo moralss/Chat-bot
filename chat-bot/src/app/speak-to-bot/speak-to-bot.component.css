@@ -4,7 +4,7 @@
 } */
 .inputField {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 19em 124em;
   font-size: smaller;
   align-items: center;
   grid-gap: inherit;

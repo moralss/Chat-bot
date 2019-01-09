@@ -91,10 +91,12 @@
 }
 
 .head {
+  width: -moz-available;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   color: whitesmoke;
+  width: -moz-available;
   text-align: center;
   position: fixed;
   background: #060606;
@@ -271,6 +273,8 @@
 }
 
 .head {
+  width: -moz-available;
+  width: -moz-available;
   position: fixed;
   width: -webkit-fill-available;
   z-index: 9;
@@ -497,6 +501,7 @@
   }
 
   .head {
+  width: -moz-available;
     position: fixed;
     width: -webkit-fill-available;
     z-index: 9;
