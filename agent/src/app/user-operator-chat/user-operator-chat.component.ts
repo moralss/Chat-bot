@@ -78,7 +78,16 @@ export class UserOperatorChatComponent implements OnInit {
           element.style = "agent-speech-bubble";
         }
       });
-      this.messagesAndResponses = data.message
+      if (this.messagesAndResponses.length !== data.message.length) {
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            left: document.documentElement.scrollHeight,
+            behavior: "smooth"
+          });
+        }, 600);
+      }
+      this.messagesAndResponses = data.message;
       this.data.changeMessage({ sessionId: this.userSessionId, messages: data.message });
     })
   }

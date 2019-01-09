@@ -111,7 +111,7 @@ export class SpeakToBotComponent implements OnInit {
               number: data.body.node.indexOf(singleOption) + 1,
               image: singleOption.nodeimage
                 ? "data:image/jpeg;base64," + singleOption.nodeimage
-                : null
+                : null,
             });
           });
           setTimeout(() => {
@@ -150,7 +150,11 @@ export class SpeakToBotComponent implements OnInit {
   }
 
   sendMessageToApi(message: any) {
-    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
+    if (message.nodeimage) {
+      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.image);
+    } else {
+      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
+    }
   }
   setSession() {
     return this.http.get("http://41.86.98.151:8080/markAgentSession?sessionId=" + this.sessionId);
@@ -163,12 +167,16 @@ export class SpeakToBotComponent implements OnInit {
         singleResponse.type = "bot";
       } else if (singleResponse.style === "speech-bubble-response") {
         singleResponse.type = "User";
+      } else {
+        singleResponse.type = "option";
+        console.log("singleResponse", singleResponse);
       }
       if (singleResponse.type) {
         this.sendMessageToApi(singleResponse).subscribe();
       }
     });
-    this.data.setUserBotMessages({ sessionId: this.sessionId, message: this.messagesAndResponses.filter(singleMessage => singleMessage.style === "speech-bubble" || singleMessage.style === "speech-bubble-response") })
+
+    this.data.setUserBotMessages({ sessionId: this.sessionId, message: this.messagesAndResponses })
     this.allOptionsDisabled = true;
   }
   ngOnInit() {
