@@ -165,12 +165,13 @@ export class SpeakToBotComponent implements OnInit {
       singleResponse.isDisabled = true;
       if (singleResponse.style === "speech-bubble") {
         singleResponse.type = "bot";
-        singleResponse.nodeimage = singleResponse.image.split(",")[1];
+        singleResponse.nodeimage = singleResponse.image;
       } else if (singleResponse.style === "speech-bubble-response") {
-        singleResponse.nodeimage = singleResponse.image.split(",")[1];
+        singleResponse.nodeimage = singleResponse.image;
         singleResponse.type = "User";
       } else {
         singleResponse.type = "option";
+        singleResponse.nodeimage = singleResponse.nodeimage ? 'data:image/jpeg;base64,' + singleResponse.nodeimage : null;
       }
       if (singleResponse.type) {
         this.sendMessageToApi(singleResponse).subscribe();
