@@ -21,9 +21,19 @@ export class SpeakToAgentComponent implements OnInit {
   }
 
   sendMessage(event) {
+    console.log("event", event)
     if (event) {
-      if (event.keyCode === 13) {
-        const value = event.path[0].value;
+      if (event.keyCode === 13 || event.code === "Enter") {
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          left: document.documentElement.scrollHeight,
+          behavior: "smooth"
+        });
+      },6);
+        console.log("works")
+        const value = event.target.value || event.path[0].value;
+        console.log("the event value", value);
         this.text = value;
         this.messages.push({
           message: value,
@@ -42,6 +52,15 @@ export class SpeakToAgentComponent implements OnInit {
         });
         this.sendMessageToApi({ data: this.text, type: "User" }).subscribe();
       }
+    }
+    if (this.messages) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          left: document.documentElement.scrollHeight,
+          behavior: "smooth"
+        });
+      }, 600);
     }
     this.getMessages();
   }
