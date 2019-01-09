@@ -20,7 +20,7 @@
   width: fit-content;
   /* width: min-content; */
   font-style: unset;
-  padding: 2em;
+  padding: 1em;
   -webkit-font-kerning: unset;
   font-kerning: unset;
   font-style: inherit;
@@ -32,7 +32,7 @@
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
   color: black;
-  height: unset;
+  height: fit-content;
 }
 
 .head {
@@ -42,10 +42,12 @@
   text-align: center;
   position: fixed;
   background: #060606;
-  width:100%; 
+  width:fit-content; 
+  height: fit-content;
   z-index: 1;
   margin-top: -1em;
   margin-left: -1em;
+  width: -moz-available;
 }
 
 .response-number {
