@@ -20,7 +20,7 @@
   width: fit-content;
   /* width: min-content; */
   font-style: unset;
-  padding: 2em;
+  padding: 1em;
   -webkit-font-kerning: unset;
   font-kerning: unset;
   font-style: inherit;
@@ -47,6 +47,7 @@
   z-index: 1;
   margin-top: -1em;
   margin-left: -1em;
+  width: -moz-available;
 }
 
 .response-number {
