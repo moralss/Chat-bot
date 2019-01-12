@@ -137,6 +137,7 @@ export class SpeakToBotComponent implements OnInit {
           data: value,
           style: "speech-bubble-response",
         }
+        
         this.messagesToAgent.push(userMessage);
         this.data.setUserAgentMessages(this.messagesToAgent);
         this.sendMessageToApi({ ...userMessage }).subscribe();
