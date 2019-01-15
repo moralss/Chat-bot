@@ -55,6 +55,11 @@ export class UserOperatorChatComponent implements OnInit {
           element.style = "agent-speech-bubble";
         }
       });
+      message.messages.sort((a, b) => {
+        if (a.orderId < b.orderId) return -1;
+        if (a.orderId > b.orderId) return 1;
+        return 0;
+      })
       this.messagesAndResponses = message.messages;
     })
   }
