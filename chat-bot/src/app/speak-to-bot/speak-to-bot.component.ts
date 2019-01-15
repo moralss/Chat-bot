@@ -59,7 +59,6 @@ export class SpeakToBotComponent implements OnInit {
             isDisabled: false,
             data: singleOption.option,
             style: "option-bubble",
-            number: data.body.node.indexOf(singleOption) + 1,
             image: singleOption.nodeimage
               ? "data:image/jpeg;base64," + singleOption.nodeimage
               : null
@@ -108,7 +107,6 @@ export class SpeakToBotComponent implements OnInit {
               isDisabled: false,
               data: singleOption.option,
               style: "option-bubble",
-              number: data.body.node.indexOf(singleOption) + 1,
               image: singleOption.nodeimage
                 ? "data:image/jpeg;base64," + singleOption.nodeimage
                 : null,
@@ -137,7 +135,7 @@ export class SpeakToBotComponent implements OnInit {
           data: value,
           style: "speech-bubble-response",
         }
-        
+
         this.messagesToAgent.push(userMessage);
         this.data.setUserAgentMessages(this.messagesToAgent);
         this.sendMessageToApi({ ...userMessage }).subscribe();
@@ -173,7 +171,9 @@ export class SpeakToBotComponent implements OnInit {
       } else {
         singleResponse.type = "option";
         singleResponse.nodeimage = singleResponse.nodeimage ? 'data:image/jpeg;base64,' + singleResponse.nodeimage : null;
-      }
+      } 
+      singleResponse.orderId = this.messagesAndResponses.indexOf(singleResponse) + 1;
+      console.log("checking the number property", singleResponse);
       if (singleResponse.type) {
         this.sendMessageToApi(singleResponse).subscribe();
       }
