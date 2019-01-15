@@ -25,19 +25,16 @@ export class SpeakToAgentComponent implements OnInit {
   }
 
   sendMessage(event) {
-    console.log("event", event)
     if (event) {
       if (event.keyCode === 13 || event.code === "Enter") {
-      setTimeout(() => {
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          left: document.documentElement.scrollHeight,
-          behavior: "smooth"
-        });
-      },6);
-        console.log("works")
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            left: document.documentElement.scrollHeight,
+            behavior: "smooth"
+          });
+        }, 6);
         const value = event.target.value || event.path[0].value;
-        console.log("the event value", value);
         this.text = value;
         this.messages.push({
           message: value,
@@ -74,7 +71,6 @@ export class SpeakToAgentComponent implements OnInit {
   getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
       data.message.forEach(element => {
-        console.log("testing", element.messageImage)
         if (element.type === "User") {
           element.style = "speech-bubble-response";
         } else if (element.type === "bot") {
@@ -92,6 +88,11 @@ export class SpeakToAgentComponent implements OnInit {
           });
         }, 600);
       }
+      data.message.sort((a, b) => {
+        if (a.orderId < b.orderId) return -1;
+        if (a.orderId > b.orderId) return 1;
+        return 0;
+      })
       this.messages = data.message;
     });
   }
