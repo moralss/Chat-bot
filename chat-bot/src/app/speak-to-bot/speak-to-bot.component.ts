@@ -51,7 +51,7 @@ export class SpeakToBotComponent implements OnInit {
             ? "data:image/jpeg;base64," + data.body.nodeimage
             : null
         });
-        this.sessionId = data.body.nodeid.split(" ")[0];
+        this.sessionId = data.body.nodeid;
         this.data.setSessionId(this.sessionId);
         data.body.node.forEach((singleOption: any) => {
           this.messagesAndResponses.push({
