@@ -150,9 +150,9 @@ export class SpeakToBotComponent implements OnInit {
 
   sendMessageToApi(message: any) {
     if (message.nodeimage) {
-      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.nodeimage);
+      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.nodeimage + "&orderId=" + `${message.orderId}`);
     } else {
-      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId);
+      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&orderId=" + `${message.orderId}`);
     }
   }
   setSession() {
@@ -171,9 +171,8 @@ export class SpeakToBotComponent implements OnInit {
       } else {
         singleResponse.type = "option";
         singleResponse.nodeimage = singleResponse.nodeimage ? 'data:image/jpeg;base64,' + singleResponse.nodeimage : null;
-      } 
+      }
       singleResponse.orderId = this.messagesAndResponses.indexOf(singleResponse) + 1;
-      console.log("checking the number property", singleResponse);
       if (singleResponse.type) {
         this.sendMessageToApi(singleResponse).subscribe();
       }

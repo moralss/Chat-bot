@@ -25,9 +25,10 @@ export class UserOperatorChatComponent implements OnInit {
         const value = event.path[0].value;
         this.messagesAndResponses.push({
           message: value,
-          style: "agent-speech-bubble"
+          style: "agent-speech-bubble",
+          orderId: this.messagesAndResponses.length + 1
         })
-        this.sendMessageToApi({ data: value, type: "agent" }).subscribe();
+        this.sendMessageToApi({ data: value, type: "agent", orderId: this.messagesAndResponses.length + 1 }).subscribe();
         event.path[0].value = "";
       } else {
         this.text = event.path[0].value;
@@ -36,9 +37,10 @@ export class UserOperatorChatComponent implements OnInit {
       if (this.text.length > 0) {
         this.messagesAndResponses.push({
           message: this.text,
-          style: "agent-speech-bubble"
+          style: "agent-speech-bubble",
+          orderId: this.messagesAndResponses.length + 1
         })
-        this.sendMessageToApi({ data: this.text, type: "agent" }).subscribe();
+        this.sendMessageToApi({ data: this.text, type: "agent", orderId: this.messagesAndResponses.length + 1 }).subscribe();
       }
     }
     this.getNewMessages(this.userSessionId);
@@ -54,6 +56,7 @@ export class UserOperatorChatComponent implements OnInit {
         } else {
           element.style = "agent-speech-bubble";
         }
+        element.orderId = +element.orderId;
       });
       message.messages.sort((a, b) => {
         if (a.orderId < b.orderId) return -1;
@@ -82,12 +85,18 @@ export class UserOperatorChatComponent implements OnInit {
         } else {
           element.style = "agent-speech-bubble";
         }
+        element.orderId = +element.orderId;
       });
       window.scrollTo({
         top: document.documentElement.scrollHeight,
         left: document.documentElement.scrollHeight,
         behavior: "smooth"
       });
+      data.message.sort((a, b) => {
+        if (a.orderId < b.orderId) return -1;
+        if (a.orderId > b.orderId) return 1;
+        return 0;
+      })
       this.messagesAndResponses = data.message;
       this.data.changeMessage({ sessionId: this.userSessionId, messages: data.message });
     })
