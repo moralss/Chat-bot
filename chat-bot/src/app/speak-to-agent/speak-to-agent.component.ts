@@ -37,24 +37,26 @@ export class SpeakToAgentComponent implements OnInit {
         }, 6);
         const value = event.target.value || event.path[0].value;
         this.text = value;
-        this.messages.push({
+        const message = {
           message: value,
           style: "speech-bubble-response",
           orderId: this.messages.length + 1
-        });
-        this.sendMessageToApi({ data: value, type: "User", orderId: this.messages.length + 1 }).subscribe();
+        };
+        this.messages.push(message);
+        this.sendMessageToApi({ data: value, type: "User", orderId: this.messages.indexOf(message) + 1 }).subscribe();
         event.path[0].value = "";
       } else {
         this.text = event.path[0].value;
       }
     } else {
       if (this.text.length > 0) {
-        this.messages.push({
+        const message = {
           message: this.text,
           style: "speech-bubble-response",
           orderId: this.messages.length + 1
-        });
-        this.sendMessageToApi({ data: this.text, type: "User", orderId: this.messages.length + 1 }).subscribe();
+        };
+        this.messages.push(message);
+        this.sendMessageToApi({ data: this.text, type: "User", orderId: this.messages.indexOf(message) + 1 }).subscribe();
       }
     }
     if (this.messages) {
@@ -69,7 +71,7 @@ export class SpeakToAgentComponent implements OnInit {
     this.getMessages();
   }
   sendMessageToApi(message: any) {
-    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.nodeimage + "&orderId=" + `${message.orderId}`);
+    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&orderId=" + `${message.orderId}`);
   }
   getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
@@ -77,7 +79,7 @@ export class SpeakToAgentComponent implements OnInit {
         if (a.orderId < b.orderId) return -1;
         if (a.orderId > b.orderId) return 1;
         return 0;
-      })
+      });
       data.message.forEach(element => {
         if (element.type === "User") {
           element.style = "speech-bubble-response"
@@ -100,6 +102,11 @@ export class SpeakToAgentComponent implements OnInit {
           });
         }, 600);
       }
+      data.message.sort((a, b) => {
+        if (a.orderId < b.orderId) return -1;
+        if (a.orderId > b.orderId) return 1;
+        return 0;
+      })
 
       this.messages = data.message;
     });
