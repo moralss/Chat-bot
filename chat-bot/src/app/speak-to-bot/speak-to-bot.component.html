@@ -1,31 +1,31 @@
 <div class="msg">
-    <div class="head">
-      <button class="reset-btn" (click)="Reset(true)">Reset</button>
-      <h1>{{ title }}!</h1>
-      <a class="agent-btn" routerLink="/speak-to-agent" (click)="disableAllOptions()"> Speak to
-        a agent</a>
-    </div>
-    <div class="chat">
-      <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="!messagesAndResponse.isDisabled ? showOptions(messagesAndResponse) : null">
-        <div *ngIf="messagesAndResponse.image">
-          <img src="{{ messagesAndResponse.image }}" />
-        </div>
-        <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
-          <h2 class="bubble-text">{{messagesAndResponse.number}}. {{ messagesAndResponse.data }}</h2>
-        </ng-container>
-        <ng-template #elseTemplate>
-          <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
-        </ng-template>
+  <div class="head">
+    <button class="reset-btn" (click)="Reset(true)">Reset</button>
+    <h1>{{ title }}!</h1>
+    <a class="agent-btn" routerLink="/speak-to-agent" (click)="disableAllOptions()"> Speak to
+      a agent</a>
+  </div>
+  <div class="chat">
+    <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}" (click)="!messagesAndResponse.isDisabled ? showOptions(messagesAndResponse) : null">
+      <div *ngIf="messagesAndResponse.image">
+        <img src="{{ messagesAndResponse.image }}" />
       </div>
+      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
+        <h2 class="bubble-text">{{messagesAndResponse.number}}. {{ messagesAndResponse.data }}</h2>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
+      </ng-template>
     </div>
-    
-    
-    <div class="wrapper">
-      <div class="selection">
-        <div class="inputField">
-          <h1 style="color: white; font-size: 1em">Command :</h1>
-          <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
-        </div>
+  </div>
+
+
+  <div class="wrapper">
+    <div class="selection">
+      <div class="inputField">
+        <h1 style="color: white; font-size: 1em">Command :</h1>
+        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
       </div>
     </div>
   </div>
+</div>

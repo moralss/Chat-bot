@@ -9,7 +9,12 @@
       <div *ngIf="messagesAndResponse.image">
         <img src="{{ messagesAndResponse.image }}" />
       </div>
-      <h2 class="bubble-text"> {{ messagesAndResponse.message }}</h2>
+      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
+        <h2 class="bubble-text">{{messagesAndResponse.number}}. {{ messagesAndResponse.message }}</h2>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <h2 class="bubble-text">{{ messagesAndResponse.message }}</h2>
+      </ng-template>
     </div>
     <router-outlet></router-outlet>
   </div>
@@ -19,7 +24,7 @@
     <div class="selection">
       <div class="inputField">
         <h1 style="color: white; font-size: 1em">+</h1>
-        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)"/>
+        <input type="text" class="response-command" name="responseCommand" placeholder="Response Command" (keypress)="sendMessage($event)" />
         <button (click)="sendMessage()">send</button>
       </div>
     </div>

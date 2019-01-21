@@ -56,6 +56,7 @@ export class SpeakToBotComponent implements OnInit {
         data.body.node.forEach((singleOption: any) => {
           this.messagesAndResponses.push({
             ...singleOption,
+            number: data.body.node.indexOf(singleOption) + 1,
             isDisabled: false,
             data: singleOption.option,
             style: "option-bubble",
@@ -104,6 +105,7 @@ export class SpeakToBotComponent implements OnInit {
           data.body.node.forEach((singleOption: any) => {
             this.messagesAndResponses.push({
               ...singleOption,
+              number: data.body.node.indexOf(singleOption) + 1,
               isDisabled: false,
               data: singleOption.option,
               style: "option-bubble",

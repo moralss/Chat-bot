@@ -11,6 +11,7 @@ export class UserOperatorChatComponent implements OnInit {
   messagesAndResponses = [];
   userSessionId = '';
   text = '';
+  number = 1;
   constructor(private http: HttpClient, private data: DataService) {
     setTimeout(() => {
       this.getData();
@@ -23,24 +24,26 @@ export class UserOperatorChatComponent implements OnInit {
     if (event) {
       if (event.keyCode === 13) {
         const value = event.path[0].value;
-        this.messagesAndResponses.push({
+        const message = {
           message: value,
           style: "agent-speech-bubble",
           orderId: this.messagesAndResponses.length + 1
-        })
-        this.sendMessageToApi({ data: value, type: "agent", orderId: this.messagesAndResponses.length + 1 }).subscribe();
+        };
+        this.messagesAndResponses.push(message);
+        this.sendMessageToApi({ data: value, type: "agent", orderId: this.messagesAndResponses.indexOf(message) + 1 }).subscribe();
         event.path[0].value = "";
       } else {
         this.text = event.path[0].value;
       }
     } else {
       if (this.text.length > 0) {
-        this.messagesAndResponses.push({
+        const message = {
           message: this.text,
           style: "agent-speech-bubble",
           orderId: this.messagesAndResponses.length + 1
-        })
-        this.sendMessageToApi({ data: this.text, type: "agent", orderId: this.messagesAndResponses.length + 1 }).subscribe();
+        };
+        this.messagesAndResponses.push(message);
+        this.sendMessageToApi({ data: this.text, type: "agent", orderId: this.messagesAndResponses.indexOf(message) + 1 }).subscribe();
       }
     }
     this.getNewMessages(this.userSessionId);
@@ -48,26 +51,32 @@ export class UserOperatorChatComponent implements OnInit {
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
       this.userSessionId = message.sessionId;
+      message.messages.sort((a, b) => {
+        if (a.orderId < b.orderId) return -1;
+        if (a.orderId > b.orderId) return 1;
+        return 0;
+      });
       message.messages.forEach(element => {
         if (element.type === "bot") {
           element.style = "speech-bubble-response";
+          this.number = 1;
         } else if (element.type === "User") {
           element.style = "speech-bubble";
+        } else if (element.type === "option") {
+          element.style = "bot-option";
+          element.number = this.number;
+          this.number = this.number + 1;
         } else {
           element.style = "agent-speech-bubble";
         }
         element.orderId = +element.orderId;
       });
-      message.messages.sort((a, b) => {
-        if (a.orderId < b.orderId) return -1;
-        if (a.orderId > b.orderId) return 1;
-        return 0;
-      })
+
       this.messagesAndResponses = message.messages;
     })
   }
   sendMessageToApi(message: any) {
-    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.userSessionId);
+    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.userSessionId + "&orderId=" + `${message.orderId}`);
   }
   closeSession() {
     return this.http.get("http://41.86.98.151:8080/removeSession?sessionId=" + this.userSessionId);
@@ -77,11 +86,22 @@ export class UserOperatorChatComponent implements OnInit {
   }
   getNewMessages(sessionId: string) {
     this.getSessionIdMessages(sessionId).subscribe((data: any) => {
+      console.log('data :', data);
+      data.message.sort((a, b) => {
+        if (a.orderId < b.orderId) return -1;
+        if (a.orderId > b.orderId) return 1;
+        return 0;
+      });
       data.message.forEach(element => {
         if (element.type === "bot") {
           element.style = "speech-bubble-response";
+          this.number = 1;
         } else if (element.type === "User") {
           element.style = "speech-bubble";
+        } else if (element.type === "option") {
+          element.style = "bot-option";
+          element.number = this.number;
+          this.number = this.number + 1;
         } else {
           element.style = "agent-speech-bubble";
         }
