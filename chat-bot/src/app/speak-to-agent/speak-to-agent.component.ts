@@ -15,6 +15,7 @@ export class SpeakToAgentComponent implements OnInit {
   userBotMessages = [];
   title = "speaking to agent";
   text = "";
+  number = 1;
   constructor(private data: DataService, private http: HttpClient, private sanitizer: DomSanitizer) {
     setTimeout(() => {
       this.getMessages();
@@ -72,13 +73,21 @@ export class SpeakToAgentComponent implements OnInit {
   }
   getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
+      data.message.sort((a, b) => {
+        if (a.orderId < b.orderId) return -1;
+        if (a.orderId > b.orderId) return 1;
+        return 0;
+      })
       data.message.forEach(element => {
         if (element.type === "User") {
-          element.style = "speech-bubble-response";
+          element.style = "speech-bubble-response"
         } else if (element.type === "bot") {
           element.style = "speech-bubble";
+          this.number = 1;
         } else {
-          element.style = "option-bubble"
+          element.style = "option-bubble";
+          element.number = this.number;
+          this.number = this.number + 1;
         }
         element.orderId = +element.orderId;
       });
@@ -91,11 +100,7 @@ export class SpeakToAgentComponent implements OnInit {
           });
         }, 600);
       }
-      data.message.sort((a, b) => {
-        if (a.orderId < b.orderId) return -1;
-        if (a.orderId > b.orderId) return 1;
-        return 0;
-      })
+
       this.messages = data.message;
     });
   }
@@ -114,6 +119,7 @@ export class SpeakToAgentComponent implements OnInit {
   ngOnInit() {
     this.data.sessionId.subscribe((id: any) => {
       this.sessionId = id;
+      console.log('id :', id);
     });
     this.data.userBotMessages.subscribe((data: any) => {
       this.userBotMessages = data.message;
