@@ -10,7 +10,12 @@
       <div *ngIf="singleMessage.messageImage">
         <img [src]="singleMessage.messageImage | safe" />
       </div>
-      <h2 class="bubble-text">{{ singleMessage.message }}</h2>
+      <ng-container *ngIf="singleMessage.number; else elseTemplate">
+        <h2 class="bubble-text">{{singleMessage.number}}. {{ singleMessage.message }}</h2>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <h2 class="bubble-text">{{ singleMessage.message }}</h2>
+      </ng-template>
     </div>
   </div>
 
