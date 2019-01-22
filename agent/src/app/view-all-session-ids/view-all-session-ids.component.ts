@@ -31,6 +31,11 @@ export class ViewAllSessionIdsComponent implements OnInit {
         data.body.map(element => {
           this.allAvailableSessions.push(element);
         });
+        this.allAvailableSessions = this.allAvailableSessions.sort(function (a, b) {
+          a = new Date(a.split(" ")[1] + " " + a.split(" ")[2]);
+          b = new Date(b.split(" ")[1] + " " + b.split(" ")[2]);
+          return a > b ? 1 : a < b ? -1 : 0;
+        });
       }
     )
   }
