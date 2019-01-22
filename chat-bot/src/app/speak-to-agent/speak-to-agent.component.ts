@@ -86,6 +86,9 @@ export class SpeakToAgentComponent implements OnInit {
         } else if (element.type === "bot") {
           element.style = "speech-bubble";
           this.number = 1;
+        } else if (element.type === "agent") {
+          element.style = "speech-bubble";
+          this.number = 1;
         } else {
           element.style = "option-bubble";
           element.number = this.number;
