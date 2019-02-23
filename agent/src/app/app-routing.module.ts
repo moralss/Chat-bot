@@ -6,7 +6,6 @@ import { ViewAllSessionIdsComponent } from './view-all-session-ids/view-all-sess
 const routes: Routes = [
   { path: 'user-operator-chat', component: UserOperatorChatComponent },
   { path: 'home', component: ViewAllSessionIdsComponent },
-  { path: '', component: ViewAllSessionIdsComponent }
 ];
 
 @NgModule({
