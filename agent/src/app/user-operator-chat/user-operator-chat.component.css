@@ -1,3 +1,4 @@
+
 .inputField {
   display: grid;
   grid-template-columns: 2em 54em 14em;
@@ -28,7 +29,7 @@
   font-feature-settings: inherit;
   border-radius: 1em;
   left: 44em;
-  margin: 1em;
+  margin: 2em;
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
   color: black;
@@ -175,7 +176,7 @@
   font-style: inherit;
   -webkit-font-feature-settings: inherit;
   font-feature-settings: inherit;
-  adding: 0.1em;
+  padding: 0.1em;
   border-radius: 1em;
   left: 44em;
   margin: 1em;
