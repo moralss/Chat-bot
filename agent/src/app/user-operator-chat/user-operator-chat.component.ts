@@ -17,7 +17,11 @@ export class UserOperatorChatComponent implements OnInit {
       this.getData();
     }, 1000);
     setInterval(() => {
-      this.getNewMessages(this.userSessionId);
+      if (this.userSessionId) {
+        this.getNewMessages(this.userSessionId);
+      } else {
+        this.getData();
+      }
     }, 3000);
   }
   sendMessage(event) {
@@ -86,7 +90,6 @@ export class UserOperatorChatComponent implements OnInit {
   }
   getNewMessages(sessionId: string) {
     this.getSessionIdMessages(sessionId).subscribe((data: any) => {
-      console.log('data :', data);
       data.message.sort((a, b) => {
         if (a.orderId < b.orderId) return -1;
         if (a.orderId > b.orderId) return 1;
@@ -118,12 +121,14 @@ export class UserOperatorChatComponent implements OnInit {
         return 0;
       })
       this.messagesAndResponses = data.message;
-      this.data.changeMessage({ sessionId: this.userSessionId, messages: data.message });
+      if (data.message.length > 0) {
+        this.data.changeMessage({ sessionId: this.userSessionId, messages: data.message });
+      }
     })
   }
   endChat() {
     this.closeSession().subscribe();
   }
-  ngOnInit(): any {
+  ngOnInit() {
   }
 }
