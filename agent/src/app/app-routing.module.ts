@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { UserOperatorChatComponent } from './user-operator-chat/user-operator-chat.component';
 import { ViewAllSessionIdsComponent } from './view-all-session-ids/view-all-session-ids.component';
 const routes: Routes = [
-  { path: 'home', component: ViewAllSessionIdsComponent },
 ];
 
 @NgModule({
