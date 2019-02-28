@@ -1,10 +1,10 @@
 <!-- The content below is only a placeholder and can be replaced. -->
-<div class="msg">
+<div class="chat-view">
   <div class="head">
     <a class="agent-btn" routerLink="/home" (click)="endChat()">chat to bot</a>
     <h1>chat bot agent!</h1>
   </div>
-  <div class="chat">
+  <div class="chat" id="chat">
     <div *ngFor="let messagesAndResponse of messagesAndResponses" class="{{ messagesAndResponse.style }}">
       <div *ngIf="messagesAndResponse.image">
         <img src="{{ messagesAndResponse.image }}" />
