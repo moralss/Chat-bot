@@ -2,14 +2,16 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 3em;
 } */
-.sessionId-table{
+.sessionId-table {
   margin: 10%;
 }
-.table-row{
+.table-row {
   cursor: pointer;
 }
 
 .split-screen {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 40% 60%}
+  grid-template-columns: 40% 60%;
+  height: 90%;
+  overflow: hidden;
+}
