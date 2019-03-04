@@ -1,18 +1,22 @@
 <div class="session-id">
-  <div class="head">
+  <!-- <div class="head">
     <h1>{{ title }}!</h1>
-  </div>
+  </div> -->
   <div class="view">
     <table class="sessionId-table" border="1">
       <tr>
         <th>sessionId</th>
       </tr>
-      <tbody *ngFor="let availableSession of allAvailableSessions; let i = index">
+      <tbody
+        *ngFor="let availableSession of allAvailableSessions; let i = index"
+      >
         <tr class="table-row">
           <a (click)="selectedSessionId(availableSession)">
             <td>
-              <h1>id no: {{i+1}} </h1>
-              <h1 style="text-align:center">session id: {{availableSession}}</h1>
+              <h1>id no: {{ i + 1 }}</h1>
+              <h1 style="text-align:center">
+                session id: {{ availableSession }}
+              </h1>
             </td>
           </a>
         </tr>
