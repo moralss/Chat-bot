@@ -27,6 +27,11 @@
 td {
   display: grid;
   justify-items: center;
+  border-color: rgb(13, 13, 54);
+  color: #fff;
+  box-shadow: 0 0 40px 40px rgba(0, 0, 255, 0.521) inset,
+    0 0 0 0 rgb(77, 77, 182);
+  transition: all 150ms ease-in-out;
 }
 
 th {
@@ -38,8 +43,7 @@ h1 {
 }
 
 td:hover {
-  background: rgba(55, 255, 0, 0.258);
-  font-size: 4em;
+  border-radius: 2em;
 }
 
 a {

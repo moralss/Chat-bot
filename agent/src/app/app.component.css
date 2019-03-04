@@ -2,6 +2,9 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 3em;
 } */
+body {
+  overflow: hidden;
+}
 .sessionId-table {
   margin: 10%;
 }
@@ -14,4 +17,10 @@
   grid-template-columns: 40% 60%;
   height: 90%;
   overflow: hidden;
+}
+.main-heading {
+  border: 2px solid black;
+  text-align: center;
+  box-shadow: #263131 0.1em 0.4em 0.4em;
+  margin-top: -0.2em;
 }
