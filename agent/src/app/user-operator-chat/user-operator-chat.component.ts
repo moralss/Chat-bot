@@ -2,12 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "../data.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
+
 @Component({
   selector: "app-user-operator-chat",
   templateUrl: "./user-operator-chat.component.html",
   styleUrls: ["./user-operator-chat.component.css"]
 })
 export class UserOperatorChatComponent implements OnInit {
+  apiAddress = environment.apiAddress;
   messagesAndResponses = [];
   userSessionId = "";
   text = "";
@@ -23,7 +26,6 @@ export class UserOperatorChatComponent implements OnInit {
         this.getData();
       }
     }, 3000);
-    
   }
   sendMessage(event) {
     if (event) {
@@ -64,11 +66,12 @@ export class UserOperatorChatComponent implements OnInit {
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
       this.userSessionId = message.sessionId;
-      message.messages.sort((a, b) => {
-        if (a.orderId < b.orderId) return -1;
-        if (a.orderId > b.orderId) return 1;
-        return 0;
-      });
+      if (message.messages) {
+        message.messages.sort((a, b) => {
+          if (a.orderId < b.orderId) return -1;
+          if (a.orderId > b.orderId) return 1;
+          return 0;
+        });
       message.messages.forEach(element => {
         if (element.type === "bot") {
           element.style = "speech-bubble-response";
@@ -84,6 +87,8 @@ export class UserOperatorChatComponent implements OnInit {
         }
         element.orderId = +element.orderId;
       });
+    }
+
       var elem = document.getElementById("chat");
       elem.scrollTop = elem.scrollHeight;
       this.messagesAndResponses = message.messages;
@@ -91,7 +96,8 @@ export class UserOperatorChatComponent implements OnInit {
   }
   sendMessageToApi(message: any) {
     return this.http.get(
-      "http://41.86.98.151:8080/addMessage?type=" +
+      this.apiAddress +
+        "addMessage?type=" +
         message.type +
         "&message=" +
         message.data +
@@ -103,13 +109,11 @@ export class UserOperatorChatComponent implements OnInit {
   }
   closeSession() {
     return this.http.get(
-      "http://41.86.98.151:8080/removeSession?sessionId=" + this.userSessionId
+      this.apiAddress + "removeSession?sessionId=" + this.userSessionId
     );
   }
   getSessionIdMessages(sessionId: string) {
-    return this.http.get(
-      "http://41.86.98.151:8080/getChat?sessionId=" + sessionId
-    );
+    return this.http.get(this.apiAddress + "getChat?sessionId=" + sessionId);
   }
   getNewMessages(sessionId: string) {
     this.getSessionIdMessages(sessionId).subscribe((data: any) => {

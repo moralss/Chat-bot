@@ -3,6 +3,8 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Sessions } from "./view-all-session-ids.sessions"
 import { Observable } from "rxjs";
 import { DataService } from "../data.service";
+import { environment } from "../../environments/environment";
+
 
 
 @Component({
@@ -12,6 +14,7 @@ import { DataService } from "../data.service";
 })
 
 export class ViewAllSessionIdsComponent implements OnInit {
+  apiAddress = environment.apiAddress;
   title = "Chat bot";
   allAvailableSessions = [];
   sessionIdMessages = [];
@@ -20,7 +23,7 @@ export class ViewAllSessionIdsComponent implements OnInit {
     this.ShowSessionIds();
   }
   getSessionIds(): Observable<HttpResponse<Sessions>> {
-    return this.http.get<Sessions>("http://41.86.98.151:8080/getAgentSessions", {
+    return this.http.get<Sessions>(this.apiAddress + "getAgentSessions", {
       observe: "response"
     });
   }
@@ -41,7 +44,7 @@ export class ViewAllSessionIdsComponent implements OnInit {
   }
 
   getSessionIdMessages(sessionId: string) {
-    return this.http.get("http://41.86.98.151:8080/getChat?sessionId=" + sessionId);
+    return this.http.get(this.apiAddress + "getChat?sessionId=" + sessionId);
   }
   selectedSessionId(sessionId: string) {
     this.getSessionIdMessages(sessionId).subscribe((data: any) => {
