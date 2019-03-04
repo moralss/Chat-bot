@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "../data.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: "app-speak-to-agent",
@@ -10,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class SpeakToAgentComponent implements OnInit {
+  apiAddress= environment.apiAddress;
   sessionId = null;
   messages = [];
   userBotMessages = [];
@@ -71,7 +73,7 @@ export class SpeakToAgentComponent implements OnInit {
     this.getMessages();
   }
   sendMessageToApi(message: any) {
-    return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&orderId=" + `${message.orderId}`);
+    return this.http.get(this.apiAddress + "addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&orderId=" + `${message.orderId}`);
   }
   getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
@@ -122,14 +124,13 @@ export class SpeakToAgentComponent implements OnInit {
   }
   getSessionIdMessages(sessionId: string) {
     return this.http.get(
-      "http://41.86.98.151:8080/getChat?sessionId=" + sessionId
+      this.apiAddress + "getChat?sessionId=" + sessionId
     );
   }
 
   ngOnInit() {
     this.data.sessionId.subscribe((id: any) => {
       this.sessionId = id;
-      console.log('id :', id);
     });
     this.data.userBotMessages.subscribe((data: any) => {
       this.userBotMessages = data.message;
