@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Options } from "../app.options";
 import { Observable } from "rxjs";
 import { DataService } from "../data.service";
+import { environment } from "../../environments/environment";
 
 @Component({
-  selector: 'app-speak-to-bot',
-  templateUrl: './speak-to-bot.component.html',
-  styleUrls: ['./speak-to-bot.component.css']
+  selector: "app-speak-to-bot",
+  templateUrl: "./speak-to-bot.component.html",
+  styleUrls: ["./speak-to-bot.component.css"]
 })
 export class SpeakToBotComponent implements OnInit {
+  apiAddress = environment.apiAddress;
   title = "chat-bot";
   messagesAndResponses = [];
   messagesToAgent = [];
@@ -29,16 +31,15 @@ export class SpeakToBotComponent implements OnInit {
     this.ShowFirstOptions();
   }
   getFirstOptions(): Observable<HttpResponse<Options>> {
-    return this.http.get<Options>("http://41.86.98.151:8080/tree?name=test", {
+    return this.http.get<Options>(this.apiAddress + "tree?name=test", {
       observe: "response"
     });
   }
 
   getOptions(nodeId: string): Observable<HttpResponse<Options>> {
-    return this.http.get<Options>(
-      "http://41.86.98.151:8080/node?nodeid=" + nodeId,
-      { observe: "response" }
-    );
+    return this.http.get<Options>(this.apiAddress + "node?nodeid=" + nodeId, {
+      observe: "response"
+    });
   }
 
   ShowFirstOptions() {
@@ -111,7 +112,7 @@ export class SpeakToBotComponent implements OnInit {
               style: "option-bubble",
               image: singleOption.nodeimage
                 ? "data:image/jpeg;base64," + singleOption.nodeimage
-                : null,
+                : null
             });
           });
           setTimeout(() => {
@@ -135,8 +136,8 @@ export class SpeakToBotComponent implements OnInit {
       } else {
         const userMessage = {
           data: value,
-          style: "speech-bubble-response",
-        }
+          style: "speech-bubble-response"
+        };
 
         this.messagesToAgent.push(userMessage);
         this.data.setUserAgentMessages(this.messagesToAgent);
@@ -152,13 +153,37 @@ export class SpeakToBotComponent implements OnInit {
 
   sendMessageToApi(message: any) {
     if (message.nodeimage) {
-      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&messageImage=" + message.nodeimage + "&orderId=" + `${message.orderId}`);
+      return this.http.get(
+        this.apiAddress +
+          "addMessage?type=" +
+          message.type +
+          "&message=" +
+          message.data +
+          "&sessionId=" +
+          this.sessionId +
+          "&messageImage=" +
+          message.nodeimage +
+          "&orderId=" +
+          `${message.orderId}`
+      );
     } else {
-      return this.http.get("http://41.86.98.151:8080/addMessage?type=" + message.type + "&message=" + message.data + "&sessionId=" + this.sessionId + "&orderId=" + `${message.orderId}`);
+      return this.http.get(
+        this.apiAddress +
+          "addMessage?type=" +
+          message.type +
+          "&message=" +
+          message.data +
+          "&sessionId=" +
+          this.sessionId +
+          "&orderId=" +
+          `${message.orderId}`
+      );
     }
   }
   setSession() {
-    return this.http.get("http://41.86.98.151:8080/markAgentSession?sessionId=" + this.sessionId);
+    return this.http.get(
+      this.apiAddress + "markAgentSession?sessionId=" + this.sessionId
+    );
   }
   disableAllOptions() {
     this.setSession().subscribe();
@@ -172,17 +197,22 @@ export class SpeakToBotComponent implements OnInit {
         singleResponse.type = "User";
       } else {
         singleResponse.type = "option";
-        singleResponse.nodeimage = singleResponse.nodeimage ? 'data:image/jpeg;base64,' + singleResponse.nodeimage : null;
+        singleResponse.nodeimage = singleResponse.nodeimage
+          ? "data:image/jpeg;base64," + singleResponse.nodeimage
+          : null;
       }
-      singleResponse.orderId = this.messagesAndResponses.indexOf(singleResponse) + 1;
+      singleResponse.orderId =
+        this.messagesAndResponses.indexOf(singleResponse) + 1;
       if (singleResponse.type) {
         this.sendMessageToApi(singleResponse).subscribe();
       }
     });
 
-    this.data.setUserBotMessages({ sessionId: this.sessionId, message: this.messagesAndResponses })
+    this.data.setUserBotMessages({
+      sessionId: this.sessionId,
+      message: this.messagesAndResponses
+    });
     this.allOptionsDisabled = true;
   }
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
