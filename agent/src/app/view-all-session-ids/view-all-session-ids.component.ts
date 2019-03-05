@@ -53,6 +53,7 @@ export class ViewAllSessionIdsComponent implements OnInit {
   }
   selectedSessionId(sessionId: string) {
     this.getSessionIdMessages(sessionId).subscribe((data: any) => {
+      console.log("sessionId, data :", sessionId, data);
       this.sessionIdMessages.push({
         sessionId: sessionId,
         messages: data.message

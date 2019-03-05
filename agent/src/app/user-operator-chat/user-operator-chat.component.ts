@@ -89,10 +89,9 @@ export class UserOperatorChatComponent implements OnInit {
           element.orderId = +element.orderId;
         });
         this.showMessage = true;
+        var elem = document.getElementById("chat");
+        elem.scrollTop = elem.scrollHeight;
       }
-
-      var elem = document.getElementById("chat");
-      elem.scrollTop = elem.scrollHeight;
       this.messagesAndResponses = message.messages;
     });
   }
@@ -144,17 +143,20 @@ export class UserOperatorChatComponent implements OnInit {
         if (a.orderId > b.orderId) return 1;
         return 0;
       });
-      if (data.message.length > this.messagesAndResponses.length) {
-        this.messagesAndResponses = data.message;
-        var elem = document.getElementById("chat");
-        elem.scrollTop = elem.scrollHeight;
-        this.showMessage = true;
-      }
-      if (data.message.length > 0) {
-        this.data.changeMessage({
-          sessionId: this.userSessionId,
-          messages: data.message
-        });
+      if (data.message) {
+        console.log("data.message :", this.messagesAndResponses);
+        if (data.message.length > this.messagesAndResponses.length) {
+          this.messagesAndResponses = data.message;
+          var elem = document.getElementById("chat");
+          elem.scrollTop = elem.scrollHeight;
+          this.showMessage = true;
+        }
+        if (data.message.length > 0) {
+          this.data.changeMessage({
+            sessionId: this.userSessionId,
+            messages: data.message
+          });
+        }
       }
     });
   }
