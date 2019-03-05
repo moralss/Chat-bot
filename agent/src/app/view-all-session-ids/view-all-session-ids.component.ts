@@ -31,9 +31,7 @@ export class ViewAllSessionIdsComponent implements OnInit {
 
   ShowSessionIds() {
     this.getSessionIds().subscribe((data: any) => {
-      data.body.map(element => {
-        this.allAvailableSessions.push(element);
-      });
+      this.allAvailableSessions = data.body;
       this.allAvailableSessions = this.allAvailableSessions.sort(function(
         a,
         b
@@ -44,7 +42,7 @@ export class ViewAllSessionIdsComponent implements OnInit {
       });
       if (this.allAvailableSessions.length > 0) {
         this.hasSessionIds = true;
-      }else{
+      } else {
         this.hasSessionIds = false;
       }
     });
