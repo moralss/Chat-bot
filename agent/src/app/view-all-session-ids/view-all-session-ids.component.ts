@@ -11,6 +11,7 @@ import { environment } from "../../environments/environment";
   styleUrls: ["./view-all-session-ids.component.css"]
 })
 export class ViewAllSessionIdsComponent implements OnInit {
+  hasSessionIds = false;
   apiAddress = environment.apiAddress;
   title = "Chat bot";
   allAvailableSessions = [];
@@ -41,6 +42,11 @@ export class ViewAllSessionIdsComponent implements OnInit {
         b = new Date(b.split(" ")[1] + " " + b.split(" ")[2]);
         return a > b ? 1 : a < b ? -1 : 0;
       });
+      if (this.allAvailableSessions.length > 0) {
+        this.hasSessionIds = true;
+      }else{
+        this.hasSessionIds = false;
+      }
     });
   }
 
