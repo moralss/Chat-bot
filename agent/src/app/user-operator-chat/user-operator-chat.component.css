@@ -194,7 +194,7 @@
 
 .bubble-text {
   font-size: small;
-  padding: 0.2rem;
+  /* padding: 0.2rem; */
 }
 .chat {
   /* padding-top: 4em; */
@@ -202,8 +202,8 @@
   justify-content: center;
   grid-template-rows: -webkit-max-content;
   /* grid-template-rows: max-content; */
-  height: 36rem;
-  grid-gap: 0.3em;
+  height: 32rem;
+  grid-gap: 0.1em;
   overflow: auto;
   margin-top: -1rem;
 }
