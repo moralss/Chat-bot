@@ -1,48 +1,41 @@
 <!-- The content below is only a placeholder and can be replaced. -->
 <div class="chat-view">
-  <ng-container *ngIf="showMessage; else elseTemplate">
-    <div class="head">
-      <a class="agent-btn" routerLink="/home" (click)="endChat()">End Chat </a>
-    </div>
-    <div class="chat" id="chat">
-      <div
-        *ngFor="let messagesAndResponse of messagesAndResponses"
-        class="{{ messagesAndResponse.style }}"
-      >
-        <div *ngIf="messagesAndResponse.image">
-          <img src="{{ messagesAndResponse.image }}" />
-        </div>
-        <ng-container *ngIf="messagesAndResponse.number; else elseTemplate1">
-          <h2 class="bubble-text">
-            {{ messagesAndResponse.number }}. {{ messagesAndResponse.message }}
-          </h2>
-        </ng-container>
-        <ng-template #elseTemplate1>
-          <h2 class="bubble-text">{{ messagesAndResponse.message }}</h2>
-        </ng-template>
+  <div class="head">
+    <a class="agent-btn" routerLink="/home" (click)="endChat()">End Chat </a>
+  </div>
+  <div class="chat" id="chat">
+    <div
+      *ngFor="let messagesAndResponse of messagesAndResponses"
+      class="{{ messagesAndResponse.style }}"
+    >
+      <div *ngIf="messagesAndResponse.image">
+        <img src="{{ messagesAndResponse.image }}" />
       </div>
-      <router-outlet></router-outlet>
+      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
+        <h2 class="bubble-text">
+          {{ messagesAndResponse.number }}. {{ messagesAndResponse.message }}
+        </h2>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <h2 class="bubble-text">{{ messagesAndResponse.message }}</h2>
+      </ng-template>
     </div>
-  </ng-container>
-  <ng-template #elseTemplate>
-    <h2>Welcome to the Chat bot. Select a chat session Id.</h2>
-  </ng-template>
+    <router-outlet></router-outlet>
+  </div>
 
   <div class="wrapper">
-    <ng-container *ngIf="showMessage">
-      <div class="selection">
-        <div class="inputField">
-          <h1 style="color: white; font-size: 1em">+</h1>
-          <input
-            type="text"
-            class="response-command"
-            name="responseCommand"
-            placeholder="Response Command"
-            (keypress)="sendMessage($event)"
-          />
-          <button (click)="sendMessage()">send</button>
-        </div>
+    <div class="selection">
+      <div class="inputField">
+        <h1 style="color: white; font-size: 1em">+</h1>
+        <input
+          type="text"
+          class="response-command"
+          name="responseCommand"
+          placeholder="Response Command"
+          (keypress)="sendMessage($event)"
+        />
+        <button (click)="sendMessage()">send</button>
       </div>
-    </ng-container>
+    </div>
   </div>
 </div>
