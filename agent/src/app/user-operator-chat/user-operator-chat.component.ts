@@ -10,15 +10,14 @@ import { environment } from "../../environments/environment";
   styleUrls: ["./user-operator-chat.component.css"]
 })
 export class UserOperatorChatComponent implements OnInit {
+  showGreeting = true;
   apiAddress = environment.apiAddress;
   messagesAndResponses = [];
   userSessionId = "";
   text = "";
   number = 1;
   constructor(private http: HttpClient, private data: DataService) {
-    setTimeout(() => {
-      this.getData();
-    }, 1000);
+    this.getData();
     setInterval(() => {
       if (this.userSessionId) {
         this.getNewMessages(this.userSessionId);
@@ -72,26 +71,28 @@ export class UserOperatorChatComponent implements OnInit {
           if (a.orderId > b.orderId) return 1;
           return 0;
         });
-      message.messages.forEach(element => {
-        if (element.type === "bot") {
-          element.style = "speech-bubble-response";
-          this.number = 1;
-        } else if (element.type === "User") {
-          element.style = "speech-bubble";
-        } else if (element.type === "option") {
-          element.style = "bot-option";
-          element.number = this.number;
-          this.number = this.number + 1;
-        } else {
-          element.style = "agent-speech-bubble";
-        }
-        element.orderId = +element.orderId;
-      });
-    }
-
-      var elem = document.getElementById("chat");
-      elem.scrollTop = elem.scrollHeight;
-      this.messagesAndResponses = message.messages;
+        message.messages.forEach(element => {
+          if (element.type === "bot") {
+            element.style = "speech-bubble-response";
+            this.number = 1;
+          } else if (element.type === "User") {
+            element.style = "speech-bubble";
+          } else if (element.type === "option") {
+            element.style = "bot-option";
+            element.number = this.number;
+            this.number = this.number + 1;
+          } else {
+            element.style = "agent-speech-bubble";
+          }
+          element.orderId = +element.orderId;
+        });
+        this.showGreeting = false;
+        var elem = document.getElementById("chat");
+        elem.scrollTop = elem.scrollHeight;
+        this.messagesAndResponses = message.messages;
+      } else {
+        this.showGreeting = true;
+      }
     });
   }
   sendMessageToApi(message: any) {
@@ -152,11 +153,14 @@ export class UserOperatorChatComponent implements OnInit {
           sessionId: this.userSessionId,
           messages: data.message
         });
+        this.showGreeting = false;
       }
     });
   }
   endChat() {
     this.closeSession().subscribe();
+    this.showGreeting = true;
   }
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }
