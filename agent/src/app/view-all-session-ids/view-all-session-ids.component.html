@@ -1,26 +1,28 @@
 <div class="session-id">
-  <!-- <div class="head">
-    <h1>{{ title }}!</h1>
-  </div> -->
-  <div class="view">
-    <table class="sessionId-table" border="1">
-      <tr>
-        <th>sessionId</th>
-      </tr>
-      <tbody
-        *ngFor="let availableSession of allAvailableSessions; let i = index"
-      >
-        <tr class="table-row">
-          <a (click)="selectedSessionId(availableSession)">
-            <td>
-              <h1>id no: {{ i + 1 }}</h1>
-              <h1 style="text-align:center">
-                session id: {{ availableSession }}
-              </h1>
-            </td>
-          </a>
+  <ng-container *ngIf="hasSessionIds; else elseTemplate">
+    <div class="view">
+      <table class="sessionId-table" border="1">
+        <tr>
+          <th>sessionId</th>
         </tr>
-      </tbody>
-    </table>
-  </div>
+        <tbody
+          *ngFor="let availableSession of allAvailableSessions; let i = index"
+        >
+          <tr class="table-row">
+            <a (click)="selectedSessionId(availableSession)">
+              <td>
+                <h1>id no: {{ i + 1 }}</h1>
+                <h1 style="text-align:center">
+                  session id: {{ availableSession }}
+                </h1>
+              </td>
+            </a>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <h2>No session Id's available.</h2>
+  </ng-template>
 </div>
