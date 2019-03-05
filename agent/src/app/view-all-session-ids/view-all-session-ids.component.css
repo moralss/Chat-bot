@@ -29,8 +29,7 @@ td {
   justify-items: center;
   border-color: rgb(13, 13, 54);
   color: #fff;
-  box-shadow: 0 0 40px 40px rgba(0, 0, 255, 0.521) inset,
-    0 0 0 0 rgb(77, 77, 182);
+  box-shadow: 0 0 40px 40px rgba(10, 10, 10, 0.98) inset, 0 0 0 0 rgb(0, 0, 0);
   transition: all 150ms ease-in-out;
 }
 
@@ -62,4 +61,5 @@ a:hover {
 .session-id {
   height: 100%;
   overflow: hidden;
+  margin-top: -6rem;
 }

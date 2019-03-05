@@ -15,7 +15,7 @@
 }
 
 .agent-btn {
-  background: #dddddd;
+  background: #e41111ba;
   font-size: small;
   text-align: center;
   width: fit-content;
@@ -34,6 +34,15 @@
   text-decoration-line: none;
   color: black;
   height: fit-content;
+}
+.landing {
+  background: url(../../../../../../../Pictures/5730ad21-400a-48de-bfca-575b94214cf3.jpeg);
+  height: 32rem;
+  background-repeat: no-repeat;
+  color: white;
+  margin-left: -1rem;
+  background-size: contain;
+  margin-top: 7.4rem;
 }
 
 .head {

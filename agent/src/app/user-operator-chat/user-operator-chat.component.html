@@ -4,7 +4,9 @@
     <a class="agent-btn" routerLink="/home" (click)="endChat()">End Chat </a>
   </div>
 
-  <h2 *ngIf="showGreeting">Welcome to Chat bot, Select session id.</h2>
+  <h2 *ngIf="showGreeting" class="landing">
+    Welcome to Chat bot, Select session id.
+  </h2>
   <div class="chat" id="chat">
     <div
       *ngFor="let messagesAndResponse of messagesAndResponses"
