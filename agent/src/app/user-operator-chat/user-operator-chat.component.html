@@ -1,8 +1,10 @@
 <!-- The content below is only a placeholder and can be replaced. -->
 <div class="chat-view">
-  <div class="head">
+  <div class="head" *ngIf="!showGreeting">
     <a class="agent-btn" routerLink="/home" (click)="endChat()">End Chat </a>
   </div>
+
+  <h2 *ngIf="showGreeting">Welcome to Chat bot, Select session id.</h2>
   <div class="chat" id="chat">
     <div
       *ngFor="let messagesAndResponse of messagesAndResponses"
@@ -11,20 +13,18 @@
       <div *ngIf="messagesAndResponse.image">
         <img src="{{ messagesAndResponse.image }}" />
       </div>
-      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
+      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate1">
         <h2 class="bubble-text">
           {{ messagesAndResponse.number }}. {{ messagesAndResponse.message }}
         </h2>
       </ng-container>
-      <ng-template #elseTemplate>
+      <ng-template #elseTemplate1>
         <h2 class="bubble-text">{{ messagesAndResponse.message }}</h2>
       </ng-template>
     </div>
-    <router-outlet></router-outlet>
   </div>
-
   <div class="wrapper">
-    <div class="selection">
+    <div class="selection" *ngIf="!showGreeting">
       <div class="inputField">
         <input
           type="text"
