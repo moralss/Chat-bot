@@ -10,6 +10,7 @@ import { environment } from "../../environments/environment";
   styleUrls: ["./user-operator-chat.component.css"]
 })
 export class UserOperatorChatComponent implements OnInit {
+  showMessage = false;
   apiAddress = environment.apiAddress;
   messagesAndResponses = [];
   userSessionId = "";
@@ -72,22 +73,23 @@ export class UserOperatorChatComponent implements OnInit {
           if (a.orderId > b.orderId) return 1;
           return 0;
         });
-      message.messages.forEach(element => {
-        if (element.type === "bot") {
-          element.style = "speech-bubble-response";
-          this.number = 1;
-        } else if (element.type === "User") {
-          element.style = "speech-bubble";
-        } else if (element.type === "option") {
-          element.style = "bot-option";
-          element.number = this.number;
-          this.number = this.number + 1;
-        } else {
-          element.style = "agent-speech-bubble";
-        }
-        element.orderId = +element.orderId;
-      });
-    }
+        message.messages.forEach(element => {
+          if (element.type === "bot") {
+            element.style = "speech-bubble-response";
+            this.number = 1;
+          } else if (element.type === "User") {
+            element.style = "speech-bubble";
+          } else if (element.type === "option") {
+            element.style = "bot-option";
+            element.number = this.number;
+            this.number = this.number + 1;
+          } else {
+            element.style = "agent-speech-bubble";
+          }
+          element.orderId = +element.orderId;
+        });
+        this.showMessage = true;
+      }
 
       var elem = document.getElementById("chat");
       elem.scrollTop = elem.scrollHeight;
@@ -146,6 +148,7 @@ export class UserOperatorChatComponent implements OnInit {
         this.messagesAndResponses = data.message;
         var elem = document.getElementById("chat");
         elem.scrollTop = elem.scrollHeight;
+        this.showMessage = true;
       }
       if (data.message.length > 0) {
         this.data.changeMessage({
@@ -157,6 +160,7 @@ export class UserOperatorChatComponent implements OnInit {
   }
   endChat() {
     this.closeSession().subscribe();
+    this.showMessage = false;
   }
   ngOnInit() {}
 }
