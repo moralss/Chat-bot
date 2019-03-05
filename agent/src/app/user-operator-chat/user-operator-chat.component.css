@@ -1,8 +1,8 @@
 .inputField {
   display: grid;
-  /* grid-template-columns: 2em 54em 14em; */
-  font-size: smaller;
-  justify-content: center;
+  width: 60%;
+  /* font-size: smaller; */
+  /* justify-content: center; */
   justify-content: stretch;
   align-items: center;
   grid-gap: inherit;
@@ -61,11 +61,13 @@
   background: #83bb00;
   border-radius: 0.4em;
   right: -20%;
-  font-size: 2em;
+  float: right;
+  width: 5rem;
+  font-size: small;
   top: 0.5em;
   max-width: 9em;
   padding: 0.3em;
-  margin-top: 1em;
+  margin-top: 0.2em;
 }
 .agent-speech-bubble {
   position: relative;
@@ -73,21 +75,23 @@
   background: #00aabb;
   border-radius: 0.4em;
   right: -20%;
-  font-size: 2em;
+  float: right;
+  font-size: 1.5rem;
   top: 0.5em;
   max-width: 9em;
-  padding: 0.3em;
+  padding: 0.2em;
 }
 .speech-bubble {
   position: relative;
   display: grid;
   background: #00bb6f;
   border-radius: 0.4em;
+  float: right;
   left: -20%;
   margin-top: 0.8em;
-  font-size: 2em;
+  font-size: 1.5rem;
   max-width: 9em;
-  padding: 0.3em;
+  padding: 0.2em;
 }
 
 .speech-bubble-response {
@@ -95,14 +99,14 @@
   display: grid;
   background: #00aabb;
   border-radius: 0.4em;
-  right: -20%;
-  font-size: 2em;
+  float: left;
+  font-size: 1.5rem;
   top: 0.5em;
   max-width: 9em;
-  padding: 0.3em;
+  padding: 0.2em;
   /* margin-left: 80%; */
 }
-.bot-option:after {
+/* .bot-option:after {
   content: "";
   position: absolute;
   right: 0;
@@ -115,7 +119,7 @@
   border-bottom: 0;
   margin-top: -10px;
   margin-right: -20px;
-}
+} */
 .agent-speech-bubble:after {
   content: "";
   position: absolute;
@@ -198,6 +202,7 @@
   grid-template-rows: -webkit-max-content;
   /* grid-template-rows: max-content; */
   height: 36rem;
+  grid-gap: 0.3em;
   overflow: auto;
   margin-top: -1rem;
 }
