@@ -194,6 +194,7 @@
 
 .bubble-text {
   font-size: small;
+  padding: 0.2rem;
 }
 .chat {
   /* padding-top: 4em; */
