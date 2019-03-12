@@ -60,6 +60,8 @@ export class UserOperatorChatComponent implements OnInit {
         }).subscribe();
       }
     }
+    var elem = document.getElementById("chat");
+        elem.scrollTop = elem.scrollHeight;
     this.getNewMessages(this.userSessionId);
   }
   getData() {
