@@ -147,8 +147,6 @@ export class UserOperatorChatComponent implements OnInit {
         this.messagesAndResponses = data.message;
         var elem = document.getElementById("chat");
         elem.scrollTop = elem.scrollHeight;
-      }
-      if (data.message.length > 0) {
         this.data.changeMessage({
           sessionId: this.userSessionId,
           messages: data.message
