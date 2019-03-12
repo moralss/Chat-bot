@@ -11,6 +11,11 @@ body {
 .table-row {
   cursor: pointer;
 }
+.image {
+  width: 12rem;
+  height: 4.5rem;
+  margin-left: 2rem;
+}
 
 .split-screen {
   display: grid;
@@ -20,8 +25,14 @@ body {
 }
 .main-heading {
   border: 2px solid black;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   text-align: center;
   box-shadow: #263131 0.1em 0.4em 0.4em;
   margin-top: -0.2em;
-  /* background: url("../../../../../../Pictures/5730ad21-400a-48de-bfca-575b94214cf3.jpeg"); */
+  color: white;
+  position: fixed;
+  background: #1c0306;
+  width: -webkit-fill-available;
+  z-index: 99;
 }

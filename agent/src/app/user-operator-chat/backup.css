@@ -42,12 +42,11 @@
 
 .head {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   color: whitesmoke;
   text-align: center;
   position: fixed;
-  background: #1c0306;
   width: -webkit-fill-available;
   width: -moz-available;
   z-index: 1;
@@ -60,7 +59,7 @@
   width: -webkit-fill-available;
 }
 
-.option-bubble {
+.bot-option {
   position: relative;
   color: white;
   display: grid;
@@ -73,11 +72,25 @@
   /* left: -20%; */
   /* padding: 0.3em; */
 }
+.agent-speech-bubble {
+  position: relative;
+  display: grid;
+  background: #717171;
+  border-radius: 0.4em;
+  left: -20%;
+  margin-top: 1em;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  max-width: 9em;
+  padding: 0.3em;
+}
 
 .speech-bubble {
   position: relative;
   display: grid;
   background: #717171;
+  text-align: center;
   border-radius: 0.4em;
   left: -20%;
   margin-top: 1em;
@@ -90,6 +103,7 @@
 .speech-bubble-response {
   position: relative;
   display: grid;
+  text-align: center;
   background: white;
   border: 0.1em solid black;
   border-radius: 0.4em;
@@ -155,6 +169,7 @@
 
 .bubble-text {
   font-size: 0.5em;
+  text-align: center;
 }
 
 .msg {
@@ -189,7 +204,7 @@
 
 .selection {
   padding: 0.2em;
-  background: #1c0306;
+  background: #c1382b;
   bottom: 2em;
   margin-bottom: -2em;
   position: fixed;
@@ -223,11 +238,6 @@
 .whatever {
   width: 30%;
 }
-.image {
-  width: 12rem;
-  height: 5rem;
-  margin: auto;
-}
 
 .head {
   position: fixed;
@@ -235,7 +245,6 @@
   z-index: 9;
   color: whitesmoke;
   text-align: center;
-  background: #1c0306;
 }
 
 /* iphone 6,7,8 media querry */
@@ -251,7 +260,7 @@
   .selection {
     padding: 0.1em;
     width: -moz-available;
-    background: #1c0306;
+    background: #c1382b;
     /* display: grid; */
     /* border-radius: 2em; */
     /* justify-items: center; */
@@ -290,10 +299,11 @@
     position: fixed;
   }
 
-  .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+  .bot-option[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
     position: relative;
     display: grid;
     background: #45bc70;
+    text-align: center;
     border-radius: 0.4em;
     margin-top: 1em;
     font-size: 1.5em;
@@ -314,7 +324,7 @@
 
   .selection {
     padding: 0.1em;
-    background: #1c0306;
+    background: #c1382b;
     /* display: grid; */
     /* border-radius: 2em; */
     /* justify-items: center; */
@@ -376,7 +386,7 @@
 
   .selection {
     padding: 0.1em;
-    background: #1c0306;
+    background: #c1382b;
     /* display: grid; */
     /* border-radius: 2em; */
     /* justify-items: center; */
@@ -442,7 +452,7 @@
     /* margin-left: 80%; */
   }
 
-  .option-bubble[_ngcontent-c0][_ngcontent-c0][_ngcontent-c0] {
+  .bot-option {
     position: relative;
     display: grid;
     background: #45bc70;
@@ -461,7 +471,6 @@
     z-index: 9;
     color: whitesmoke;
     text-align: center;
-    background: #1c0306;
     margin-left: -1em;
     margin-top: -1em;
   }
