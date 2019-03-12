@@ -1,11 +1,11 @@
 .inputField {
   display: grid;
   width: 60%;
-  /* font-size: smaller; */
-  /* justify-content: center; */
+  grid-template-columns: repeat(2, auto);
   justify-content: stretch;
+  /* justify-content: space-between; */
   align-items: center;
-  grid-gap: inherit;
+  /* grid-gap: inherit; */
 }
 
 .buttons {
@@ -15,12 +15,14 @@
 }
 
 .agent-btn {
-  background: #e41111ba;
+  background: #e74c3cba;
   font-size: small;
   text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
-  /* width: min-content; */
   font-style: unset;
+  color: white;
   padding: 1em;
   -webkit-font-kerning: unset;
   font-kerning: unset;
@@ -29,14 +31,15 @@
   font-feature-settings: inherit;
   border-radius: 1em;
   left: 44em;
-  margin: 2em;
+  margin: 6em;
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
-  color: black;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }
 .landing {
-  background: url(../../assets/infinity-tools-logo.jpeg);
+  /* background: url(../../assets/infinity-tools-logo.jpeg); */
   height: 32rem;
   background-repeat: no-repeat;
   color: white;
@@ -54,8 +57,8 @@
   width: fit-content;
   height: fit-content;
   z-index: 1;
-  margin-top: -1em;
-  margin-left: -1em;
+  margin-top: 1em;
+  margin-left: -5em;
   width: -moz-available;
 }
 
@@ -66,54 +69,54 @@
 
 .bot-option {
   position: relative;
+  color: white;
   display: grid;
-  background: #83bb00;
+  background: #717171;
   border-radius: 0.4em;
-  right: -20%;
-  float: right;
-  width: 5rem;
-  font-size: small;
-  top: 0.5em;
+  margin-top: 1em;
+  font-size: 1.5em;
   max-width: 9em;
-  padding: 0.3em;
-  margin-top: 0.2em;
+  cursor: pointer;
+  /* left: -20%; */
+  /* padding: 0.3em; */
 }
 .agent-speech-bubble {
   position: relative;
   display: grid;
-  background: #00aabb;
+  text-align: center;
+  background: white;
+  border: 0.1em solid black;
   border-radius: 0.4em;
   right: -20%;
-  float: right;
-  font-size: 1.5rem;
+  font-size: 2em;
   top: 0.5em;
   max-width: 9em;
-  padding: 0.2em;
 }
 .speech-bubble {
   position: relative;
   display: grid;
-  background: #00bb6f;
+  background: #717171;
+  text-align: center;
   border-radius: 0.4em;
-  float: right;
   left: -20%;
-  margin-top: 0.8em;
-  font-size: 1.5rem;
+  margin-top: 1em;
+  color: white;
+  font-size: 2em;
   max-width: 9em;
-  padding: 0.2em;
+  padding: 0.3em;
 }
 
 .speech-bubble-response {
   position: relative;
   display: grid;
-  background: #00aabb;
+  text-align: center;
+  background: white;
+  border: 0.1em solid black;
   border-radius: 0.4em;
-  float: left;
-  font-size: 1.5rem;
+  right: -20%;
+  font-size: 2em;
   top: 0.5em;
   max-width: 9em;
-  padding: 0.2em;
-  /* margin-left: 80%; */
 }
 /* .bot-option:after {
   content: "";
@@ -136,12 +139,12 @@
   top: 50%;
   width: 0;
   height: 0;
-  border: 1em solid transparent;
-  border-left-color: #00aabb;
+  border: 0.7em solid transparent;
+  border-left-color: #000000e6;
   border-right: 0;
   border-bottom: 0;
-  margin-top: -10px;
-  margin-right: -20px;
+  margin-top: -0.8rem;
+  margin-right: -1.4rem;
 }
 .speech-bubble-response:after {
   content: "";
@@ -150,12 +153,12 @@
   top: 50%;
   width: 0;
   height: 0;
-  border: 1em solid transparent;
-  border-left-color: #00aabb;
+  border: 0.7em solid transparent;
+  border-left-color: #000000e6;
   border-right: 0;
   border-bottom: 0;
-  margin-top: -10px;
-  margin-right: -20px;
+  margin-top: -0.8rem;
+  margin-right: -1.4rem;
 }
 
 .speech-bubble:after {
@@ -166,7 +169,7 @@
   width: 0;
   height: 0;
   border: 0.4em solid transparent;
-  border-right-color: #00bb6f;
+  border-right-color: #717171;
   border-left: 0;
   border-bottom: 0;
   margin-top: 0em;
@@ -202,19 +205,17 @@
 }
 
 .bubble-text {
-  font-size: small;
-  /* padding: 0.2rem; */
+  font-size: 0.5em;
+  text-align: center;
 }
 .chat {
-  /* padding-top: 4em; */
   display: grid;
   justify-content: center;
   grid-template-rows: -webkit-max-content;
-  /* grid-template-rows: max-content; */
   height: 32rem;
   grid-gap: 0.1em;
   overflow: auto;
-  margin-top: -1rem;
+  margin-top: 6rem;
 }
 .chat-view {
   padding-bottom: 3em;
@@ -248,7 +249,8 @@
 .selection {
   padding: 0.2em;
   bottom: 2em;
-  margin-bottom: -2em;
+  margin-bottom: -1.5em;
+  background: #1d0305;
   position: fixed;
   margin-left: -1em;
   width: 100%;
