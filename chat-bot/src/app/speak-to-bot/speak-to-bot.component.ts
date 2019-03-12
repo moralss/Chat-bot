@@ -212,6 +212,7 @@ export class SpeakToBotComponent implements OnInit {
       sessionId: this.sessionId,
       message: this.messagesAndResponses
     });
+    sessionStorage.setItem("sessionId",this.sessionId);
     this.allOptionsDisabled = true;
   }
   ngOnInit() {}
