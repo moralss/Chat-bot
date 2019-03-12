@@ -1,6 +1,7 @@
 .sessionId-table {
   border: none;
   margin-top: 4em;
+  overflow:auto;
 }
 
 .view {
