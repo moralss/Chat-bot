@@ -42,6 +42,10 @@ export class UserOperatorChatComponent implements OnInit {
           orderId: this.messagesAndResponses.indexOf(message) + 1
         }).subscribe();
         event.path[0].value = "";
+        setTimeout(() => {
+          var elem = document.getElementById("chat");
+          elem.scrollTop = elem.scrollHeight;
+        }, 500);
       } else {
         this.text = event.path[0].value;
       }
@@ -58,11 +62,13 @@ export class UserOperatorChatComponent implements OnInit {
           type: "agent",
           orderId: this.messagesAndResponses.indexOf(message) + 1
         }).subscribe();
+        var elem = document.getElementById("chat");
+        elem.scrollTop = elem.scrollHeight;
       }
     }
+    this.getNewMessages(this.userSessionId);
     var elem = document.getElementById("chat");
     elem.scrollTop = elem.scrollHeight;
-    this.getNewMessages(this.userSessionId);
   }
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
