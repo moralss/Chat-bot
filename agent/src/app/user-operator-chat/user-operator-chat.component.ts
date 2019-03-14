@@ -61,7 +61,7 @@ export class UserOperatorChatComponent implements OnInit {
       }
     }
     var elem = document.getElementById("chat");
-        elem.scrollTop = elem.scrollHeight;
+    elem.scrollTop = elem.scrollHeight;
     this.getNewMessages(this.userSessionId);
   }
   getData() {
@@ -161,6 +161,5 @@ export class UserOperatorChatComponent implements OnInit {
     this.closeSession().subscribe();
     this.showGreeting = true;
   }
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
