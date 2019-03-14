@@ -26,7 +26,7 @@
   -webkit-font-kerning: unset;
   font-kerning: unset;
   height: fit-content;
-  width: fit-content;
+  width: 8rem;
   font-style: inherit;
   -webkit-font-feature-settings: inherit;
   font-feature-settings: inherit;
@@ -131,22 +131,24 @@
 }
 
 .reset-btn {
-  order: 1em solid #dddddd;
-  background: #dddddd;
-  font-size: small;
+  font-size: smaller;
   text-align: center;
-  width: auto;
-  height: fit-content;
   font-style: unset;
   padding: 1em;
   -webkit-font-kerning: unset;
   font-kerning: unset;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 8rem;
   font-style: inherit;
   -webkit-font-feature-settings: inherit;
   font-feature-settings: inherit;
-  adding: 0.1em;
+  padding: 0.1em;
+
   border-radius: 1em;
   left: 44em;
+  bottom: 36em;
   margin: 2em;
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
@@ -154,7 +156,9 @@
 }
 
 .bubble-text {
-  font-size: 0.5em;
+  font-size: 0.8rem;
+  font-weight: lighter;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .msg {

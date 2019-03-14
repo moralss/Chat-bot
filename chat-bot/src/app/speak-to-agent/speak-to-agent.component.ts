@@ -17,7 +17,11 @@ export class SpeakToAgentComponent implements OnInit {
   title = "speaking to agent";
   text = "";
   number = 1;
-  constructor(private data: DataService, private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(
+    private data: DataService,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+  ) {
     const localSessionId = sessionStorage.getItem("sessionId");
     if (localSessionId) {
       this.sessionId = localSessionId;
@@ -29,6 +33,7 @@ export class SpeakToAgentComponent implements OnInit {
   }
 
   sendMessage(event) {
+    console.log("event", event);
     if (event) {
       if (event.keyCode === 13 || event.code === "Enter") {
         setTimeout(() => {
@@ -56,7 +61,9 @@ export class SpeakToAgentComponent implements OnInit {
         this.text = event.path[0].value;
       }
     } else {
+      console.log("else", this.text);
       if (this.text.length > 0) {
+        console.log("text", this.text);
         const message = {
           message: this.text,
           style: "speech-bubble-response",
@@ -137,7 +144,7 @@ export class SpeakToAgentComponent implements OnInit {
   Reset(status: boolean) {
     this.messages = [];
     if (status) {
-      sessionStorage.removeItem("sessionId")
+      sessionStorage.removeItem("sessionId");
       window.location.href = "/";
     }
   }
@@ -146,7 +153,7 @@ export class SpeakToAgentComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(sessionStorage.getItem("sessionId")){
+    if (sessionStorage.getItem("sessionId")) {
       this.data.setSessionId(sessionStorage.getItem("sessionId"));
     }
     this.data.sessionId.subscribe((id: any) => {
