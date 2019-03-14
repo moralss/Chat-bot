@@ -14,6 +14,7 @@ export class ViewAllSessionIdsComponent implements OnInit {
   apiAddress = environment.apiAddress;
   title = "Chat bot";
   allAvailableSessions = [];
+  sessionIdsAvailable = false;
   sessionIdMessages = [];
   message = [];
   constructor(private http: HttpClient, private data: DataService) {
@@ -32,11 +33,18 @@ export class ViewAllSessionIdsComponent implements OnInit {
     this.getSessionIds().subscribe((data: any) => {
       if (this.allAvailableSessions.length !== data.body.length) {
         this.allAvailableSessions = data.body;
-        this.allAvailableSessions = this.allAvailableSessions.sort(function(a,b) {
+        this.sessionIdsAvailable = true;
+        this.allAvailableSessions = this.allAvailableSessions.sort(function(
+          a,
+          b
+        ) {
           a = new Date(a.split(" ")[1] + " " + a.split(" ")[2]);
           b = new Date(b.split(" ")[1] + " " + b.split(" ")[2]);
           return a > b ? 1 : a < b ? -1 : 0;
         });
+      }
+      if (this.allAvailableSessions.length <= 0) {
+        this.sessionIdsAvailable = false;
       }
     });
   }
