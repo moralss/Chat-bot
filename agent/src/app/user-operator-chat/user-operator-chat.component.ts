@@ -18,6 +18,8 @@ export class UserOperatorChatComponent implements OnInit {
   number = 1;
   constructor(private http: HttpClient, private data: DataService) {
     this.getData();
+        var elem = document.getElementById("chat");
+        elem.scrollTop = elem.scrollHeight;    
     setInterval(() => {
       if (this.userSessionId) {
         this.getNewMessages(this.userSessionId);
