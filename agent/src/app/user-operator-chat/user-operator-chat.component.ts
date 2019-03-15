@@ -24,9 +24,6 @@ export class UserOperatorChatComponent implements OnInit {
       }
     }, 3000);
   }
-  sendMessage1(value: string) {
-    console.log("value :", value);
-  }
   sendMessage(event) {
     if (event.keyCode) {
       if (event.keyCode === 13) {
