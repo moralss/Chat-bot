@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../data.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 
 @Component({
@@ -14,12 +13,9 @@ export class UserOperatorChatComponent implements OnInit {
   apiAddress = environment.apiAddress;
   messagesAndResponses = [];
   userSessionId = "";
-  text = "";
   number = 1;
   constructor(private http: HttpClient, private data: DataService) {
     this.getData();
-        var elem = document.getElementById("chat");
-        elem.scrollTop = elem.scrollHeight;    
     setInterval(() => {
       if (this.userSessionId) {
         this.getNewMessages(this.userSessionId);
@@ -28,8 +24,11 @@ export class UserOperatorChatComponent implements OnInit {
       }
     }, 3000);
   }
+  sendMessage1(value: string) {
+    console.log("value :", value);
+  }
   sendMessage(event) {
-    if (event) {
+    if (event.keyCode) {
       if (event.keyCode === 13) {
         const value = event.path[0].value;
         const message = {
@@ -48,29 +47,28 @@ export class UserOperatorChatComponent implements OnInit {
           var elem = document.getElementById("chat");
           elem.scrollTop = elem.scrollHeight;
         }, 500);
-      } else {
-        this.text = event.path[0].value;
       }
     } else {
-      if (this.text.length > 0) {
+      if (event.value.length > 0) {
         const message = {
-          message: this.text,
+          message: event.value,
           style: "agent-speech-bubble",
           orderId: this.messagesAndResponses.length + 1
         };
         this.messagesAndResponses.push(message);
         this.sendMessageToApi({
-          data: this.text,
+          data: event.value,
           type: "agent",
           orderId: this.messagesAndResponses.indexOf(message) + 1
         }).subscribe();
-        var elem = document.getElementById("chat");
-        elem.scrollTop = elem.scrollHeight;
+        setTimeout(() => {
+          var elem = document.getElementById("chat");
+          elem.scrollTop = elem.scrollHeight;
+        }, 500);
+        event.value = "";
       }
     }
     this.getNewMessages(this.userSessionId);
-    var elem = document.getElementById("chat");
-    elem.scrollTop = elem.scrollHeight;
   }
   getData() {
     this.data.currentMessage.subscribe((message: any) => {
@@ -97,8 +95,10 @@ export class UserOperatorChatComponent implements OnInit {
           element.orderId = +element.orderId;
         });
         this.showGreeting = false;
-        var elem = document.getElementById("chat");
-        elem.scrollTop = elem.scrollHeight;
+        setTimeout(() => {
+          var elem = document.getElementById("chat");
+          elem.scrollTop = elem.scrollHeight;
+        }, 500);
         this.messagesAndResponses = message.messages;
       } else {
         this.showGreeting = true;
@@ -155,13 +155,15 @@ export class UserOperatorChatComponent implements OnInit {
       });
       if (data.message.length > this.messagesAndResponses.length) {
         this.messagesAndResponses = data.message;
-        var elem = document.getElementById("chat");
-        elem.scrollTop = elem.scrollHeight;
         this.data.changeMessage({
           sessionId: this.userSessionId,
           messages: data.message
         });
         this.showGreeting = false;
+        setTimeout(() => {
+          var elem = document.getElementById("chat");
+          elem.scrollTop = elem.scrollHeight;
+        }, 500);
       }
     });
   }

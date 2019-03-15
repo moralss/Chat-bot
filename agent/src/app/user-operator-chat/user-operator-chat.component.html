@@ -34,8 +34,9 @@
           name="responseCommand"
           placeholder="Response Command"
           (keypress)="sendMessage($event)"
+          #message
         />
-        <button (click)="sendMessage()">send</button>
+        <button (click)="sendMessage(message)">send</button>
       </div>
     </div>
   </div>
