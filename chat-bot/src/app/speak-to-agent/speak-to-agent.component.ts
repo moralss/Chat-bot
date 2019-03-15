@@ -16,8 +16,13 @@ export class SpeakToAgentComponent implements OnInit {
   userBotMessages = [];
   title = "speaking to agent";
   text = "";
+  newMessage = "";
   number = 1;
-  constructor(private data: DataService, private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(
+    private data: DataService,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+  ) {
     const localSessionId = sessionStorage.getItem("sessionId");
     if (localSessionId) {
       this.sessionId = localSessionId;
@@ -53,21 +58,37 @@ export class SpeakToAgentComponent implements OnInit {
         }).subscribe();
         event.path[0].value = "";
       } else {
-        this.text = event.path[0].value;
+        this.newMessage =
+          event.path[0].value + event.key.length > 0 ? event.key : "";
       }
     } else {
-      if (this.text.length > 0) {
+      var elem = document.getElementById("input-field");
+      if (this.newMessage.length > 0) {
         const message = {
-          message: this.text,
+          message: this.newMessage,
           style: "speech-bubble-response",
           orderId: this.messages.length + 1
         };
         this.messages.push(message);
         this.sendMessageToApi({
-          data: this.text,
+          data: this.newMessage,
           type: "User",
           orderId: this.messages.indexOf(message) + 1
         }).subscribe();
+        elem.value = "";
+      } else {
+        const message = {
+          message: elem.value,
+          style: "speech-bubble-response",
+          orderId: this.messages.length + 1
+        };
+        this.messages.push(message);
+        this.sendMessageToApi({
+          data: elem.value,
+          type: "User",
+          orderId: this.messages.indexOf(message) + 1
+        }).subscribe();
+        elem.value = "";
       }
     }
     if (this.messages) {
@@ -137,7 +158,7 @@ export class SpeakToAgentComponent implements OnInit {
   Reset(status: boolean) {
     this.messages = [];
     if (status) {
-      sessionStorage.removeItem("sessionId")
+      sessionStorage.removeItem("sessionId");
       window.location.href = "/";
     }
   }
@@ -146,7 +167,7 @@ export class SpeakToAgentComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(sessionStorage.getItem("sessionId")){
+    if (sessionStorage.getItem("sessionId")) {
       this.data.setSessionId(sessionStorage.getItem("sessionId"));
     }
     this.data.sessionId.subscribe((id: any) => {

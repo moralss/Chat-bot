@@ -12,7 +12,7 @@ import { environment } from "../../environments/environment";
 })
 export class SpeakToBotComponent implements OnInit {
   apiAddress = environment.apiAddress;
-  title = "chat-bot";
+  title = "Sia-bot";
   messagesAndResponses = [];
   messagesToAgent = [];
   btns = [];
@@ -25,7 +25,6 @@ export class SpeakToBotComponent implements OnInit {
     this.messagesAndResponses = [];
     this.btns = [];
     if (status) {
-      window.location.href = "/";
       this.allOptionsDisabled = false;
     }
     this.ShowFirstOptions();

@@ -96,7 +96,7 @@
   -webkit-font-kerning: unset;
   font-kerning: unset;
   height: fit-content;
-  width: fit-content;
+  width: 8rem;
   font-style: inherit;
   -webkit-font-feature-settings: inherit;
   font-feature-settings: inherit;
@@ -221,7 +221,9 @@
 }
 
 .bubble-text {
-  font-size: 0.5em;
+  font-size: 0.8rem;
+  font-weight: lighter;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .msg {

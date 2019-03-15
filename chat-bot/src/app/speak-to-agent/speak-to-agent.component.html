@@ -1,9 +1,8 @@
 <div class="msg">
   <div class="head">
     <img class="image" src="../../assets/infinity-tools-logo.jpeg" />
-    <button class="reset-btn" (click)="Reset(true)">Reset</button>
+    <a class="agent-btn" href="/" (click)="Reset(true)">Reset</a>
     <h1>{{ title }}!</h1>
-
   </div>
   <div class="chat">
     <div
@@ -30,13 +29,15 @@
       <div class="inputField">
         <h1 style="color: white; font-size: 1em">Command :</h1>
         <input
+          
+          id="input-field"
           type="text"
           class="response-command"
           name="responseCommand"
           placeholder="Response Command"
           (keypress)="sendMessage($event)"
         />
-        <button (click)="sendMessage()">send</button>
+        <button (click)="sendMessage()">press enter</button>
       </div>
     </div>
   </div>
