@@ -12,7 +12,7 @@ import { environment } from "../../environments/environment";
 })
 export class SpeakToBotComponent implements OnInit {
   apiAddress = environment.apiAddress;
-  title = "Sia-bot";
+  title: string = "SIABOT";
   messagesAndResponses = [];
   messagesToAgent = [];
   btns = [];
@@ -75,11 +75,14 @@ export class SpeakToBotComponent implements OnInit {
   showOptions(selectedOption) {
     var userMessage = {
       data: selectedOption.option,
-      style: "speech-bubble-response",
+      style: "human-response sb12",
+      number: 1,
+      img: true,
       image: selectedOption.nodeimage
         ? "data:image/jpeg;base64," + selectedOption.nodeimage
         : null
     };
+    console.log("user Message", userMessage)
     this.messagesAndResponses.push(userMessage);
     window.scrollTo({
       top: document.documentElement.scrollHeight,
@@ -154,28 +157,28 @@ export class SpeakToBotComponent implements OnInit {
     if (message.nodeimage) {
       return this.http.get(
         this.apiAddress +
-          "addMessage?type=" +
-          message.type +
-          "&message=" +
-          message.data +
-          "&sessionId=" +
-          this.sessionId +
-          "&messageImage=" +
-          message.nodeimage +
-          "&orderId=" +
-          `${message.orderId}`
+        "addMessage?type=" +
+        message.type +
+        "&message=" +
+        message.data +
+        "&sessionId=" +
+        this.sessionId +
+        "&messageImage=" +
+        message.nodeimage +
+        "&orderId=" +
+        `${message.orderId}`
       );
     } else {
       return this.http.get(
         this.apiAddress +
-          "addMessage?type=" +
-          message.type +
-          "&message=" +
-          message.data +
-          "&sessionId=" +
-          this.sessionId +
-          "&orderId=" +
-          `${message.orderId}`
+        "addMessage?type=" +
+        message.type +
+        "&message=" +
+        message.data +
+        "&sessionId=" +
+        this.sessionId +
+        "&orderId=" +
+        `${message.orderId}`
       );
     }
   }
@@ -211,8 +214,8 @@ export class SpeakToBotComponent implements OnInit {
       sessionId: this.sessionId,
       message: this.messagesAndResponses
     });
-    sessionStorage.setItem("sessionId",this.sessionId);
+    sessionStorage.setItem("sessionId", this.sessionId);
     this.allOptionsDisabled = true;
   }
-  ngOnInit() {}
+  ngOnInit() { }
 }

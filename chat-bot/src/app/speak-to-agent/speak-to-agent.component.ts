@@ -16,7 +16,7 @@ export class SpeakToAgentComponent implements OnInit {
   userBotMessages = [];
   title = "speaking to agent";
   text = "";
-  newMessage = "";
+  newMessage: string;
   number = 1;
   constructor(
     private data: DataService,
@@ -47,7 +47,7 @@ export class SpeakToAgentComponent implements OnInit {
         this.text = value;
         const message = {
           message: value,
-          style: "speech-bubble-response",
+          style: "speech-bubble-response sb12",
           orderId: this.messages.length + 1
         };
         this.messages.push(message);
@@ -58,15 +58,14 @@ export class SpeakToAgentComponent implements OnInit {
         }).subscribe();
         event.path[0].value = "";
       } else {
-        this.newMessage =
-          event.path[0].value + event.key.length > 0 ? event.key : "";
+        // this.newMessage = ""
+        event.path[0].value + event.key.length > 0 ? event.key : "";
       }
     } else {
-      var elem = document.getElementById("input-field");
       if (this.newMessage.length > 0) {
         const message = {
           message: this.newMessage,
-          style: "speech-bubble-response",
+          style: "speech-bubble-response sb12",
           orderId: this.messages.length + 1
         };
         this.messages.push(message);
@@ -75,20 +74,6 @@ export class SpeakToAgentComponent implements OnInit {
           type: "User",
           orderId: this.messages.indexOf(message) + 1
         }).subscribe();
-        elem.value = "";
-      } else {
-        const message = {
-          message: elem.value,
-          style: "speech-bubble-response",
-          orderId: this.messages.length + 1
-        };
-        this.messages.push(message);
-        this.sendMessageToApi({
-          data: elem.value,
-          type: "User",
-          orderId: this.messages.indexOf(message) + 1
-        }).subscribe();
-        elem.value = "";
       }
     }
     if (this.messages) {
@@ -105,14 +90,14 @@ export class SpeakToAgentComponent implements OnInit {
   sendMessageToApi(message: any) {
     return this.http.get(
       this.apiAddress +
-        "addMessage?type=" +
-        message.type +
-        "&message=" +
-        message.data +
-        "&sessionId=" +
-        this.sessionId +
-        "&orderId=" +
-        `${message.orderId}`
+      "addMessage?type=" +
+      message.type +
+      "&message=" +
+      message.data +
+      "&sessionId=" +
+      this.sessionId +
+      "&orderId=" +
+      `${message.orderId}`
     );
   }
   getMessages() {
@@ -124,12 +109,12 @@ export class SpeakToAgentComponent implements OnInit {
       });
       data.message.forEach(element => {
         if (element.type === "User") {
-          element.style = "speech-bubble-response";
+          element.style = "speech-bubble-response sb12";
         } else if (element.type === "bot") {
-          element.style = "speech-bubble";
+          element.style = "speech-bubble sb11";
           this.number = 1;
         } else if (element.type === "agent") {
-          element.style = "speech-bubble";
+          element.style = "speech-bubble sb11";
           this.number = 1;
         } else {
           element.style = "option-bubble";

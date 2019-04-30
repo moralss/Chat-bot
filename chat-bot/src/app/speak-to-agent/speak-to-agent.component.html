@@ -1,8 +1,8 @@
 <div class="msg">
   <div class="head">
-    <img class="image" src="../../assets/infinity-tools-logo.jpeg" />
-    <a class="agent-btn" href="/" (click)="Reset(true)">Reset</a>
-    <h1>{{ title }}!</h1>
+    <h1 class="brand">{{ title }}</h1>
+    <img class="image" src="../../assets/Group 1499.svg" />
+    <img class="searchIcon" src="../../assets/Group 1500.svg" />
   </div>
   <div class="chat">
     <div
@@ -19,26 +19,24 @@
         </h2>
       </ng-container>
       <ng-template #elseTemplate>
-        <h2 class="bubble-text">{{ singleMessage.message }}</h2>
+        <div>
+          <h2 class="">{{ singleMessage.message }}</h2>
+        </div>
       </ng-template>
     </div>
   </div>
 
-  <div class="wrapper">
-    <div class="selection">
-      <div class="inputField">
-        <h1 style="color: white; font-size: 1em">Command :</h1>
-        <input
-          
-          id="input-field"
-          type="text"
-          class="response-command"
-          name="responseCommand"
-          placeholder="Response Command"
-          (keypress)="sendMessage($event)"
-        />
-        <button (click)="sendMessage()">press enter</button>
-      </div>
+  <div class="">
+    <div class="response-command">
+      <img class="att-img" src="../../assets/attachment-icon.svg" alt="" />
+      <input
+        type="text"
+        class="response-command"
+        name="responseCommand"
+        placeholder="Write your message..."
+        (keypress)="sendMessage($event)"
+      />
+      <!-- <img class="eclipse-img" src="../../assets/ellipse.svg" alt="" /> -->
     </div>
   </div>
 </div>
