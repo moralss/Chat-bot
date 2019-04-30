@@ -1,52 +1,67 @@
-<div class="msg">
-  <div class="head">
-    <img class="image" src="../../assets/infinity-tools-logo.jpeg" />
-    <a class="agent-btn" href="/" (click)="Reset(true)">Reset</a>
-    <h1>{{ title }}</h1>
+<div class="head">
+  <h1 class="brand">{{ title }}</h1>
+  <img class="image" src="../../assets/Group 1499.svg" />
+  <img class="searchIcon" src="../../assets/Group 1500.svg" />
+</div>
+
+<div class="selection">
+  <div class="buttons">
+    <img class="selectIcon1" src="../../assets/undo.svg" />
+    <a class="selectText" href="/" (click)="Reset(true)">Revert</a>
+  </div>
+  <div class="buttons">
+    <img class="selectIcon2" src="../../assets/mentors-icon.svg" />
     <a
-      class="agent-btn"
+      class="selectText"
       routerLink="/speak-to-agent"
       (click)="disableAllOptions()"
     >
       Speak to a agent</a
     >
   </div>
-  <div class="chat">
-    <div
-      *ngFor="let messagesAndResponse of messagesAndResponses"
-      class="{{ messagesAndResponse.style }}"
-      (click)="
-        !messagesAndResponse.isDisabled
-          ? showOptions(messagesAndResponse)
-          : null
-      "
-    >
-      <div *ngIf="messagesAndResponse.image">
-        <img src="{{ messagesAndResponse.image }}" />
-      </div>
-      <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
-        <h2 class="bubble-text">
-          {{ messagesAndResponse.number }}. {{ messagesAndResponse.data }}
-        </h2>
-      </ng-container>
-      <ng-template #elseTemplate>
-        <h2 class="bubble-text">{{ messagesAndResponse.data }}</h2>
-      </ng-template>
-    </div>
-  </div>
+</div>
 
-  <div class="wrapper">
-    <div class="selection">
-      <div class="inputField">
-        <h1 style="color: white; font-size: 1em">Command :</h1>
-        <input
-          type="text"
-          class="response-command"
-          name="responseCommand"
-          placeholder="Response Command"
-          (keypress)="sendMessage($event)"
-        />
+<div class="chat">
+  <div
+    *ngFor="let messagesAndResponse of messagesAndResponses"
+    class="{{ messagesAndResponse.style }}"
+    (click)="
+      !messagesAndResponse.isDisabled ? showOptions(messagesAndResponse) : null
+    "
+  >
+    <div *ngIf="messagesAndResponse.image">
+      <img src="{{ messagesAndResponse.image }}" />
+    </div>
+    <ng-container *ngIf="messagesAndResponse.number; else elseTemplate">
+      <h2 class="">
+        {{ messagesAndResponse.number }}.
+        {{ messagesAndResponse.data }}
+      </h2>
+      <ng-container *ngIf="messagesAndResponse.img"
+        ><img class="bot-img2" src="../../assets/Group 1523.svg" alt=""
+      /></ng-container>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="bot-align">
+        <img class="bot-img" src="../../assets/Group 1499.svg" alt="" />
+        <h2 class="bubble-text sb11">{{ messagesAndResponse.data }}</h2>
       </div>
+    </ng-template>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="">
+    <div class="inputField">
+      <img class="att-img" src="../../assets/attachment-icon.svg" alt="" />
+      <input
+        type="text"
+        class="response-command"
+        name="responseCommand"
+        placeholder="Write your message..."
+        (keypress)="sendMessage($event)"
+      />
+      <img class="eclipse-img" src="../../assets/ellipse.svg" alt="" />
     </div>
   </div>
 </div>
