@@ -318,6 +318,18 @@
     border-bottom: 10px solid transparent;
     right: 169px;
 }
+.sb11:before{
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  /* background: red; */
+  border-left: 10px solid transparent;
+  border-right: 10px solid var(--main-bd-color, #e2e8ed);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: 13.5rem;
+}
 }
 
 /* 
@@ -533,7 +545,7 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     position: fixed;
-    width: -webkit-fill-available;
+    width: unset;
     top: 0rem;
   }
   .buttons {
