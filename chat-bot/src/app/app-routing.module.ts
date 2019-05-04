@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 
 const routes: Routes = [
   { path: 'speak-to-agent', component: SpeakToAgentComponent },
-  { path: 'home', component: SpeakToBotComponent },
   { path: '', component: SpeakToBotComponent }
 ];
 

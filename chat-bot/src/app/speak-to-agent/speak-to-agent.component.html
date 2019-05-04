@@ -1,4 +1,3 @@
-<div class="msg">
   <div class="head">
     <h1 class="brand">{{ title }}</h1>
     <img class="image" src="../../assets/Group 1499.svg" />
@@ -13,15 +12,14 @@
       <div *ngIf="singleMessage.messageImage">
         <img [src]="singleMessage.messageImage | safe" />
       </div>
-      <ng-container *ngIf="singleMessage.number; else elseTemplate">
+      <ng-container *ngIf="singleMessage.number ; else elseTemplate">
         <h2 class="bubble-text">
           {{ singleMessage.number }}. {{ singleMessage.message }}
         </h2>
       </ng-container>
       <ng-template #elseTemplate>
-        <div>
           <h2 class="">{{ singleMessage.message }}</h2>
-        </div>
+        <!-- <img class="bot-img" src="../../assets/Group 1499.svg" alt="" /> -->
       </ng-template>
     </div>
   </div>
@@ -39,4 +37,3 @@
       <!-- <img class="eclipse-img" src="../../assets/ellipse.svg" alt="" /> -->
     </div>
   </div>
-</div>
