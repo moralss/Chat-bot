@@ -13,7 +13,7 @@ import { templateSourceUrl } from '@angular/compiler';
 export class SpeakToAgentComponent implements OnInit {
   apiAddress = environment.apiAddress;
   sessionId = null;
-  messages = [];
+  messages = [{ style: "speech-bubble sb11", orderId: 1, message: "Loading Messages..." }];
   userBotMessages = [];
   title = "speaking to agent";
   text = "";
@@ -48,7 +48,7 @@ export class SpeakToAgentComponent implements OnInit {
         this.text = value;
         const message = {
           message: value,
-          img:true,
+          img: true,
           style: "speech-bubble-response sb12",
           orderId: this.messages.length + 1
         };
@@ -67,7 +67,7 @@ export class SpeakToAgentComponent implements OnInit {
       if (this.newMessage.length > 0) {
         const message = {
           message: this.newMessage,
-          img:true,
+          img: true,
           style: "speech-bubble-response sb12",
           orderId: this.messages.length + 1
         };
@@ -105,7 +105,6 @@ export class SpeakToAgentComponent implements OnInit {
   }
   getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
-      console.log("data",data);
       data.message.sort((a, b) => {
         if (a.orderId < b.orderId) return -1;
         if (a.orderId > b.orderId) return 1;
