@@ -69,10 +69,11 @@
 
 .bot-option {
   position: relative;
-  color: white;
   display: grid;
-  background: #717171;
+  background: transparent;
   border-radius: 0.4em;
+  border: 1px solid #2cd6ff;
+  color: black;
   margin-top: 1em;
   font-size: 1.5em;
   max-width: 9em;
@@ -84,8 +85,8 @@
   position: relative;
   display: grid;
   text-align: center;
-  background: white;
-  border: 0.1em solid black;
+  background: linear-gradient(to right, #5574f7, #60c3ff);
+  border: 0px solid var(--main-bd-color, #e2e8ed);
   border-radius: 0.4em;
   right: -20%;
   font-size: 2em;
@@ -95,23 +96,22 @@
 .speech-bubble {
   position: relative;
   display: grid;
-  background: #717171;
   text-align: center;
+  background: white;
+  border: 0.1em solid #e2e8ed;
   border-radius: 0.4em;
-  left: -20%;
-  margin-top: 1em;
-  color: white;
+  right: -20%;
   font-size: 2em;
+  top: 0.5em;
   max-width: 9em;
-  padding: 0.3em;
 }
 
 .speech-bubble-response {
   position: relative;
   display: grid;
   text-align: center;
-  background: white;
-  border: 0.1em solid black;
+  background: linear-gradient(to right, #5574f7, #60c3ff);
+  border: 0px solid var(--main-bd-color, #e2e8ed);
   border-radius: 0.4em;
   right: -20%;
   font-size: 2em;
@@ -140,7 +140,7 @@
   width: 0;
   height: 0;
   border: 0.3em solid transparent;
-  border-left-color: #000000e6;
+  border-left-color: #5a97fa;
   border-right: 0;
   border-bottom: 0;
   margin-top: -0.3rem;
@@ -154,7 +154,7 @@
   width: 0;
   height: 0;
   border: 0.3em solid transparent;
-  border-left-color: #000000e6;
+  border-left-color: #5a97fa;
   border-right: 0;
   border-bottom: 0;
   margin-top: -0.3rem;
@@ -169,7 +169,7 @@
   width: 0;
   height: 0;
   border: 0.4em solid transparent;
-  border-right-color: #717171;
+  border-right-color: #e2e8ed;
   border-left: 0;
   border-bottom: 0;
   margin-top: 0em;
@@ -213,7 +213,8 @@
   display: grid;
   justify-content: center;
   grid-template-rows: -webkit-max-content;
-  height: 32rem;
+  min-height: 15rem;
+  max-height: 26rem;
   grid-gap: 0.1em;
   overflow: auto;
   margin-top: 4.2rem;

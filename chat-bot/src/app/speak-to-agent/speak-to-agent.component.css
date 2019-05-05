@@ -17,6 +17,11 @@
   bottom: 0rem;
   width: -webkit-fill-available;
 }
+.bot-align {
+  display: grid;
+  height: 9rem;
+  grid-template-columns: 0% 65%;
+}
 
 .test {
   background: red;
@@ -114,7 +119,7 @@
 
 .searchIcon {
   position: relative;
-  left: 8rem;
+  left: 3rem;
   top: 2rem;
 }
 .brand {
@@ -222,6 +227,7 @@
   height: 10rem;
   position: relative;
   left: 3rem;
+  top: -3rem;
 }
 .option-bubble {
   border: 2px solid #2cd6ff;
@@ -283,6 +289,7 @@
     font-family: gibson;
     position: relative;
     left: 45vmin;
+    top: -3rem;
   }
   .speech-bubble-response h2 {
     max-width: 38rem;
@@ -297,6 +304,7 @@
     font-family: gibson;
     position: relative;
     left: 76vmin;
+    top: -3rem;
   }
   .bot-align {
   }
@@ -310,8 +318,8 @@
     position: relative;
     text-align: -webkit-left;
     margin: 0.5rem;
-    left: 31rem;
-    top: 0rem;
+    left: 26rem;
+    top: -4rem;
   }
   /* .sb12:before {
     content: "";
@@ -342,7 +350,7 @@
     top: -3.9rem;
     position: relative;
     left: 70.5rem;
-    top: 0rem;
+    top: -2rem;
   }
 }
 
