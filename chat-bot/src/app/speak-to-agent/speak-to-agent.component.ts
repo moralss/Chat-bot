@@ -3,6 +3,7 @@ import { DataService } from "../data.service";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
+import { templateSourceUrl } from '@angular/compiler';
 
 @Component({
   selector: "app-speak-to-agent",
@@ -47,6 +48,7 @@ export class SpeakToAgentComponent implements OnInit {
         this.text = value;
         const message = {
           message: value,
+          img:true,
           style: "speech-bubble-response sb12",
           orderId: this.messages.length + 1
         };
@@ -65,6 +67,7 @@ export class SpeakToAgentComponent implements OnInit {
       if (this.newMessage.length > 0) {
         const message = {
           message: this.newMessage,
+          img:true,
           style: "speech-bubble-response sb12",
           orderId: this.messages.length + 1
         };
@@ -102,6 +105,7 @@ export class SpeakToAgentComponent implements OnInit {
   }
   getMessages() {
     this.getSessionIdMessages(this.sessionId).subscribe((data: any) => {
+      console.log("data",data);
       data.message.sort((a, b) => {
         if (a.orderId < b.orderId) return -1;
         if (a.orderId > b.orderId) return 1;
@@ -109,6 +113,7 @@ export class SpeakToAgentComponent implements OnInit {
       });
       data.message.forEach(element => {
         if (element.type === "User") {
+          element.img = true;
           element.style = "speech-bubble-response sb12";
         } else if (element.type === "bot") {
           element.style = "speech-bubble sb11";
