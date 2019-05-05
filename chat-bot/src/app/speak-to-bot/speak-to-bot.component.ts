@@ -194,7 +194,7 @@ export class SpeakToBotComponent implements OnInit {
       if (singleResponse.style === "speech-bubble") {
         singleResponse.type = "bot";
         singleResponse.nodeimage = singleResponse.image;
-      } else if (singleResponse.style === "speech-bubble-response") {
+      } else if (singleResponse.style === "human-response sb12") {
         singleResponse.nodeimage = singleResponse.image;
         singleResponse.type = "User";
       } else {

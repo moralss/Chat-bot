@@ -1,39 +1,46 @@
-  <div class="head">
-    <h1 class="brand">{{ title }}</h1>
-    <img class="image" src="../../assets/Group 1499.svg" />
-    <img class="searchIcon" src="../../assets/Group 1500.svg" />
-  </div>
-  <div class="chat">
-    <div
-      *ngFor="let singleMessage of messages"
-      class="{{ singleMessage.style }}"
-      (click)="!singleMessage.isDisabled ? showOptions(singleMessage) : null"
-    >
-      <div *ngIf="singleMessage.messageImage">
-        <img [src]="singleMessage.messageImage | safe" />
+<div class="head">
+  <h1 class="brand">{{ title }}</h1>
+  <img class="image" src="../../assets/Group 1499.svg" />
+  <img class="searchIcon" src="../../assets/Group 1500.svg" />
+</div>
+<div class="chat">
+  <div
+    *ngFor="let singleMessage of messages"
+    class="{{ singleMessage.style }}"
+    (click)="!singleMessage.isDisabled ? showOptions(singleMessage) : null"
+  >
+    <div *ngIf="singleMessage.messageImage">
+      <img [src]="singleMessage.messageImage | safe" />
+    </div>
+    <ng-container *ngIf="singleMessage.number; else elseTemplate">
+      <h2 class="bubble-text">
+        {{ singleMessage.number }}. {{ singleMessage.message }}
+      </h2>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="bot-align">
+        <h2 class="">{{ singleMessage.message }}</h2>
+        <ng-container *ngIf="singleMessage.img; else Icon">
+          <img class="bot-img2" src="../../assets/Group 1523.svg" alt="" />
+        </ng-container>
+        <ng-template #Icon>
+          <img class="bot-img" src="../../assets/Group 1499.svg" alt="" />
+        </ng-template>
       </div>
-      <ng-container *ngIf="singleMessage.number ; else elseTemplate">
-        <h2 class="bubble-text">
-          {{ singleMessage.number }}. {{ singleMessage.message }}
-        </h2>
-      </ng-container>
-      <ng-template #elseTemplate>
-          <h2 class="">{{ singleMessage.message }}</h2>
-        <!-- <img class="bot-img" src="../../assets/Group 1499.svg" alt="" /> -->
-      </ng-template>
-    </div>
+    </ng-template>
   </div>
+</div>
 
-  <div class="">
-    <div class="response-command">
-      <img class="att-img" src="../../assets/attachment-icon.svg" alt="" />
-      <input
-        type="text"
-        class="response-command"
-        name="responseCommand"
-        placeholder="Write your message..."
-        (keypress)="sendMessage($event)"
-      />
-      <!-- <img class="eclipse-img" src="../../assets/ellipse.svg" alt="" /> -->
-    </div>
+<div class="">
+  <div class="response-command">
+    <img class="att-img" src="../../assets/attachment-icon.svg" alt="" />
+    <input
+      type="text"
+      class="response-command"
+      name="responseCommand"
+      placeholder="Write your message..."
+      (keypress)="sendMessage($event)"
+    />
+    <!-- <img class="eclipse-img" src="../../assets/ellipse.svg" alt="" /> -->
   </div>
+</div>
